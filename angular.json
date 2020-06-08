@@ -1,0 +1,197 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "bradesco-mei-logado": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mei",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ng2-pdfjs-viewer/pdfjs",
+                "output": "/assets/pdfjs"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-mask-plugin/dist/jquery.mask.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/pixi.js/dist/pixi.min.js",
+              "node_modules/tweenjs/lib/tweenjs.min.js",
+              "node_modules/gsap/umd/TweenMax.js",
+              "node_modules/gsap/umd/ScrollToPlugin.js",
+              "node_modules/slick-carousel/slick/slick.min.js",
+            ],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                },
+                {
+                  "replace": "src/assets/js/environment.js",
+                  "with": "src/assets/js/environment.dev.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "hml": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hml.ts"
+                },
+                {
+                  "replace": "src/assets/js/environment.js",
+                  "with": "src/assets/js/environment.hml.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bradesco-mei-logado:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bradesco-mei-logado:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bradesco-mei-logado:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "bradesco-mei-logado-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "bradesco-mei-logado:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bradesco-mei-logado:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "bradesco-mei-logado"
+}

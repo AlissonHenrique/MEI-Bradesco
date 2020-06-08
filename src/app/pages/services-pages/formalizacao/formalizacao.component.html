@@ -1,0 +1,109 @@
+<app-header></app-header>
+<h-canvas></h-canvas>
+<h-svg></h-svg>
+<tooltip [clickProximo]="toolProximo"></tooltip>
+<service-banner isAnchor="true" [anchorPosition]="positionToScroll" queryParams="formalizacao"
+  bannerTitle="O que é formalização?"
+  subTitle="Ter um CNPJ significa formalizar sua empresa. Isso traz um resultado ainda melhor para o seu negócio."
+  subTitle2="É grátis, simples e pode ser feita com nosso parceiro DicasMEI." buttonTitle="Quero formalizar"
+  imageBanner="assets/images/svg/formalizacao.svg">
+</service-banner>
+
+<div class="formalizacao-box">
+  <div id="formalizacao" class="como-fazer">
+
+    <div class="container">
+      <div class="col-md-12">
+        <h2 class="veja" tabindex="0">Ao se conectar com o parceiro, você precisa ter em mãos os seguintes documentos:
+        </h2>
+      </div>
+    </div>
+
+    <card [cardClass]="cardModel2">
+      <div *ngFor="let form of comoFazer">
+        <div class="col-md-4 style">
+          <div class="style-border">
+            <div class="box-card-m2 borda-azul">
+              <img [src]="form.icon">
+              <h2 class="txt" tabindex="0" [innerHtml]="form.text"></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </card>
+  </div>
+
+  <div style="margin-bottom: 50px;" class="container">
+    <div class="col-md-12">
+      <br>
+      <p class="font-1" tabindex="0">
+        Assim que o processo é concluído, o CCMEI – Certificado de Condição do Microempreendedor Individual* –
+        fica pronto. É só imprimir.
+      </p>
+      <small class="font-2" tabindex="0">* Esse documento comprova a formalidade e legalidade da empresa e serve como
+        alvará de
+        funcionamento provisório com validade de 180 dias. Se nesse período não for encontrada nenhuma
+        irregularidade pela fiscalização, o certificado se torna definitivo.
+      </small>
+    </div>
+  </div>
+
+  <div class="servicos-parceiros">
+    <h2 tabindex="0" class="txt-center">Vamos formalizar agora?</h2>
+    <p class="txt-center" tabindex="0">Temos parceiros que podem te ajudar.</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <card [cardClass]="card">
+            <div class="flex-cards flex-center" [ngClass]="{'flex-condition':parceiros.length <= 2}">
+              <div *ngFor="let parceiro of parceiros" class="flex-box-cards flex-box-cards col-xs-12 col-sm-6 col-md-4">
+                <h2 tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</h2>
+                <div class="card-box borda-azul">
+                  <div *ngIf="parceiro.connected" class="borda-azul-top"></div>
+                  <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)">
+                  <h4 style="padding: 0 8px 0px 12px;" class="serv-name" tabindex="0">{{ parceiro.servicesDescription }}
+                  </h4>
+                  <div [innerHTML]="parceiro.description" tabindex="0"></div>
+
+                  <div id="cont-buttons" class="margin-center bottom-center">
+                    <app-button (click)="link(parceiro)" tabindex="0"
+                      [btnText]="parceiro.connected ? 'Acessar' : 'Conectar'"
+                      btnClass="button-padrao button-pad2 btn-red"></app-button>
+                    <div class="clearfix"></div>
+
+                    <app-button btnText="Saiba mais" (click)="handleNoScroll()" tabindex="0"
+                      btnClass="button-padrao button-pad2" data-toggle="modal"
+                      [attr.data-target]="'#modal' + parceiro.id"></app-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </card>
+
+
+
+          <div *ngFor="let parceiro of parceiros">
+            <!-- MODAL PARCEIRO -->
+            <modal-parceiro-content
+              tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}"
+              tName="{{ parceiro.name}}"
+              tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+              urlImg="{{ parceiro.imageLogo }}" tId="modal{{parceiro.id}}" [services]="parceiro.services"
+              isConnected="{{ parceiro.connected ? true : ''}}" urlPartner=" {{ parceiro.url }}"
+              [partnerId]="parceiro.id" [agreementId]="parceiro.agreementId">
+            </modal-parceiro-content>
+            <!-- MODAL PARCEIRO -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="center">
+      <app-button (click)="params('todos')" btnText="Ver todos os parceiros" tabindex="0"
+        btnClass="button-padrao btn-vazio-borda-red"></app-button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

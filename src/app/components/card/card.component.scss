@@ -1,0 +1,530 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/_variables";
+// MODELO 1
+.card-nossos-parceiros {
+    @include btn-switch;
+    padding: calcRem(50px) 0;
+    .logo {
+        margin: 0 auto;
+        display: block;
+        margin-top: calcRem(35px);
+        max-height: calcRem(80px);
+    }
+    .description-parceiros {
+        padding: calcRem(20px) calcRem(24px) calcRem(0px) calcRem(24px);
+        color: $grey-700;
+        font-size: calcRem(12px);
+        font-weight: 500;
+    }
+    .description-parceiros-ordered {
+        padding: calcRem(0px) calcRem(24px) calcRem(0px) calcRem(4px);
+        color: $grey-700;
+        font-size: calcRem(12px);
+        font-weight: 500;
+    }
+    ul {
+        margin-top: calcRem(20px);
+        list-style: none;
+        margin-bottom: 20px;
+    }
+    ul.list {
+        position: relative;
+    }
+    ul.list li::before {
+        content: "\2022";
+        color: $grey-600;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+    .buttons {
+        padding: calcRem(0px) calcRem(0px) calcRem(0px) calcRem(40px);
+    }
+    // .borda-azul {
+    //   border-left: calcRem(5px) solid $blue !important;
+    // }
+    .borda-azul:after {
+        content: "";
+        height: 100%;
+        width: 7px;
+        background: $blue;
+        position: absolute;
+        top: 0;
+        left: -3px;
+        border-radius: 10px 0px 0px 10px;
+    }
+    .borda-azul-top {
+        &:after {
+            height: calcRem(27px);
+            width: calcRem(70px);
+            background: #3b69ff;
+            content: "Conectado";
+            position: absolute;
+            top: calcRem(-8px);
+            left: calcRem(30px);
+            font-size: calcRem(10px);
+            font-weight: 600;
+            text-align: center;
+            color: white;
+            border-radius: calcRem(6px) calcRem(6px) calcRem(0px) calcRem(0px);
+            padding: calcRem(6px) calcRem(0px) calcRem(0px) calcRem(0px);
+        }
+        &:before {
+            border-top: calcRem(5px) solid #3b69ff;
+            border-left: calcRem(35px) solid transparent;
+            border-right: calcRem(35px) solid transparent;
+            content: "";
+            position: absolute;
+            left: calcRem(30px);
+            
+            top: calcRem(19px);
+            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+                top: calcRem(18.7px);
+            }
+        }
+        
+    }
+   
+        
+    .borda-cinza-top {
+        &:after {
+            height: calcRem(27px);
+            width: calcRem(70px);
+            background: $grey-200;
+            content: "Suspenso";
+            position: absolute;
+            top: calcRem(-8px);
+            left: calcRem(30px);
+            font-size: calcRem(10px);
+            font-weight: 600;
+            text-align: center;
+            color: $white;
+            border-radius: calcRem(6px) calcRem(6px) calcRem(0px) calcRem(0px);
+            padding: calcRem(6px) calcRem(0px) calcRem(0px) calcRem(0px);
+        }
+        &:before {
+            border-top: calcRem(5px) solid $grey-200;
+            border-left: calcRem(35px) solid transparent;
+            border-right: calcRem(35px) solid transparent;
+            content: "";
+            position: absolute;
+            left: calcRem(30px);
+            top: calcRem(19px);
+        }
+    }
+    .card-box {
+        background: $white;
+        border: calcRem(1px) solid $grey-100;
+        border-radius: calcRem(4.5px);
+        position: relative;
+        margin-bottom: calcRem(30px);
+        width: 100%;
+        height: 400px;
+        padding: 0 0 calcRem(110px) 0;
+        -webkit-box-shadow: 1px 1px 9px -3px rgba(0, 0, 0, 0.41);
+        -moz-box-shadow: 1px 1px 9px -3px rgba(0, 0, 0, 0.41);
+        box-shadow: 1px 1px 9px -3px rgba(0, 0, 0, 0.41);
+    
+     
+    
+        @media (max-width: 720px) {
+          height: 450px;    
+        }
+        h5 {
+            margin-top: 20px;
+        }
+      }
+    .button-padrao {
+        margin-left: calcRem(50px);
+        @media (max-width: 768px) {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            width: calcRem(188px);
+            float: none;
+            margin-top: calcRem(20px);
+        }
+    }
+    .box-switch {
+        margin-left: calcRem(20px);
+        margin-bottom: calcRem(45px);
+        @media (max-width: 768px) {
+            float: none;
+            display: block;
+            width: 218px;
+            margin: 0 auto;
+        }
+    }
+}
+
+// MODELO 1
+// MODELO 2
+@media (min-width: 0px) and (max-width: 767px) {
+    .card-model-2 .none-space {
+        padding: 0;
+    }
+}
+
+.card-model-2 {
+    padding: 1px;
+    // display: -ms-flexbox;
+    // display: -webkit-box;
+    // display: flex;
+    // -ms-flex-wrap: wrap;
+    // flex-wrap: wrap;
+    @media (min-width: 768px) and (max-width: 991px) {
+        padding: 8px;
+    }
+    @media (min-width: 0px) and (max-width: 767px) {
+        // overflow: auto;
+        // white-space: nowrap;
+        // width: 100%;
+        // flex-wrap: inherit;
+        background: #f0f1f5;
+    }
+    .style-border {
+        width: 100%;
+        .box-card-m2 {
+            margin: 7px 0;
+            padding: 0 2rem;
+            box-shadow: initial;
+            img {
+                float: left;
+                margin: -12px 19px 17px -20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+    .box-card-m2 {
+        font-size: calcRem(16px);
+        border-radius: calcRem(3px);
+        color: $grey-700;
+        width: 100%;
+        margin: calcRem(15px) 0;
+        -webkit-box-shadow: 0px 3px 6px 0px rgba(200, 201, 204, 1);
+        -moz-box-shadow: 0px 3px 6px 0px rgba(200, 201, 204, 1);
+        box-shadow: 0px 3px 6px 0px rgba(200, 201, 204, 1);
+        padding: calcRem(20px) calcRem(32px);
+        @media (min-width: 0px) and (max-width: 767px) {
+            padding: calcRem(15px) calcRem(20px);
+        }
+        h2 {
+            width: 100%;
+            font-size: calcRem(16px);
+            text-align: left;
+            @media (min-width: 0px) and (max-width: 767px) {
+                margin: calcRem(20px) 0 0 0;
+            }
+            b {
+                font-weight: 600;
+            }
+        }
+        p {
+            margin: calcRem(15px) 0 calcRem(30px) 0;
+            text-align: left;
+            overflow: auto;
+            @media (min-width: 0px) and (max-width: 767px) {
+                margin: calcRem(15px) 0 calcRem(15px) 0;
+            }
+        }
+        a {
+            color: $blue;
+            font-weight: 500;
+            @media (min-width: 0px) and (max-width: 767px) {
+                display: block;
+                margin-bottom: calcRem(20px);
+            }
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    li {
+        float: left;
+        list-style: none;
+        //margin: 0 calcRem(15px) calcRem(30px) calcRem(15px);
+        .box-card-m2.borda-azul {
+            border-left: 5px solid $blue;
+            @media (min-width: 0px) and (max-width: 767px) {
+                background: $white;
+                width: 250px !important;
+            }
+        }
+        @media (min-width: 0px) and (max-width: 767px) {
+            //width: calcRem(220px) !important;
+            white-space: normal !important;
+            float: inherit !important;
+            margin: 0 calcRem(15px) calcRem(30px) calcRem(15px) !important;
+        }
+    }
+}
+
+// 3 colunas
+.card-model-2.coluna-3 {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    @media (min-width: 0px) and (max-width: 767px) {
+        overflow: auto;
+        white-space: nowrap;
+        width: 100%;
+        flex-wrap: inherit;
+    }
+    .box-card-m2 {
+        padding: calcRem(30px);
+        h2 {
+            font-weight: 600;
+        }
+    }
+    li {
+        width: 30.76%;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        margin: 0 calcRem(15px) calcRem(30px) calcRem(15px);
+        @media (min-width: 992px) and (max-width: 1199px) {
+            width: 30.23% !important;
+        }
+        @media (min-width: 768px) and (max-width: 991px) {
+            width: 45.91% !important;
+        }
+        @media (min-width: 0) and (max-width: 767px) {
+            width: 380px !important;
+        }
+    }
+}
+
+// 3 colunas
+// 4 colunas
+.card-model-2.coluna-4 {
+    .box-card-m2 {
+        width: 100%;
+        padding: calcRem(20px) calcRem(30px);
+        @media (min-width: 992px) and (max-width: 1199px) {
+            padding: calcRem(10px) calcRem(20px);
+        }
+    }
+    li {
+        width: 22.43%;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        @media (min-width: 992px) and (max-width: 1199px) {
+            width: 21.9%;
+        }
+        @media (min-width: 768px) and (max-width: 991px) {
+            width: 45.91%;
+        }
+    }
+}
+
+.formalizacao-box {
+    padding: 0;
+    @media (min-width: 0px) and (max-width: 767px) {
+        background: $grey-50;
+    }
+    .servicos-parceiros {
+        background: $grey-50;
+        padding: calcRem(50px) 0 calcRem(140px) 0;
+        @media (min-width: 0px) and (max-width: 767px) {
+            padding: calcRem(50px) 0 calcRem(80px) 0;
+        }
+        .txt-center {
+            text-align: center;
+        }
+        h2 {
+            font-size: calcRem(18px);
+            color: $grey-700;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: calcRem(30px);
+            @media (min-width: 0px) and (max-width: 767px) {
+                text-align: left;
+                padding: 0 calcRem(15px);
+            }
+        }
+        p {
+            font-size: calcRem(14px);
+            color: $grey-700;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: calcRem(60px);
+            @media (min-width: 0px) and (max-width: 767px) {
+                text-align: left;
+                padding: 0 calcRem(15px);
+            }
+        }
+    }
+}
+
+// 4 colunas
+// MODELO 2
+// MODELO 3
+.card-model-3 {
+    .box-card-m-3 {
+        padding: calcRem(26px) calcRem(38px) calcRem(80px) calcRem(38px);
+        background: $white;
+        border: calcRem(1px) solid $grey-100;
+        border-radius: calcRem(4.5px);
+        width: 100%;
+        height: 100%;
+        .logo {
+            max-height: calcRem(80px);
+        }
+        img {
+            margin: 0 auto;
+            display: block;
+        }
+        p {
+            margin: calcRem(25px) 0;
+            line-height: calcRem(18px);
+            color: $grey-700;
+            font-size: calcRem(12px);
+            font-weight: 500;
+        }
+        ul.card-ul {
+            margin: calcRem(25px) auto;
+            padding: 0 0 0 calcRem(10px);
+            li {
+                text-align: left;
+                color: $grey-700;
+                font-size: calcRem(12px);
+                font-weight: 500;
+            }
+        }
+        .margin {
+            margin-bottom: 65px;
+        }
+        .margin-2 {
+            margin-bottom: 40px !important;
+        }
+        .btn {
+            @include btn($white, #e1173f);
+        }
+        .button-padrao {
+            margin-bottom: 0;
+        }
+    }
+    .borda-azul:after {
+        content: "";
+        height: 100%;
+        width: 7px;
+        background: $blue;
+        position: absolute;
+        top: 0;
+        left: 15px;
+        border-radius: 10px 0px 0px 10px;
+        @media (max-width: 768px) {
+            border-left: none !important;
+        }
+    }
+    // .borda-azul {
+    //   border-left: calcRem(5px) solid $blue !important;
+    //   @media (max-width: 768px) {
+    //     border-left: none !important;
+    //   }
+    // }
+}
+
+// MODELO 3
+.card-info-drop {
+    position: absolute;
+    right: 32px;
+    .dropdown-toggle {
+        border: none;
+        border-radius: 0;
+        position: absolute;
+        float: right;
+        padding: 13px;
+        background: none;
+        cursor: pointer;
+        z-index: 2;
+        &:hover &:active,
+        &:focus {
+            background: none;
+            box-shadow: none !important;
+        }
+        .circulo-01 {
+            border-radius: 100%;
+            background: $grey-200;
+            width: 5px;
+            height: 5px;
+            float: left;
+            margin: 3px 0;
+        }
+    }
+    .dropdown-menu {
+        margin: 0px 0 0 -179px;
+        height: auto;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        padding-top: 56px;
+        z-index: 1;
+        li a {
+            padding: 15px;
+            width: 210px;
+            background: $white;
+            text-align: right;
+            &:hover {
+                background: $grey-50;
+            }
+        }
+    }
+}
+
+.card-info-drop .dropdown-toggle:hover .circulo-01,
+.card-info-drop.open .dropdown-toggle .circulo-01 {
+    background: #3b69ff !important;
+}
+
+.card-info-drop .dropdown-menu:nth-child(3) {
+    margin: 0px 0 0 -180px !important;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .services .card-nossos-parceiros .card-box {
+        width: 95%;
+        margin-bottom: 0px;
+        height: 375px;
+    }
+}
+
+.card-model-3 .box-card-m-3 .logo {
+    width: 100%;
+}
+
+.showPartnerDescription {
+    margin-top: 1.25rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 20px;
+  }
+
+  .showPartnerDescription p {
+    margin-top: 1.25rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  ol {
+    margin-top: calcRem(20px);
+    margin-bottom: 20px;
+  }
+  
+  ol.list {
+    position: relative;
+  }
+  
+  ol.list li::before {
+    color: $grey-600;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }

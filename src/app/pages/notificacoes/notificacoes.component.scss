@@ -1,0 +1,109 @@
+@import "../../../assets/global-scss/_mixins";
+@import "../../../assets/global-scss/_variables";
+h1 {
+  font-size: calcRem(40px);
+  line-height: calcRem(32px);
+  font-weight: bold;
+  margin-top: calcRem(92px);
+  margin-bottom: calcRem(48px);
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  margin-bottom: calcRem(120px);
+  li {
+    padding: calcRem(24px) calcRem(45px);
+    position: relative;
+    font-size: calcRem(16px);
+    line-height: calcRem(24px);
+    &.nova {
+      .nova {
+        display: inline-block;
+      }
+    }
+    &.lida {
+      .lida {
+        display: inline-block;
+      }
+    }
+    &:nth-child(even) {
+      background-color: $grey-50;
+    }
+    .parceiro {
+      float: left;
+    }
+    .data {
+      float: right;
+    }
+    .nova {
+      float: right;
+      clear: right;
+      display: inline-block;
+      padding: calcRem(2px) calcRem(4px);
+      background-color: $blue;
+      border-radius: calcRem(4px);
+      color: $white;
+      display: none;
+    }
+    .lida {
+      float: right;
+      clear: right;
+      display: none;
+    }
+    p {
+      margin: 0;
+      clear: left;
+      font-weight: 500;
+    }
+    svg {
+      width: 15px;
+      height: 7px;
+      position: absolute;
+      right: 15px;
+      top: 58px;
+      float: right;
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.notificacoes-footer {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  float: none;
+  width: calcRem(261px);
+  text-decoration: none;
+  padding: 0 0 calcRem(32px);
+  .button-padrao {
+    float: none;
+    display: inline-block;
+    margin-bottom: calcRem(92px);
+    margin-top: calcRem(48px);
+  }
+}
+.voltar-topo {
+  color: #e1173f;
+  background: none;
+  border: 1px solid #e1173f;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0.875rem 2.75rem;
+  height: 3rem;
+  border-radius: 1.875rem;
+  outline: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  width: 195px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 70px;
+  cursor: pointer;
+}
+
+.voltar-topo:hover {
+  background-color: #c50030;
+  color: #ffffff;
+}

@@ -1,0 +1,87 @@
+<router-outlet></router-outlet>
+<app-loading></app-loading>
+<app-error errTitle="Sessão expirada" errText1="Você precisa estar logado para continuar" errId="userDisconected"
+  afterCloseAction="logout">
+</app-error>
+
+<modal-pequeno class="modal-logout" myModal="defaultErrorMessage" id="modalError">
+  <div class="modal-body">
+    <p>No momento, não é possível concluir sua solicitação. Por favor, tente novamente mais tarde.
+    </p>
+  </div>
+</modal-pequeno>
+<modal-pequeno class="modal-logout" myModal="backendErrorMessage">
+  <div class="modal-body">
+    <p></p>
+  </div>
+</modal-pequeno>
+
+<modal-pequeno class="modal-logout" myModal="defaultMessageTermsChanged">
+  <div class="modal-body">
+    <p style='text-align: justify;'>As politicas de utilização da plataforma foram atualizadas.
+      Desta forma, precisamos que você confirme que está ciente dos novos “Termos de
+      adesão” e “Termo de Privacidade”.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <div class="alignBtn">
+      <app-button (click)="showTerms()" btnText="Ok" btnClass="button-padrao btn-red">
+      </app-button>
+    </div>
+  </div>
+</modal-pequeno>
+
+<modal-pequeno class="modal-logout" myModal="defaultMessageTermAdesao">
+  <div class="modal-body">
+    <p tabindex="0" id='text'>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <div class="p-termos">
+      <app-button tabindex="0" (click)="exitApp()" btnText="Sim" btnClass="button-padrao btn-red">
+      </app-button>
+      <app-button tabindex="0" data-dismiss="modal" (click)="closeModal()" btnText="Não" btnClass="button-padrao"></app-button>
+    </div>
+  </div>
+</modal-pequeno>
+
+<div *ngIf="pendingCustomerTerms">
+  <modal-grande afterCloseAction="logout" *ngFor="let item of pendingCustomerTerms" class="modal-home"
+    IDModal="termoPendente{{item.id}}">
+    <h1 tabindex="0" class="title margin-left">{{item.termType ==1 ?
+          'Atualização dos Termos de Adesão' : 'Atualização da Política de Privacidade'}}</h1>
+    <div class="espaco-modal">
+
+      <p tabindex="0" style="text-align: justify; margin-bottom: 30px;">
+        {{item.termType ==1 ?
+        'Houve atualização nas condições dos Termos de Adesão do site. Por favor, aceite para prosseguir com a navegação.' : 'Houve atualização nas condições dos Termos de Privacidade do site. Por favor, aceite para prosseguir com a navegação.'}}
+      </p>
+
+
+      <div class="espaco-modal-2">
+        <iframe id="iframeTerm{{item.id}}" class="iframeTerm" src="">
+        </iframe>
+      </div>
+
+      <div class="download modalResponsive">
+        <a href="{{downloadUrl}}" (click)="downloadTerms(item.termType)" class="tabindex click1"
+          title="Baixar os termos de adesão no formato PDF" id="download_adesao"><svg version="1.1" id="icon-download"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 17 18" xml:space="preserve" class="svgDownload">
+            <path fill="#3B69FF"
+              d="M14.5,3.4h-2.1c-0.5,0-0.9,0.4-0.9,0.9s0.4,0.9,0.9,0.9h2.1c0.2,0,0.4,0.1,0.5,0.2s0.2,0.3,0.2,0.5v9.5 c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2H2.6c-0.2,0-0.4-0.1-0.5-0.2s-0.2-0.3-0.2-0.5V6c0-0.4,0.3-0.7,0.7-0.7h2.1 c0.5,0,0.9-0.4,0.9-0.9s-0.5-1-1-1h-2C1.1,3.4,0,4.6,0,6v9.5C0,16.9,1.1,18,2.5,18h11.9c1.4,0,2.5-1.1,2.5-2.5V6 C17,4.6,15.8,3.4,14.5,3.4z" />
+            <path fill="#3B69FF"
+              d="M12.8,9.8c-0.4-0.4-1-0.4-1.4,0l-2,1.9V1c0-0.5-0.4-1-1-1s-1,0.4-1,1v10.7l-2-1.9c-0.4-0.4-1-0.3-1.3,0 C4,10,3.9,10.2,3.9,10.4c0,0.3,0.1,0.5,0.3,0.7l3.6,3.4c0.2,0.2,0.4,0.3,0.7,0.3s0.5-0.1,0.7-0.3l3.6-3.4 C13.2,10.8,13.2,10.2,12.8,9.8z" />
+          </svg> Baixar no formato PDF</a>
+      </div>
+
+      <div class="c-bt tpadding">
+        <app-button tabindex="0" (click)="acceptTerm(item.id)" btnText="Aceitar" btnClass="button-padrao btn-red bt-termo">
+        </app-button>
+        <app-button tabindex="0" (click)="declineAccept(item.termType)" btnText="Cancelar" btnClass="button-padrao bt-termo">
+        </app-button>
+
+      </div>
+    </div>
+  </modal-grande>
+</div>

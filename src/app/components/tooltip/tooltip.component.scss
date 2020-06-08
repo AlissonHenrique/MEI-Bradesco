@@ -1,0 +1,89 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+.tooltip-tutorial {
+    display: none;
+    opacity: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    position: absolute;
+    left: 100px; //-27
+    z-index: 12;
+    .bg {
+      padding: calcRem(16px) calcRem(24px);
+      max-width: calcRem(400px);
+      min-width: calcRem(230px);
+      border: none;
+      border-radius: calcRem(8px);
+      margin-top: 0;
+      background-color: white;
+      box-shadow: 0 calcRem(4px) calcRem(12px) rgba(0, 0, 0, 0.175);
+      white-space: normal;
+
+      .text-container{
+        
+        padding: 1rem;
+        p {
+            width: 100%;
+            font-size: calcRem(14px);
+            font-weight: normal;
+            color: $grey-600;
+            line-height: calcRem(20px);
+            margin: 0 0 1.5rem;
+
+            
+
+        }
+        a{
+            color: $blue;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            &.b-back{
+                float: left;
+            }
+            &.b-forward{
+                float: right;
+            }
+            svg{
+                margin: 0 0 0 calcRem(8px);
+            }
+        }
+        
+      }
+      
+    }
+    .triangle-with-shadow {
+      width: calcRem(17px);
+      height: calcRem(48px);
+      position: absolute;
+      overflow: hidden;
+      bottom: calcRem(8px);
+      left: calcRem(-16px);
+      &:after {
+        content: "";
+        position: absolute;
+        width: calcRem(25px);
+        height: calcRem(25px);
+        background: white;
+        transform: rotate(45deg);
+        /* Prefixes... */
+        top: 14px;
+        left: 12px;
+        box-shadow: -1px -1px 7px -2px rgba(0, 0, 0, 0.175);
+      }
+      &.triangle-bottom{
+          display: none;
+          width: calcRem(44px);
+          height: calcRem(20px);
+          bottom: calcRem(-14px);
+          left: calcRem(32px);
+          &:after{
+              top:calcRem(-12px);
+          }
+      }
+    }
+  }

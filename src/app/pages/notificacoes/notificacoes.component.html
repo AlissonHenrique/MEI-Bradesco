@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 tabindex="0">Notificações</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="listNotifications.length > 0; else semNotificacoesPagina">
+                <ul>
+                    <li *ngFor="let item of listNotifications" style="cursor:pointer;" (click)="validConection(item)" class="{{item.status == 0 ? 'nova' : 'lida'}}">
+                        <span tabindex="0" class="parceiro">{{ item.title }}</span>
+                        <span tabindex="0" class="data">{{item.creation | date: 'dd/MM/yyyy'}}</span>
+                        <span tabindex="0" class="nova">Nova</span>
+                        <span tabindex="0" class="lida">Lida</span>
+                        <p tabindex="0" class="texto">{{ item.message  }}</p>
+                        <!-- <a routerLink="/nossos-parceiros-form">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8.175" height="5.668" viewBox="0 0 8.175 5.668">
+                                <path id="Caminho_3468" data-name="Caminho 3468" d="M0,4.557,3.745,0,7.4,4.557" transform="translate(7.789 4.875) rotate(180)" fill="none" stroke="#3b69ff" stroke-width="1"/>
+                            </svg>
+                        </a> -->
+                    </li>
+                </ul>
+            </div>
+            <ng-template #semNotificacoesPagina>
+                <div tabindex="0" class="notificacoes-lidas">
+                    Não há notificações pendentes.
+                </div>
+            </ng-template>
+
+            <div *ngIf="!pageFinally" class="notificacoes-footer">
+                <app-button tabindex="0" (click)="showMore()" btnText="Ver mais notificações"
+                    btnClass="button-padrao btn-vazio-borda-red"></app-button>
+            </div>
+            <a tabindex="0" *ngIf="pageFinally" class="voltar-topo button-padrao btn-vazio-borda-red"
+                (click)="scrollSmoothToTop()">Voltar ao topo</a>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,179 @@
+<app-header class="position"></app-header>
+<h-canvas></h-canvas>
+<h-svg></h-svg>
+<tooltip [clickProximo]="toolProximo" [clickVoltar]="toolVoltar"></tooltip>
+
+<div class="conecte-se">
+  <app-loading></app-loading>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <a (click)="goBack()" class="return cursor-pointer">Voltar</a>
+        <h1 style="padding-bottom: 2.25rem; margin: 1.5625rem 0;">Conecte-se</h1>
+        <!-- <h2>Parceiros: {{valor}}</h2> -->
+
+        <h4>
+          Aqui, você pode gerenciar os serviços e parceiros disponíveis e os já conectados. <br>
+          Selecione o parceiro abaixo para usar o serviço escolhido.
+        </h4>
+
+        <div class="parceiros">
+          <card [cardClass]="card">
+            <div class="flex-cards">
+
+              <div *ngFor="let parceiro of parceiros" class="flex-box-cards col-xs-12 col-sm-6 col-md-4">
+
+                <!-- MODAL PARCEIRO -->
+                <modal-parceiro-content
+                tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                tName="{{ parceiro.name}}" 
+                tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                urlImg="{{ parceiro.imageLogo }}" 
+                tId="modal{{parceiro.id}}" 
+                [services]="parceiro.services"
+                isConnected="{{ parceiro.connected ? true : ''}}"
+                urlPartner=" {{ parceiro.url }}"
+                [partnerId] = "parceiro.id"
+                [agreementId] = "parceiro.agreementId"
+                >
+
+                  <!-- TODO: ADICIONAR ICONES DE SERVIÇOS NO MODAL DE PARCEIROS - (RETIRADO NO MERGE DE 27-12 PEDRO H.) -->
+                  <!-- tIcon01="{{ parceiro.images.icon_01.logo }}" tIcon02="{{ parceiro.images.icon_02.logo }}"
+                  tIcon03="{{ parceiro.images.icon_03.logo }}" tIcon04="{{ parceiro.images.icon_04.logo }}"
+                  tIcon01T="{{ parceiro.images.icon_01.text }}" tIcon02T="{{ parceiro.images.icon_02.text }}"
+                  tIcon03T="{{ parceiro.images.icon_03.text }}" tIcon04T="{{ parceiro.images.icon_04.text }}" -->
+                </modal-parceiro-content>
+                <!-- MODAL PARCEIRO -->
+
+                <div class="card-box borda-azul">
+
+                  <!-- <div class="card-info-drop">
+                    <div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <span class="circulo-01"></span>
+                      <span class="circulo-01"></span>
+                      <span class="circulo-01"></span>
+                    </div>
+
+                    
+                  </div> -->
+
+                  <div *ngIf="parceiro.connected" class="borda-azul-top"></div>
+                  <!-- <div *ngIf="newObj[0].active == 2" class="borda-cinza-top"></div> -->
+
+                  <!-- Large button group -->
+                  <img [src]="sanitizePartnerLogo(parceiro.imageLogo)" class="logo">
+
+                  <h4 style="padding: 0 8px 0px 12px;" class="serv-name">{{ parceiro.servicesDescription }}</h4>
+
+                  <div [innerHTML]="parceiro.descriptionAux"></div>
+                  <!-- <ul class="list">
+                    <li class="description-parceiros">{{ parceiro.description.text_01 }}</li>
+                    <li class="description-parceiros" *ngIf="parceiro.description.text_02 != undefined">
+                      {{ parceiro.description.text_02 }}</li>
+                    <li class="description-parceiros" *ngIf="parceiro.description.text_03 != undefined">
+                      {{ parceiro.description.text_03 }}</li>
+                    <li class="description-parceiros" *ngIf="parceiro.description.text_04 != undefined">
+                      {{ parceiro.description.text_04 }}</li>
+                    <li class="description-parceiros" *ngIf="parceiro.description.text_05 != undefined">
+                      {{ parceiro.description.text_05 }}</li>
+                  </ul> -->
+
+                  <div id="btn-container" class="margin-center bottom-center">
+                    <app-button (click)="link(parceiro)"
+                      [btnText]="parceiro.connected ? 'Acessar' : 'Conectar'" btnClass="button-padrao button-pad2 btn-red"></app-button>
+                    <div class="clearfix"></div>
+
+                    <!-- <app-button *ngIf="parceiro.connected" (click)="handleSubmit(parceiro.name)" btnText="Acessar"
+                      btnClass="button-padrao button-pad2 btn-red"></app-button>
+                    <div class="clearfix"></div> -->
+
+                    <app-button btnText="Saiba mais" btnClass="button-padrao button-pad2" data-toggle="modal"
+                      [attr.data-target]="'#modal' + parceiro.id"></app-button>
+                  </div>
+
+                </div>
+
+                <!-- #region MODAL CONTENTS -->
+                <!-- MODAL EXCLUIR DADOS -->
+                <modal-pequeno class="modal-logout" [myModal]="modalDelete">
+                  <div class="modal-body">
+                    <h4 class="modal-title">Excluindo dados</h4>
+                    <p>Ao confirmar, você exclui permanentemente seu vínculo com o parceiro.</p>
+                  </div>
+                  <div style="display: inline;" class="modal-footer">
+                    <app-button (click)="editPartner('delete')" btnText="Excluir" btnClass="button-padrao btn-red">
+                    </app-button>
+                    <app-button data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+                  </div>
+                </modal-pequeno>
+                <!-- MODAL EXCLUIR DADOS -->
+
+                <!-- MODAL Suspend DADOS -->
+                <modal-pequeno class="modal-logout" [myModal]="modalSuspend">
+                  <div class="modal-body">
+                    <h4 class="modal-title">Suspender parceiro</h4>
+                    <p>Quer mesmo suspender esse parceiro?</p>
+                  </div>
+                  <div style="display: inline;" class="modal-footer">
+                    <app-button (click)="editPartner('suspend')" btnText="Suspender" btnClass="button-padrao btn-red">
+                    </app-button>
+                    <app-button data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+                  </div>
+                </modal-pequeno>
+                <!-- MODAL Suspend DADOS -->
+
+                <!-- MODAL SUCESSO SUSP. -->
+                <modal-pequeno class="modal-logout" [myModal]="succSusp">
+                  <div class="modal-body">
+                    <p>A suspensão foi concluída. Se você mudar de ideia e quiser ter os serviços do nosso parceiro de
+                      novo, é só se
+                      conectar.
+                    </p>
+                  </div>
+                </modal-pequeno>
+                <!-- MODAL SUCESSO SUSP. -->
+
+                <!-- MODAL SUCESSO EXCL. -->
+                <modal-pequeno class="modal-logout" [myModal]="succExcl">
+                  <div class="modal-body">
+                    <p>A exclusão foi concluída. Se você mudar de ideia e quiser ter os serviços do nosso parceiro de
+                      novo, é só se
+                      conectar.
+                    </p>
+                  </div>
+                </modal-pequeno>
+                <!-- MODAL SUCESSO EXCL. -->
+
+                <!-- MODAL ERR DELETE -->
+                <app-error errText1="Não foi possível excluir o parceiro." errText2="Tente novamente mais tarde."
+                  errId="deleteErr">
+                </app-error>
+                <!-- MODAL ERR DELETE -->
+
+                <!-- MODAL ERR SUSPEND -->
+                <app-error errText1="Não foi possível suspender o parceiro." errText2="Tente novamente mais tarde."
+                  errId="suspendErr">
+                </app-error>
+                <!-- MODAL ERR SUSPEND -->
+
+                <!-- MODAL ERR SERVER -->
+                <app-error errText1="Não foi possível conectar ao servidor." errText2="Tente novamente mais tarde."
+                  errId="serverErr">
+                </app-error>
+                <!-- MODAL ERR SERVER -->
+
+                <!-- #endregion MODAL CONTENTS -->
+
+              </div>
+            </div>
+          </card>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>

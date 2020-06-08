@@ -1,0 +1,108 @@
+@import '../../../../assets/global-scss/mixins';
+@import '../../../../assets/global-scss/variables';
+// Modal grande
+.modal-grande {
+    text-align: center;
+    padding: 0;
+    .connect {
+        font-size: calcRem(16px);
+        font-weight: 500;
+        margin-top: -3px;
+    }
+    &:before {
+        @media(min-width: 0px) and (max-width: 767px) {
+            display: inline;
+        }
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .modal-content {
+        margin: 0 auto;
+    }
+    .modal-header {
+        border-bottom: none;
+    }
+    .modal-footer {
+        border: none;
+        padding: 0 calcRem(56px);
+    }
+    .margin-left {
+        margin-left: calcRem(56px);
+        margin-right: calcRem(56px);
+    }
+    .title {
+        font-size: calcRem(18px) !important;
+        font-weight: 500 !important;
+    }
+    span.sub {
+        font-size: calcRem(12px);
+        font-weight: 500;
+        padding: calcRem(0px) calcRem(56px) calcRem(0px) calcRem(56px);
+        display: block;
+        margin-top: calcRem(16px);
+        margin-bottom: calcRem(16px);
+    }
+    .btns {
+        margin-top: calcRem(40px);
+        margin-bottom: calcRem(40px);
+    }
+    .height {
+        height: calcRem(280px);
+        overflow: auto;
+    }
+}
+
+// Modal grande
+// MODAL HOME
+.modal-home {
+    @include btn-switch;
+    .card-modal {
+        height: calcRem(247px);
+        margin-bottom: calcRem(10px);
+        border: 1px solid $grey-100;
+        .logo {
+            margin: 0 auto;
+            display: block;
+            margin-bottom: calcRem(24px);
+            margin-top: calcRem(18px);
+            height: calcRem(50px)
+        }
+        .description-parceiros {
+            padding: calcRem(0px) calcRem(24px) calcRem(0px) calcRem(2px);
+            color: $grey-700;
+            font-size: calcRem(12px);
+            font-weight: 500;
+        }
+        ul {
+            list-style: none;
+            height: calcRem(70px);
+            overflow: auto;
+        }
+        ul li::before {
+            content: "\2022";
+            color: $grey-600;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .buttons {
+            padding: calcRem(0px) calcRem(0px) calcRem(0px) calcRem(40px);
+            margin-top: calcRem(40px)
+        }
+    }
+    .content {
+        margin-top: calcRem(56px);
+        .col-md-4,
+        .col-lg-4 {
+            padding-left: 0px !important
+        }
+    }
+}

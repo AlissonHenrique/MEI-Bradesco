@@ -1,0 +1,35 @@
+<div class="icon-container">
+    <svg version="1.1" id="iconTimer" class="iconTimer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 44 44" xml:space="preserve">
+        <defs>
+            <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#FA003C"/>
+                <stop offset="24%"  stop-color="#63328E"/>
+                <stop offset="63%"  stop-color="#2A46AB"/>
+                <stop offset="77%"  stop-color="#2E56B2"/>
+                <stop offset="100%" stop-color="#4298CF"/>
+            </linearGradient>
+        </defs>
+        <path fill="#FFFFFF" opacity="0.15" d="M22,4c9.9,0,18,8.1,18,18s-8.1,18-18,18S4,32,4,22S12.1,4,22,4z"/>
+        <circle class="bg-timer-stroke" cx="22" cy="22" r="20"/>
+        <circle id="timer" class="timer-stroke" cx="22" cy="22" r="20"/>
+    </svg>
+    <div class="tempo">
+        {{tempo}}
+    </div>
+    <div class="medida">
+        {{medida}}
+    </div>
+</div>
+
+<!-- MODAL LOGOUT -->
+<modal-pequeno class="modal-logout" [myModal]="modalLogout">
+    <div class="modal-body">
+        <h4 class="modal-title">Deseja permanecer conectado?</h4>
+        <p>O tempo de login expirou. Clique no botão abaixo para renovar seu tempo de login.</p>
+    </div>
+    <div class="modal-footer">
+        <app-button (click)="renovarTempo()" btnText="Renovar" btnClass="button-padrao btn-red"></app-button>
+        <app-button (click)="sair()" btnText="Sair" btnClass="button-padrao"></app-button>
+    </div>
+</modal-pequeno>
+<!-- MODAL LOGOUT -->

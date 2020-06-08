@@ -1,0 +1,18 @@
+<div class="div-material">
+  <mat-form-field>
+    <mat-select id={{id}} placeholder={{placeholder}} disableOptionCentering panelClass="custom-panel"
+      [formControl]="fControl" value={{value}} (openedChange)="selectOpen($event)" (ngModelChange)='changed($event)'>
+      <mat-option *ngFor="let item of itens" [value]="item.idString">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+    <mat-icon class="setas" matSuffix></mat-icon>
+    <mat-hint>{{hintMsg}}</mat-hint>
+    <mat-error *ngIf="fControl.hasError('customNotValid') && !fControl.hasError('required')">
+      {{errorMsg}}
+    </mat-error>
+    <mat-error *ngIf="fControl.hasError('required')">
+      {{errorReqMsg}}
+    </mat-error>
+  </mat-form-field>
+</div>

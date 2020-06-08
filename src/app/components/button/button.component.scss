@@ -1,0 +1,151 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+
+/*Btn padrão para todos*/
+
+a {
+    cursor: pointer
+}
+
+.button-padrao {
+    background: none;
+    color: $blue;
+    font-size: calcRem(14px);
+    font-weight: bold;
+    padding: calcRem(14px) calcRem(44px);
+    float: left;
+    height: calcRem(48px);
+    margin-bottom: calcRem(40px);
+    border-radius: calcRem(30px);
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    @media screen and (max-width: 768px) {
+        display: block;
+        float: none;
+        margin-top: 1rem;
+        text-align: center !important;
+        margin: 10px;
+    }
+}
+
+.button-pad2 {
+    margin-bottom: calcRem(10px);
+    width: calcRem(175px);
+    display: block;
+    margin: 0 auto;
+    float: inherit;
+    text-align: center;
+}
+
+
+/*/Btn padrão para todos*/
+
+
+/*Btn padrão todo vermelho*/
+
+.button-padrao.btn-red {
+    color: $white;
+    background-color: $red;
+    &:hover,
+    &:focus {
+        background: $red-hover;
+    }
+    &:active {
+        background: $dark-red;
+    }
+}
+
+
+/*Btn padrao vermelho sem margem*/
+
+.button-padrao.btn-red.no-margin {
+    margin: 0;
+}
+
+
+/*/Btn padrão todo vermelho*/
+
+
+/*Btn desabilitado vermelho/cinza*/
+
+.button-padrao.desabilitado {
+    background: $grey-300;
+    color: $white;
+    cursor: not-allowed;
+}
+
+
+/*/Btn desabilitado vermelho/cinza*/
+
+
+/*Btn vazio borda vermelho*/
+
+.button-padrao.btn-vazio-borda-red {
+    color: $red;
+    background: none;
+    border: 1px solid $red;
+    &:hover,
+    &:focus {
+        background-color: $red-hover;
+        color: $white;
+    }
+    &:active {
+        background: $dark-red;
+        color: $white;
+    }
+}
+
+.button-padrao.btn-vazio-cor-red {
+    color: $red;
+    background: none;
+    border: 1px solid $white;
+    &:hover,
+    &:focus {
+        background-color: $red-hover;
+        color: $white;
+    }
+    &:active {
+        background: $dark-red;
+        color: $white;
+    }
+}
+
+
+/*/Btn vazio borda vermelho*/
+
+
+/*Btn vazio borda vermelho/cinza*/
+
+.button-padrao.btn-vazio-desabilitado {
+    color: $grey-300;
+    background: none;
+    border: 1px solid $grey-300;
+    cursor: not-allowed;
+}
+
+
+/*/Btn vazio borda vermelho/cinza*/
+
+
+/*Btn regra no modal small caso tiver dois btn*/
+
+.btn-two {
+    margin: 0 calcRem(21px);
+    button {
+        margin-right: calcRem(40px);
+        &:nth-child(2) {
+            margin-right: 0px;
+        }
+    }
+}
+
+.btn-mob {
+    @media (max-width: 720px) {
+      position: absolute;
+      bottom: 48px;
+      left: 0;
+      right: 0;
+    }
+  }

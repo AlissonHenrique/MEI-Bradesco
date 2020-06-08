@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="Grupo_5959" data-name="Grupo 5959" transform="translate(-200 -629.043)">
+    <path id="Caminho_3544" data-name="Caminho 3544" d="M20,0A20,20,0,1,1,0,20,20,20,0,0,1,20,0Z" transform="translate(200 629.043)" fill="#3b69ff"/>
+    <g id="Grupo_5968" data-name="Grupo 5968" transform="translate(-45.79 398.809)">
+      <g id="Grupo_5619" data-name="Grupo 5619" transform="translate(252.79 245.037)">
+        <path id="Caminho_3450" data-name="Caminho 3450" d="M277.151,256.065H253.742a1.064,1.064,0,0,1-.952-1.146v-8.736a1.064,1.064,0,0,1,.952-1.146h23.409a1.064,1.064,0,0,1,.952,1.146v8.736A1.064,1.064,0,0,1,277.151,256.065ZM253.742,245.33a.792.792,0,0,0-.709.853v8.736a.792.792,0,0,0,.709.853h23.409a.792.792,0,0,0,.709-.853v-8.736a.792.792,0,0,0-.709-.853Z" transform="translate(-252.79 -245.037)" fill="#fff"/>
+      </g>
+      <text id="_123" data-name="123" transform="translate(256.79 252.944)" fill="#fff" font-size="7" font-family="SegoeUI, Segoe UI" letter-spacing="0.2em"><tspan x="0" y="0">123</tspan></text>
+    </g>
+  </g>
+</svg>

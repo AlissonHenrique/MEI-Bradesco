@@ -1,0 +1,53 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+.panel-default > .panel-heading {
+  background: $grey-100;
+  border: none;
+  padding: calcRem(20px) calcRem(16px);
+}
+.panel:nth-child(1) {
+  margin-top: 0;
+}
+.panel {
+  margin: calcRem(32px) 0;
+}
+.panel-title a {
+  font-size: calcRem(16px);
+  font-weight: 400;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 8px;
+  }
+}
+
+.panel-group .panel {
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.panel-body {
+  padding: calcRem(20px) calcRem(16px) calcRem(20px) calcRem(55px);
+}
+.img-less {
+  display: none;
+}
+.img-more {
+  display: inline-block;
+}
+
+.panel-body {
+  background: $blue;
+  color: $white;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  border-top-color: transparent !important;
+}
+
+.box-title-azul {
+  background: $blue !important;
+  color: $white;
+}

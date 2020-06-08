@@ -1,0 +1,627 @@
+<app-header class="position"></app-header>
+<h-canvas></h-canvas>
+<tooltip [clickVoltar]="tVoltar" [clickProximo]="tProximo"[close]="tClose" ></tooltip>
+
+<h-svg></h-svg>
+
+<div class="bg-nome-empresa">
+    <user-info nomeUsuario="{{customerName}}" nomeText="Alterar dados >" class="bg-cor"></user-info>
+</div>
+
+<div class="services">
+    <div class="container">
+        <!-- #region DESKTOP -->
+        <!--Versão para os cards desktop-->
+        <div class="row content visible-lg visible-md visible-sm">
+            <div class="col-md-12">
+                <h2 id="title-servicos" class="title" tabindex="0" style="z-index: 20; width: 110px;">Serviços</h2>
+                <ul class="nav nav-tabs">
+                    <li id="li-gestao" class="active"><a tabindex="0" data-toggle="tab" href="#gestao">Gestão do negócio</a></li>
+                    <li id="li-contabil"><a tabindex="0" data-toggle="tab" href="#assessoria">Assessoria contábil</a></li>
+                    <li id="li-formalizacao"><a tabindex="0" data-toggle="tab" href="#formalizacao">Formalização</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+
+                <div id="gestao" class="tab-pane fade in active">
+                    <div class="row space-none">
+
+                        <card [cardClass]="card">
+                            <div class="flex-cards">
+                                <div class="flex-box-cards col-xs-12 col-sm-6 col-md-4"
+                                    *ngFor="let parceiro of connectedGestao">
+
+                                    <!-- MODAL PARCEIRO -->
+                                    <modal-parceiro-content 
+                                    tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                                    tName="{{ parceiro.name}}" 
+                                    tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                                    urlImg="{{ parceiro.imageLogo }}" 
+                                    tId="connectedGestaoModal{{ parceiro.id }}" 
+                                    isConnected="{{ parceiro.connected ? true : ''}}"
+                                    urlPartner=" {{ parceiro.url }}"
+                                    [services]="parceiro.services"
+                                    [partnerId] = "parceiro.id"
+                                    [agreementId] = "parceiro.agreementId">
+                                    </modal-parceiro-content>
+                                    <!-- MODAL PARCEIRO -->
+
+                                    <div  tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</div>
+                                    
+                                    <div id="first-card-tutorial-gestao" class="card-box borda-azul">
+                                        <div class="card-info-drop">
+                                            <div class="dropdown-toggle" type="button" data-toggle="dropdown" tabindex="0" title="Mais opções do parceiro"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                                
+                                            </div>
+
+                                            <ul class="dropdown-menu">
+                                                <li class="cursor-pointer"><a [routerLink]="['/termos']" tabindex="0"
+                                                    [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a>
+                                                </li>
+                                                <li class="cursor-pointer"><a data-toggle="modal" tabindex="0"
+                                                        [attr.data-target]="'#connectedGestaoModal' + parceiro.id">Saiba mais</a>
+                                                </li>
+                                                <!-- <li class="cursor-pointer">
+                                                    <a (click)="mSuspend(parceiro.id, 'gestao')">
+                                                        Ocultar serviço
+                                                        <span class="tooltip-style">Aqui, você consegue ocultar para
+                                                            <br> que esse serviço não apareça <br> mais na página
+                                                            inicial.</span>
+                                                    </a>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="borda-azul-top" title="Conectado"></div>
+                                        <div *ngIf="parceiro.connected" tabindex="0" class="tabindex-invisivel" title="Parceiro Conectado"></div>
+                                        <img [src]="sanitizePartnerLogo(parceiro.imageLogo)" alt="Logo do parceiro" class="logo" tabindex="0">
+                                        <h5
+                                            style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070;" tabindex="0">
+                                            {{ parceiro.servicesDescription }}
+                                        </h5>
+                                        <span
+                                            style="padding: 0 30px; display: block; text-align: center;"  tabindex="0"
+                                            [innerHTML]="parceiro.presentation ? parceiro.presentation.about : ''"></span>
+                                        <div class="bottom-center">
+                                            <app-button (click)="handleSubmit(parceiro)" tabindex="0"
+                                                btnText="Acessar" btnClass="button-padrao button-pad2 btn-red">
+                                            </app-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a *ngIf="gestaoLength == 0" routerLink="/servicos/gestao-do-negocio"
+                                    routerLinkActive="active-link" class="flex-box-cards col-xs-12 col-sm-6 col-md-4">
+                                    <div class="card-add">
+                                        <div class="center">
+                                            <i class="plus"></i>
+                                            <p class="txt-add" tabindex="0" >Adicionar novo parceiro</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </card>
+
+                    </div>
+                </div>
+
+                <div id="assessoria" class="tab-pane fade">
+                    <div class="row space-none">
+
+                        <card [cardClass]="card">
+                            <div class="flex-cards">
+                                <div class="flex-box-cards col-xs-12 col-sm-6 col-md-4"
+                                    *ngFor="let parceiro of connectedAssessoria">
+
+                                    <!-- MODAL PARCEIRO -->
+                                    <modal-parceiro-content 
+                                    tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                                    tName="{{ parceiro.name}}" 
+                                    tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                                    urlImg="{{ parceiro.imageLogo }}" 
+                                    tId="connectedAssessoria{{ parceiro.id }}" 
+                                    isConnected="{{ parceiro.connected ? true : ''}}"
+                                    urlPartner=" {{ parceiro.url }}"
+                                    [services]="parceiro.services"
+                                    [partnerId] = "parceiro.id"
+                                    [agreementId] = "parceiro.agreementId">
+                                    </modal-parceiro-content>
+                                    <!-- MODAL PARCEIRO -->
+                                    <div  tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</div>
+                                    <div id="first-card-tutorial-assessoria" class="card-box borda-azul">
+                                        <div class="card-info-drop">
+                                            <div class="dropdown-toggle" type="button" data-toggle="dropdown"  tabindex="0" title="Mais opções do parceiro"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                            </div>
+
+                                            <ul class="dropdown-menu">
+                                                <li class="cursor-pointer"><a [routerLink]="['/termos']" tabindex="0"
+                                                    [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a>
+                                                </li> 
+                                                <li class="cursor-pointer"><a data-toggle="modal" tabindex="0"
+                                                        [attr.data-target]="'#connectedAssessoria' + parceiro.id">Saiba mais</a>
+                                                </li>
+                                                <!-- <li class="cursor-pointer">
+                                                    <a (click)="mSuspend(parceiro.id, 'assessoria')">
+                                                        Ocultar serviço
+                                                        <span class="tooltip-style">Oculta a visualização<br>do
+                                                            serviço</span> -->
+                                                        <!-- <div class='question' matSuffix>
+                                                            <div class="suffix-content">
+                                                                <div class="triangle-with-shadow"></div>
+                                                                <div class="bg">
+                                                                    <p class="text-content">
+                                                                        Oculta a visualização do serviço
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                    <!-- </a>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="borda-azul-top"></div>
+                                        <div *ngIf="parceiro.connected" tabindex="0" class="tabindex-invisivel" title="Parceiro Conectado"></div>
+                                        <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)" tabindex="0" alt="Logo do parceiro">
+                                        <h5
+                                            style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070; padding: 0 8px 0px 12px;" tabindex="0">
+                                            {{ parceiro.servicesDescription }}
+                                        </h5>
+                                        <span
+                                            style="padding: 0 30px; display: block; text-align: center;" tabindex="0"
+                                            [innerHTML]="parceiro.description">
+                                        </span>
+                                        <div class="bottom-center">
+                                            <app-button (click)="handleSubmit(parceiro)" tabindex="0"
+                                                btnText="Acessar" btnClass="button-padrao button-pad2 btn-red">
+                                            </app-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a *ngIf="assessoriaLength == 0" routerLink="/servicos/assessoria-contabil"
+                                    routerLinkActive="active-link" class="flex-box-cards col-xs-12 col-sm-6 col-md-4">
+                                    <div class="card-add" id="add-service-contabil">
+                                        <div class="center">
+                                            <i class="plus"></i>
+                                            <p class="txt-add" tabindex="0">Adicionar novo parceiro</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </card>
+
+                    </div>
+                </div>
+
+                <div id="formalizacao" class="tab-pane fade">
+                    <div class="row space-none">
+                        <card [cardClass]="card">
+                            <div class="flex-cards">
+                                <div class="flex-box-cards col-xs-12 col-sm-6 col-md-4"
+                                    *ngFor="let parceiro of connectedFormalizacao">
+
+                                    <!-- MODAL PARCEIRO -->
+                                    <modal-parceiro-content 
+                                    tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                                    tName="{{ parceiro.name}}" 
+                                    tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                                    urlImg="{{ parceiro.imageLogo }}" 
+                                    tId="connectedFormalizacao{{ parceiro.id }}" 
+                                    isConnected="{{ parceiro.connected ? true : ''}}"
+                                    urlPartner=" {{ parceiro.url }}"
+                                    [services]="parceiro.services"
+                                    [partnerId] = "parceiro.id"
+                                    [agreementId] = "parceiro.agreementId">
+                                    </modal-parceiro-content>
+                                    <!-- MODAL PARCEIRO -->
+                                    <div  tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</div>
+                                    <div id="first-card-tutorial-formalizacao" class="card-box borda-azul">
+                                        <div class="card-info-drop">
+                                            <div class="dropdown-toggle" type="button" data-toggle="dropdown" tabindex="0" title="Mais opções do parceiro"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                                <span class="circulo-01"></span>
+                                            </div>
+
+                                            <ul class="dropdown-menu">
+                                                <li class="cursor-pointer"><a [routerLink]="['/termos']" tabindex="0"
+                                                    [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a>
+                                                </li>
+                                                <li class="cursor-pointer"><a data-toggle="modal" tabindex="0"
+                                                        [attr.data-target]="'#connectedFormalizacao' + parceiro.id">Saiba mais</a>
+                                                </li>
+                                                <!-- <li class="cursor-pointer">
+                                                    <a (click)="mSuspend(parceiro.id, 'formalizacao')">
+                                                        Ocultar serviço
+                                                        <span class="tooltip-style">Oculta a visualização<br>do
+                                                            serviço</span> -->
+                                                        <!-- <div class='question' matSuffix>
+                                                            <div class="suffix-content">
+                                                                <div class="triangle-with-shadow"></div>
+                                                                <div class="bg">
+                                                                    <p class="text-content">
+                                                                        Oculta a visualização do serviço
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                    <!-- </a>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="borda-azul-top"></div>
+                                        <div *ngIf="parceiro.connected" tabindex="0" class="tabindex-invisivel" title="Parceiro Conectado"></div>
+                                        <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)" alt="Logo do parceiro" tabindex="0">
+                                        <h5
+                                            style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070; padding: 0 8px 0px 12px;" tabindex="0"> 
+                                            {{ parceiro.servicesDescription }}
+                                        </h5>
+                                        <span
+                                            style="padding: 0 30px; display: block; text-align: center;" tabindex="0"
+                                            [innerHTML]="parceiro.description">
+                                        </span>
+                                        <div class="bottom-center">
+                                            <app-button (click)="handleSubmit(parceiro)" tabindex="0"
+                                                btnText="Acessar" btnClass="button-padrao button-pad2 btn-red">
+                                            </app-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a *ngIf="connectedFormalizacao.length == 0" routerLink="/servicos/formalizacao"
+                                routerLinkActive="active-link" class="flex-box-cards col-xs-12 col-sm-6 col-md-4">
+                                <div class="card-add" id="add-service-formalizacao">
+                                    <div class="center">
+                                        <i class="plus"></i>
+                                        <p class="txt-add" tabindex="0" >Adicionar novo parceiro</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            </div>
+                        </card>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region MOBILE -->
+        <!--Versão para os cards mobile-->
+        <div class="row content visible-xs mobile">
+            <div class="col-sm-12 col-xs-12">
+                <h2 id="title-servicos-mobile"class="title">Serviços</h2>
+            </div>
+
+            <!-- #region gestao -->
+            <div class="col-sm-12 col-xs-12">
+                <div class="col-md-12" style="padding: 0 0 0 0;">
+                    <h2  id="li-gestao-mobile"class="titles">Gestão do negócio <span></span></h2>
+                </div>
+
+                <ul class="ul-mobile">
+
+                    <li *ngFor="let parceiro of connectedGestao" class="li-mobile">
+                        <card [cardClass]="card">
+
+                            <!-- MODAL PARCEIRO -->
+                            <modal-parceiro-content 
+                            tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                            tName="{{ parceiro.name}}" 
+                            tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                            urlImg="{{ parceiro.imageLogo }}" 
+                            tId="mobileconnectedGestaoModal{{ parceiro.id }}" 
+                            isConnected="{{ parceiro.connected ? true : ''}}"
+                            urlPartner=" {{ parceiro.url }}"
+                            [services]="parceiro.services"
+                            [partnerId] = "parceiro.id"
+                            [agreementId] = "parceiro.agreementId">
+                            </modal-parceiro-content>
+                            <!-- MODAL PARCEIRO -->
+
+                            <div id="first-card-tutorial-mobile" class="card-box borda-azul">
+                                <div class="card-info-drop">
+                                    <div class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li class="cursor-pointer"><a [routerLink]="['/termos']"
+                                            [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a>
+                                        </li>
+                                        <li class="cursor-pointer"><a data-toggle="modal"
+                                                [attr.data-target]="'#mobileconnectedGestaoModal' + parceiro.id">Saiba mais</a>
+                                        </li>
+                                        <!-- <li title="Aqui, você consegue ocultar para que esse parceiro não apareça mais na página inicial."
+                                            class="cursor-pointer">
+                                            <a (click)="mSuspend(parceiro.id, 'gestao')">
+                                                Ocultar serviço
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="borda-azul-top"></div>
+                                <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)" [alt]="parceiro.name">
+                                <h5 style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070;">
+                                    {{ parceiro.servicesDescription }}
+                                </h5>
+                                <span
+                                    style="padding: 0 10px; display: block; text-align: center;" [innerHTML]="parceiro.presentation ? parceiro.presentation.about : ''"></span>
+                                <br><br>
+                                <div class="margin-center">
+                                    <app-button (click)="handleSubmit(parceiro)"
+                                        btnText="Acessar" btnClass="button-padrao button-pad2 btn-red btn-mob">
+                                    </app-button>
+                                </div>
+                            </div>
+
+                        </card>
+                    </li>
+
+                    <li class="li-mobile" *ngIf="gestaoLength == 0">
+                        <div id="gestao_" class="tab-pane fade in active">
+                            <div class="row space-none">
+                                <a routerLink="/servicos/gestao-do-negocio" routerLinkActive="active-link">
+                                    <div class="card-add">
+                                        <div class="center">
+                                            <i class="plus"></i>
+                                            <p class="txt-add">Adicionar novo parceiro</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- #endregion -->
+
+            <div class="col-sm-12 col-xs-12">
+                <div class="col-md-12" style="padding: 0 0 0 0;">
+                    <h2 id="li-contabil-mobile" class="titles">Assessoria Contábil <span></span></h2>
+                </div>
+
+                <ul class="ul-mobile">
+
+                    <li *ngFor="let parceiro of connectedAssessoria" class="li-mobile">
+                        <card [cardClass]="card">
+
+                             <!-- MODAL PARCEIRO -->
+                             <modal-parceiro-content 
+                             tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                             tName="{{ parceiro.name}}" 
+                             tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                             urlImg="{{ parceiro.imageLogo }}" 
+                             tId="mobileConnectedAssessoria{{ parceiro.id }}" 
+                             isConnected="{{ parceiro.connected ? true : ''}}"
+                             urlPartner=" {{ parceiro.url }}"
+                             [services]="parceiro.services"
+                             [partnerId] = "parceiro.id"
+                             [agreementId] = "parceiro.agreementId">
+                             </modal-parceiro-content>
+                             <!-- MODAL PARCEIRO -->
+
+                             <div class="card-box borda-azul"  id="first-card-tutorial-assessoria-mobile">
+                                <div class="card-info-drop">
+                                    <div class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li class="cursor-pointer"><a [routerLink]="['/termos']"
+                                            [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a></li>
+                                        <li class="cursor-pointer"><a data-toggle="modal"
+                                                [attr.data-target]="'#mobileConnectedAssessoria' + parceiro.id">Saiba mais</a>
+                                        <!-- <li title="Aqui, você consegue ocultar para que esse parceiro não apareça mais na página inicial."
+                                            class="cursor-pointer"><a
+                                                (click)="mSuspend(parceiro.id, 'assessoria')">Ocultar
+                                                serviço</a></li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="borda-azul-top"></div>
+                                <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)" [alt]="parceiro.name">
+                                <h5 style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070;">
+                                    {{ parceiro.servicesDescription }}
+                                </h5>
+                                <span
+                                    style="padding: 0 10px; display: block; text-align: center;" 
+                                    [innerHTML]="parceiro.description"></span>
+                                    <br><br>
+                                <div class="margin-center">
+                                    <app-button (click)="handleSubmit(parceiro)" btnText="Acessar"
+                                        btnClass="button-padrao button-pad2 btn-red btn-mob"></app-button>
+                                </div>
+                            </div>
+
+                        </card>
+                    </li>
+
+                    <li class="li-mobile" *ngIf="assessoriaLength == 0">
+                        <div id="assessoria" class="tab-pane fade in active">
+                            <div class="row space-none">
+                                <a routerLink="/servicos/assessoria-contabil" routerLinkActive="active-link">
+                                    <div id="add-service-contabil-mobile" class="card-add">
+                                        <div class="center">
+                                            <i class="plus"></i>
+                                            <p class="txt-add">Adicionar novo parceiro</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-sm-12 col-xs-12">
+                <div class="col-md-12" style="padding: 0 0 0 0;">
+                    <h2 class="titles">Formalização <span></span></h2>
+                </div>
+
+                <ul class="ul-mobile">
+
+                    <li *ngFor="let parceiro of connectedFormalizacao" class="li-mobile">
+                        <card [cardClass]="card">
+
+                             <!-- MODAL PARCEIRO -->
+                             <modal-parceiro-content 
+                             tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}" 
+                             tName="{{ parceiro.name}}" 
+                             tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+                             urlImg="{{ parceiro.imageLogo }}" 
+                             tId="mobileConnectedFormalizacao{{ parceiro.id }}" 
+                             isConnected="{{ parceiro.connected ? true : ''}}"
+                             urlPartner=" {{ parceiro.url }}"
+                             [services]="parceiro.services"
+                             [partnerId] = "parceiro.id"
+                             [agreementId] = "parceiro.agreementId">
+                             </modal-parceiro-content>
+                             <!-- MODAL PARCEIRO -->
+
+                            <div class="card-box borda-azul">
+                                <div class="card-info-drop">
+                                    <div class="dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                        <span class="circulo-01"></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li class="cursor-pointer"><a [routerLink]="['/termos']"
+                                            [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}"> Termos</a></li>
+                                        <li class="cursor-pointer"><a data-toggle="modal"
+                                                [attr.data-target]="'#mobileConnectedFormalizacao' + parceiro.id">Saiba mais</a>
+                                        <!-- <li title="Aqui, você consegue ocultar para que esse parceiro não apareça mais na página inicial."
+                                            class="cursor-pointer"><a
+                                                (click)="mSuspend(parceiro.id, 'formalizacao')">Ocultar
+                                                serviço</a></li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="borda-azul-top"></div>
+                                <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)" [alt]="parceiro.name">
+                                <h5 style="text-align: center; font-size: 1.2em; font-weight: bold; color: #707070;">
+                                    {{ parceiro.servicesDescription }}
+                                </h5>
+                                <span
+                                    style="padding: 0 10px; display: block; text-align: center;" 
+                                    [innerHTML]="parceiro.description"></span>
+                                    <br><br>
+                                <div class="margin-center">
+                                    <app-button (click)="handleSubmit(parceiro)" btnText="Acessar"
+                                        btnClass="button-padrao button-pad2 btn-red btn-mob"></app-button>
+                                </div>
+                            </div>
+
+                        </card>
+                    </li>
+
+                    <li class="li-mobile" *ngIf="connectedFormalizacao.length ==0">
+                        <div id="assessoria" class="tab-pane fade in active">
+                            <div class="row space-none">
+                                <a routerLink="/servicos/formalizacao" routerLinkActive="active-link">
+                                    <div class="card-add">
+                                        <div class="center">
+                                            <i class="plus"></i>
+                                            <p class="txt-add">Adicionar novo parceiro</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- #endregion -->
+    </div>
+</div>
+
+<!-- #region MODAL -->
+<!-- MODAL EXCLUIR DADOS -->
+<modal-pequeno [myModal]="modal2">
+    <div class="modal-body custom">
+        <h4 class="modal-title-custom" tabindex="0">Seja bem-vindo!</h4>
+        <p class="custom-p" tabindex="0">Agora, você conta com nossos parceiros para ajudar na gestão da sua empresa.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <app-button btnText="Confira" tabindex="0" (click)="slide2()" btnClass="button-padrao btn-red"></app-button>
+
+    </div>
+</modal-pequeno>
+<!-- MODAL BEM VINDO -->
+
+<!-- MODAL CNPJ -->
+<modal-pequeno [myModal]="modal3">
+    <div class="modal-body custom">
+        <h4 class="modal-title text-center modal-title-custom" tabindex="0">Sua empresa já tem CNPJ?</h4>
+    </div>
+    <div class="modal-footer btn-two">
+        <div class="col-md-6 btn-m">
+
+            <app-button btnText="Sim" (click)="slide3()" btnClass="button-padrao btn-red" tabindex="0"></app-button>
+
+        </div>
+        <div class="col-md-6 btn-m">
+            <app-button btnText="Não" (click)="tutorialSemCnpj()" btnClass="button-padrao btn-vazio-borda-red" tabindex="0">
+            </app-button>
+        </div>
+
+
+    </div>
+
+</modal-pequeno>
+<!-- MODAL CNPJ -->
+
+<!-- MODAL EXCLUIR DADOS -->
+<!-- <modal-pequeno class="modal-logout" [myModal]="modalSuspend">
+    <div class="modal-body">
+        <h4 class="modal-title">Ocultar serviço parceiro</h4>
+        <p>Quer mesmo ocultar esse serviço parceiro?</p>
+    </div>
+    <div class="modal-footer">
+        <app-button (click)="suspend()" btnText="Ocultar" btnClass="button-padrao btn-red"></app-button>
+        <app-button data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+    </div>
+</modal-pequeno> -->
+<!-- MODAL EXCLUIR DADOS -->
+
+<!-- MODAL SUCESSO EXCL. -->
+<modal-pequeno class="modal-logout" [myModal]="modalSuspend">
+    <div class="modal-body">
+        <p tabindex="0">
+            Se você quiser ver as informações desse parceiro novamente aqui, é só procurar por ele na opção
+            <b>Serviços</b> e acessar.
+        </p>
+    </div>
+</modal-pequeno>
+<!-- MODAL SUCESSO EXCL. -->
+<!-- #endregion -->
+
+<app-footer></app-footer>

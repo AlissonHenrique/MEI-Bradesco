@@ -1,0 +1,18 @@
+<section class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 margin-top">
+                <h1 tabindex="0" class="title">{{nBanner}}</h1>
+                <p tabindex="0"  class="sub-txt" [innerHtml]="nSubTitle + '<br> <br>' + nSubTitle2"></p>
+                
+                <a  tabindex="0" *ngIf="!isAnchor" [queryParams]="{ 'tipo': queryParams }" [routerLink]="btnRoute" [id]="btnId" class="button-padrao btn-red top" [title]="nBtn"> {{nBtn}}</a>
+                <a  tabindex="0" *ngIf="isAnchor" (click)="scrollToAnchor()" href="javascript:void(0)"  [id]="btnId" class="button-padrao btn-red top" [title]="nBtn"> {{nBtn}}</a>
+
+            </div>
+
+            <div class="col-md-6 col-lg-6 hidden-sm hidden-xs">
+                <img tabindex="0" class="margin" [src]="nImage" alt="Imagem Ilustrativa do serviço">
+            </div>
+        </div>
+    </div>
+</section>

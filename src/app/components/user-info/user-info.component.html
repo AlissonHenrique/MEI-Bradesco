@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="infos">
+        <div id="font-color" *ngIf="nUsuario != undefined || nEmpresa != undefined || nText != undefined"
+            class="col-md-12">
+            <h1 *ngIf="nUsuario != undefined" class="title-nome" style="text-transform: capitalize;" tabindex="0">{{nUsuario}}</h1>
+            <p *ngIf="nEmpresa != undefined" class="empresa-nome" tabindex="0" >{{nEmpresa}}</p>
+            <a *ngIf="nText != undefined" routerLink="/perfil" class="editar-info" tabindex="0" >{{nText}}</a>
+        </div>
+
+        <div *ngIf="router.url === '/perfil'" class="col-md-3 margin">
+            <app-button data-toggle="modal" data-target="#excluir" btnText="Excluir cadastro do site" tabindex="0"
+                btnClass="button-padrao btn-vazio-borda-red"></app-button>
+        </div>
+
+        <div *ngIf="nPageTitle != undefined || nPageDescription != undefined" class="row">
+            <div class="col-md-12">
+                <h1 *ngIf="nPageTitle != undefined" class="title-nome" tabindex="0">{{nPageTitle}}</h1>
+                <br>
+                <p *ngIf="nPageDescription != undefined" class="page-description" tabindex="0">{{nPageDescription}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

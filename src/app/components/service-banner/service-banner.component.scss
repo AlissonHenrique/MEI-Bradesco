@@ -1,0 +1,154 @@
+@import '../../../assets/global-scss/mixins';
+@import '../../../assets/global-scss/variables';
+.banner {
+    height: calcRem(500px);
+    margin-bottom: calcRem(120px);
+    background: $grey-100;
+    @media(min-width: 0px) and (max-width: 767px) {
+        background: $white;
+        height: auto;
+        margin-bottom: calcRem(50px);
+    }
+    .title {
+        font-size: calcRem(40px);
+        font-weight: bold;
+        color: $grey-700;
+        margin-bottom: calcRem(35px);
+        @media(min-width: 992px) and (max-width: 1199px) {
+            font-size: calcRem(32px);
+        }
+        @media(min-width: 0px) and (max-width: 767px) {
+            font-size: calcRem(22px);
+        }
+    }
+    .sub-txt,
+    .sub-txt2 {
+        font-size: calcRem(16px);
+        font-weight: 400;
+        color: $grey-700;
+        margin-bottom: calcRem(24px);
+        height:  calcRem(215px);
+        // overflow: auto;
+        @media(min-width: 0px) and (max-width: 767px) {
+            height: auto;
+        }
+    }
+    .margin-top {
+        margin-top: calcRem(40px);
+    }
+    .top {
+        margin-top: calcRem(20px);
+        margin-bottom: 0;
+        @media(min-width: 0px) and (max-width: 991px) {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+    .margin {
+        margin-top: calcRem(50px);
+        width: 100%;
+        height: calcRem(390px);
+    }
+}
+
+
+/*Btn padrão para todos*/
+
+.button-padrao {
+    background: none;
+    color: $blue;
+    font-size: calcRem(14px);
+    font-weight: bold;
+    padding: calcRem(12px) calcRem(48px);
+    float: left;
+    height: calcRem(48px);
+    margin-bottom: calcRem(40px);
+    border-radius: calcRem(30px);
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+
+/*/Btn padrão para todos*/
+
+
+/*Btn padrão todo vermelho*/
+
+.button-padrao.btn-red {
+    cursor: pointer;
+    color: $white;
+    background-color: $red;
+    &:hover,
+    &:focus {
+        background: $red-hover;
+    }
+    &:active {
+        background: $dark-red;
+    }
+}
+
+
+/*/Btn padrão todo vermelho*/
+
+
+/*Btn desabilitado vermelho/cinza*/
+
+.button-padrao.desabilitado {
+    background: $grey-300;
+    color: $white;
+    cursor: not-allowed;
+}
+
+
+/*/Btn desabilitado vermelho/cinza*/
+
+
+/*Btn vazio borda vermelho*/
+
+.button-padrao.btn-vazio-borda-red {
+    color: $red;
+    background: none;
+    border: 1px solid $red;
+    &:hover,
+    &:focus {
+        background-color: $red-hover;
+        color: $white;
+    }
+    &:active {
+        background: $dark-red;
+        color: $white;
+    }
+}
+
+
+/*/Btn vazio borda vermelho*/
+
+
+/*Btn vazio borda vermelho/cinza*/
+
+.button-padrao.btn-vazio-desabilitado {
+    color: $grey-300;
+    background: none;
+    border: 1px solid $grey-300;
+    cursor: not-allowed;
+}
+
+
+/*/Btn vazio borda vermelho/cinza*/
+
+
+/*Btn regra no modal small caso tiver dois btn*/
+
+.btn-two {
+    margin: 0 calcRem(21px);
+    button {
+        margin-right: calcRem(40px);
+        &:nth-child(2) {
+            margin-right: 0px;
+        }
+    }
+}

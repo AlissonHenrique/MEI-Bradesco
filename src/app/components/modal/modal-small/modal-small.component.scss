@@ -1,0 +1,60 @@
+@import '../../../../assets/global-scss/mixins';
+@import '../../../../assets/global-scss/variables';
+
+/*first - Modal-small*/
+
+.modal-small.modal {
+    text-align: center;
+    padding: 0;
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .first.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+        .modal-content {
+            width: calcRem(448px);
+            margin: 0 auto;
+            .modal-body {
+                padding: calcRem(19px) calcRem(56px) calcRem(40px) calcRem(56px);
+                h4.modal-title {
+                    font-size: calcRem(18px);
+                    font-weight: 500;
+                    color: $black;
+                    margin-bottom: calcRem(16px);
+                }
+                h3.modal-title {
+                    font-size: calcRem(18px);
+                    font-weight: 500;
+                    color: $black;
+                    margin-bottom: calcRem(0px);
+                }
+                p {
+                    font-size: calcRem(12px);
+                    font-weight: 500;
+                    color: $grey-700;
+                    margin-bottom: 0
+                }
+            }
+            .modal-footer {
+                border: none;
+                padding: 0 calcRem(56px);
+            }
+        }
+    }
+    .text-center {
+        text-align: center;
+    }
+}
+
+@media(min-width: 0px) and (max-width: 767px) {
+    .modal-small.modal .first.modal-dialog .modal-content {
+        width: 100%;
+    }
+}
+
+/*/first - Modal-small*/

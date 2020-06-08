@@ -1,0 +1,45 @@
+<svg id="Grupo_6638" data-name="Grupo 6638" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="221.114" height="221.114" viewBox="0 0 221.114 221.114">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Caminho_3557" data-name="Caminho 3557" d="M1788.4,1220.357A110.557,110.557,0,1,1,1677.842,1109.8,110.555,110.555,0,0,1,1788.4,1220.357" transform="translate(-1567.284 -1109.8)" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Retângulo_3327" data-name="Retângulo 3327" width="222" height="222" transform="translate(0 -0.431)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Retângulo_3329" data-name="Retângulo 3329" width="220" height="222" transform="translate(0.067 -0.431)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_6059" data-name="Grupo 6059">
+    <g id="Grupo_6052" data-name="Grupo 6052">
+      <g id="Grupo_6051" data-name="Grupo 6051" clip-path="url(#clip-path)">
+        <g id="Grupo_6048" data-name="Grupo 6048">
+          <g id="Grupo_6047" data-name="Grupo 6047" clip-path="url(#clip-path-2)">
+            <rect id="Retângulo_3326" data-name="Retângulo 3326" width="277" height="277" transform="translate(-28 -27.431)" fill="#3b69ff"/>
+          </g>
+        </g>
+        <g id="Grupo_6050" data-name="Grupo 6050" transform="translate(-685.067)">
+          <g id="Grupo_6049" data-name="Grupo 6049" transform="translate(0)" clip-path="url(#clip-path-3)">
+            <rect id="Retângulo_3328" data-name="Retângulo 3328" width="276" height="277" transform="translate(-27.933 -27.431)" fill="#3b69ff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Grupo_6058" data-name="Grupo 6058" transform="translate(39.386 53.206)">
+      <g id="Grupo_6057" data-name="Grupo 6057">
+        <g id="Grupo_6053" data-name="Grupo 6053" transform="translate(96.737 27.639)">
+          <path id="Caminho_3558" data-name="Caminho 3558" d="M1649.01,1212.294h-16.583a2.073,2.073,0,0,1,0-4.146h16.583a8.993,8.993,0,0,0,8.983-8.982v-46.987a8.993,8.993,0,0,0-8.983-8.983h-30.4a2.073,2.073,0,0,1,0-4.146h30.4a13.145,13.145,0,0,1,13.129,13.129v46.987A13.145,13.145,0,0,1,1649.01,1212.294Z" transform="translate(-1616.534 -1139.05)" fill="#fff"/>
+        </g>
+        <g id="Grupo_6054" data-name="Grupo 6054" transform="translate(0 27.639)">
+          <path id="Caminho_3559" data-name="Caminho 3559" d="M1611.246,1212.294h-16.584a13.144,13.144,0,0,1-13.128-13.128v-46.987a13.144,13.144,0,0,1,13.128-13.129h30.4a2.073,2.073,0,0,1,0,4.146h-30.4a8.993,8.993,0,0,0-8.983,8.983v46.987a8.993,8.993,0,0,0,8.983,8.982h16.584a2.073,2.073,0,0,1,0,4.146Z" transform="translate(-1581.534 -1139.05)" fill="#fff"/>
+        </g>
+        <g id="Grupo_6055" data-name="Grupo 6055" transform="translate(27.636 69.098)">
+          <path id="Caminho_3560" data-name="Caminho 3560" d="M1671,1199.655h-71.862a7.607,7.607,0,0,1-7.6-7.6v-35.932a2.074,2.074,0,0,1,2.073-2.073h82.918a2.072,2.072,0,0,1,2.073,2.073v35.932A7.609,7.609,0,0,1,1671,1199.655Zm-75.318-41.459v33.859a3.459,3.459,0,0,0,3.455,3.455H1671a3.46,3.46,0,0,0,3.455-3.455V1158.2Z" transform="translate(-1591.533 -1154.05)" fill="#fff"/>
+        </g>
+        <g id="Grupo_6056" data-name="Grupo 6056" transform="translate(27.639)">
+          <path id="Caminho_3561" data-name="Caminho 3561" d="M1676.525,1160.835a2.073,2.073,0,0,1-2.073-2.073v-22.111A3.46,3.46,0,0,0,1671,1133.2h-71.863a3.458,3.458,0,0,0-3.455,3.455v22.111a2.073,2.073,0,1,1-4.146,0v-22.111a7.607,7.607,0,0,1,7.6-7.6H1671a7.609,7.609,0,0,1,7.6,7.6v22.111A2.074,2.074,0,0,1,1676.525,1160.835Z" transform="translate(-1591.534 -1129.05)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

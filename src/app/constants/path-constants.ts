@@ -1,0 +1,26 @@
+export const LOGOUT_API_URL = '/login/logout';
+export const NOTIFICATION_API_URL = '/notification';
+export const FAQ_API_URL = '/faqCustomer/active';
+export const MEI_CHECK_CUSTOMER_TERM_API_URL = '/customerAgreementPlataformTerms';
+export const CUSTOMER_INFORMATION_API_URL = '/login';
+export const USER_API_URL = '/user';
+export const USER_ADDITIONAL_INFORMATION_API_URL = '/user/additionalInformation';
+export const POSTAL_CODE_COUNTRIES_API_URL = '/postalCode/AllCountries';
+export const POSTAL_CODE_API_URL = '/postalCode';
+export const PARTNER_ACTIVES_API_URL = '/partner/active';
+export const PARTNER_BY_ID_API_URL = '/partner/';
+export const PARTNER_CANCEL_SHARING_API_URL = '/partner/useragreements/';
+export const USER_AGREEMENT_TOKEN_API_URL = '/partner/agreement/token';
+export const USER_AGREEMENT_APIURL = '/partner/agreement';
+export const SEND_TERMS_CUSTOMER_API_URL = '/user/sendtermstocustomer';
+export const USER_ACCESS_FILL_VALUE_API_URL = '/user/accessFillValues';
+export const DOWNLAOD_TERMS_PARTNER_API_URL = '/partner/downloadterm/';
+export const VIEW_TERMS_PARTNER_API_URL = '/partner/viewterm/';
+export const DOWNLOAD_TERMS_PLATAFORM_API_URL = '/term/pdf/download/';
+export const CUSTOMER_REASONS_EXCLUSION_API_URL = '/user/reasonsexclusion';
+export const CUSTOMER_EXCLUDE_ACCOUNT_API_URL = '/user/excludeaccount';
+export const PARTNER_SERVICES_CATEGORIES_API_URL = '/services/category';
+export const PARTNER_SERVICES_ACTIVES_CATEGORIES_API_URL = '/services/category/list';
+
+export const HTTP_STATUS_OK = 200;
+export const HTTP_REQUEST_TIMEOUT = 30000;

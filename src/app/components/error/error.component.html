@@ -1,0 +1,31 @@
+<div data-backdrop="static" data-keyboard="false" [id]="id" class="modal-small modal fade bs-example-modal-md"
+  tabindex="-1" role="dialog">
+  <div class="first modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- CLOSE -->
+        <svg class="close" (click)="closeDialog()" data-dismiss="modal" aria-label="Close"
+          xmlns="http://www.w3.org/2000/svg" width="18.388" height="18.385" viewBox="0 0 18.388 18.385">
+          <g id="Grupo_5492" data-name="Grupo 5492" transform="translate(9.194 -7.778) rotate(45)">
+            <line id="Linha_67" data-name="Linha 67" x2="24" transform="translate(0 12.002)" fill="none"
+              stroke="#3b69ff" stroke-width="2" />
+            <line id="Linha_68" data-name="Linha 68" y2="24" transform="translate(12.002 0)" fill="none"
+              stroke="#3b69ff" stroke-width="2" />
+          </g>
+        </svg>
+      </div>
+      <div class="content-modal">
+        <div class="err-icon">
+          <img src="assets/images/icon-alert.jpg" tabindex="0" alt="Não foi possível realizar a solicitação.">
+        </div>
+
+        <div class="err-title" tabindex="0">
+          <p class="err-tit" tabindex="0">{{ errTitle }}</p>
+          <p class="err-txt" tabindex="0"> {{ errText1 }} {{ errText2 }} </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

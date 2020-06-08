@@ -1,0 +1,98 @@
+<app-header></app-header>
+
+<service-banner isAnchor="true" [anchorPosition]="positionToScroll" queryParams="gestao" bannerTitle="Gestão do negócio"
+  subTitle="Com o Gestão MEI, você gerencia seu negócio sem custo, quando e onde quiser, pelo celular ou computador."
+  subTitle2="Vendas on-line, controle de estoque e emissão de documentos fiscais são algumas das facilidades disponíveis pra você."
+  buttonTitle="Conectar" imageBanner="assets/images/svg/gestao.svg">
+</service-banner>
+<div class="gestao-box">
+  <div id="beneficios" class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 beneficios">
+        <h3 tabindex="0">Serviços disponíveis</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="margin-servicos-card">
+  <card [cardClass]="cardModel2">
+    <div class="none-space">
+      <ul class="card-model-2 coluna-3">
+        <li *ngFor='let beneficio of beneficiosContabil'>
+          <div class="box-card-m2 borda-azul">
+
+            <h2 class="beneficio-name" tabindex="0">{{ beneficio.name }}
+              <span *ngIf="beneficio.title && beneficio.title != ''" class="tooltip-style"
+                tabindex="0">{{ beneficio.title }}</span>
+            </h2>
+
+            <p tabindex="0">{{ beneficio.description }}</p>
+            <!-- <a [title]="beneficio.btn" [routerLink]="['/conecte-se']"
+              [queryParams]="{pagina:'Market UP', tipo:'gestao', servico: 'ERP, Loja virtual, PDV' }">
+              {{ beneficio.btn }} <img src="assets/images/svg/icon-seta.svg">
+            </a> -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </card>
+</div>
+
+<div class="servicos-parceiros" *ngIf="parceiros && parceiros.length > 0">
+  <h2 tabindex="0">Temos o parceiro que pode te ajudar</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <card [cardClass]="card">
+          <div class="flex-cards flex-center" [ngClass]="{'flex-condition':parceiros.length <= 2}">
+            <div *ngFor="let parceiro of parceiros" class="flex-box-cards flex-box-cards col-xs-12 col-sm-6 col-md-4">
+              <h2 tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</h2>
+              <div class="card-box borda-azul">
+                <div *ngIf="parceiro.connected" tabindex="0" class="borda-azul-top"></div>
+                <img class="logo" [src]="sanitizePartnerLogo(parceiro.imageLogo)">
+                <div [innerHTML]="parceiro.descriptionAux" tabindex="0"></div>
+
+                <div id="cont-buttons" class="margin-center bottom-center">
+                  <app-button (click)="link(parceiro)" tabindex="0"
+                    [btnText]="parceiro.connected ? 'Acessar' : 'Conectar'"
+                    btnClass="button-padrao button-pad2 btn-red"></app-button>
+                  <div class="clearfix"></div>
+
+                  <app-button btnText="Saiba mais" (click)="handleNoScroll()" tabindex="0"
+                    btnClass="button-padrao button-pad2" data-toggle="modal"
+                    [attr.data-target]="'#modal' + parceiro.id"></app-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </card>
+
+
+
+        <div *ngFor="let parceiro of parceiros">
+          <!-- MODAL PARCEIRO -->
+          <modal-parceiro-content
+            tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}"
+            tName="{{ parceiro.name}}"
+            tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+            urlImg="{{ parceiro.imageLogo }}" tId="modal{{parceiro.id}}" [services]="parceiro.services"
+            isConnected="{{ parceiro.connected ? true : ''}}" urlPartner=" {{ parceiro.url }}" [partnerId]="parceiro.id"
+            [agreementId]="parceiro.agreementId">
+          </modal-parceiro-content>
+          <!-- MODAL PARCEIRO -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="center">
+    <app-button (click)="params('todos')" btnText="Ver todos os parceiros" btnClass="button-padrao btn-vazio-borda-red"
+      tabindex="0">
+    </app-button>
+  </div>
+</div>
+
+<app-footer></app-footer>

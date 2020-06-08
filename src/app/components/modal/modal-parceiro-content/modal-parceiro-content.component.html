@@ -1,0 +1,59 @@
+<!-- Modal -->
+<div class='{{id}} modal fade centralizar' [id]="id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <img (click)="hideBackdrop()" id="close_btn" src="assets/images/svg/icon-close.svg" alt="">
+          </button>
+          <div class="modal-parceiro">
+            <!-- <div class="container"> -->
+            <div class="row">
+              <div class="col-md-12 center">
+                <img [src]="img" alt="Market UP">
+              </div>
+            </div>
+            <div class="row">
+
+              <div *ngFor="let service of services; let i = index" class=" {{i == services.length-1 ? 'no' : ''}}"
+                [ngClass]="{
+                'col-md-6':services.length==2, 
+                'col-md-4':services.length==3  || services.length==1, 
+                'col-md-3':services.length>=4
+              }" tabindex="0">
+                <div class="icon">
+                  <p>{{service.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row space">
+              <div class="col-md-5">
+                <h2 tabindex="0">Sobre</h2>
+                <p class="scrollInfo" tabindex="0">{{textSobre}}
+                </p>
+              </div>
+              <div class="col-md-offset-2 col-md-5">
+                <h2 tabindex="0">Contato</h2>
+                <p class="scrollInfo" tabindex="0">{{textContato}}</p>
+              </div>
+            </div>
+            <div id="btns" class="row btn-two">
+              <div class="col-md-7">
+                <app-button data-dismiss="modal" (click)="link()" btnText="Acessar" tabindex="0"
+                  btnClass="button-padrao btn-red closes">
+                </app-button>
+
+              </div>
+
+
+              <div class="col-md-5">
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+
+body {
+  overflow: hidden;
+}
+
+.parceiros {
+  @include btn-switch;
+  background: $grey-50;
+}
+
+.parceiros .alinhar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.position{
+  position: absolute;
+  z-index: 3
+}
+
+.disable-drop{
+  color: $grey-200 !important;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.bottom-center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calcRem(30px);
+  width: calcRem(167px);
+  height: calcRem(70px);
+  margin: 0 auto;
+}
+
+.tabindex-invisivel {
+  opacity: 0;         // hide it visually
+  z-index: -1;        // avoid unintended clicks
+  position: absolute; // don't affect other elements positioning
+}

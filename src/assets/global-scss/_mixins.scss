@@ -1,0 +1,103 @@
+@mixin btn($background-color, $color, $border: false) {
+  @extend %btn;
+  color: $color;
+  background-color: $background-color;
+  text-decoration: none;
+  &:hover,
+  &:active {
+    background-color: $dark-red;
+    transition: all 0.3s ease;
+  }
+  @if $border {
+    border: 0.0625rem solid $color;
+    padding: 0.875rem 0;
+  }
+}
+@mixin btn($cor, $bg) {
+  height: calcRem(48px);
+  line-height: calcRem(45px);
+  font-size: calcRem(14px);
+  font-weight: 600;
+  text-align: center;
+  border-radius: calcRem(24px);
+  display: inline-block;
+  padding: 0 calcRem(48px);
+  color: $cor;
+  background-color: $bg;
+  text-decoration: none;
+}
+@function calcRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@mixin btn-switch {
+  .switch__container {
+    width: auto;
+    input {
+      display: none;
+    }
+    label {
+      float: left;
+    }
+    span {
+      float: left;
+      margin-left: calcRem(8px);
+      font-size: calcRem(16px);
+      font-weight: 500;
+      display: block;
+    }
+  }
+
+  .switch + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+
+  .switch--flat + label {
+    width: calcRem(40px);
+    height: calcRem(18px);
+    background-color: #3b69ff;
+    border-radius: calcRem(60px);
+    transition: background 0.4s;
+  }
+  .switch--flat + label:before,
+  .switch--flat + label:after {
+    display: block;
+    position: absolute;
+    content: "";
+  }
+  .switch--flat + label:before {
+    // fundo 1
+    top: calcRem(2px);
+    left: calcRem(2px);
+    bottom: calcRem(2px);
+    right: calcRem(2px);
+    background-color: #fff;
+    border-radius: calcRem(60px);
+    transition: background 0.4s;
+  }
+  .switch--flat + label:after {
+    top: calcRem(3px);
+    left: calcRem(4px);
+    bottom: calcRem(4px);
+    width: calcRem(12px);
+    height: calcRem(12px);
+    background-color: #3b69ff;
+    border-radius: calcRem(52px);
+    transition: margin 0.4s, background 0.4s;
+  }
+  .switch--flat:checked + label {
+    background-color: #3b69ff;
+  }
+  .switch--flat:checked + label:before {
+    background-color: #3b69ff;
+  }
+  .switch--flat:checked + label:after {
+    margin-left: calcRem(21px);
+    background-color: #fff;
+  }
+}

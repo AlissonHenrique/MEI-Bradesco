@@ -1,0 +1,214 @@
+@import "../../../../assets/global-scss/mixins";
+@import "../../../../assets/global-scss/variables";
+
+body {
+  overflow: hidden !important;
+}
+
+.contabil-box {
+  padding: 0;
+
+  @media (min-width: 0px) and (max-width: 767px) {
+    background: $grey-50;
+  }
+
+  .beneficios {
+    padding-top: calcRem(20px);
+
+    @media (min-width: 0px) and (max-width: 767px) {
+      margin-bottom: calcRem(40px) 0 0 0;
+      padding-top: 0;
+    }
+
+    h3 {
+      font-size: calcRem(18px);
+      color: $grey-700;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: calcRem(30px);
+
+      @media (min-width: 0px) and (max-width: 767px) {
+        margin-top: calcRem(20px);
+      }
+    }
+
+    p {
+      font-size: calcRem(16px);
+      color: $grey-700;
+      font-weight: 400;
+      padding-right: calcRem(80px);
+      margin-bottom: calcRem(15px);
+
+      @media (min-width: 0px) and (max-width: 767px) {
+        padding-right: 0px;
+      }
+    }
+  }
+
+  .conhecer {
+    background: $blue;
+    border-radius: calcRem(8px);
+    padding: calcRem(40px) calcRem(25px) calcRem(25px) calcRem(30px);
+    line-height: calcRem(20px);
+
+    @media (min-width: 0px) and (max-width: 767px) {}
+
+    h3 {
+      font-size: calcRem(16px);
+      color: $white;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: calcRem(15px);
+    }
+
+    p {
+      font-size: calcRem(16px);
+      color: $white;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: calcRem(30px);
+    }
+
+    a.conectar {
+      display: block;
+      text-align: right;
+      font-size: calcRem(16px);
+      color: $white;
+      font-weight: 500;
+      text-decoration: none;
+
+      img {
+        padding: 0 calcRem(10px);
+      }
+    }
+  }
+
+  .margin-servicos-card {
+    padding: calcRem(50px) 0 calcRem(100px) 0;
+
+    @media(max-width: 767px) {
+      padding: 0;
+    }
+  }
+
+  .servicos-parceiros {
+    background: $grey-50;
+    padding: calcRem(50px) 0 calcRem(140px) 0;
+
+    @media(min-width: 0px) and (max-width: 767px) {
+      padding: 0;
+    }
+
+    h2 {
+      font-size: calcRem(18px);
+      color: $grey-700;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: calcRem(30px);
+      text-align: center;
+
+      @media(min-width: 0px) and (max-width: 767px) {
+        text-align: left;
+        padding: 0 calcRem(15px);
+        margin-bottom: unset;
+     
+      }
+    }
+
+    p {
+      font-size: calcRem(16px);
+      color: $grey-700;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: calcRem(60px);
+      text-align: center;
+
+      @media(min-width: 0px) and (max-width: 767px) {
+        text-align: left;
+        padding: 0 calcRem(15px);
+      }
+    }
+
+    .button-padrao {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      float: none;
+      width: calcRem(261px);
+      text-decoration: none;
+      margin-top: calcRem(60px);
+
+      @media(min-width: 0px) and (max-width: 767px) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+
+.bottom-center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  // bottom: 30px;
+  bottom: -2px;
+  width: 167px;
+  margin: 0 auto;
+}
+
+.beneficio-name {
+  position: relative;
+}
+
+.beneficio-name .tooltip-style {
+  font-size: 12px;
+  position: absolute;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background: #fff;
+  padding: 12px 14px;
+  right: -75px;
+  margin-top: -100px;
+  border-radius: 5px;
+  display: none;
+  width: 100%;
+  text-align: start;
+  z-index: 1;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.tooltip-style::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  margin-top: 0px;
+  margin-left: -10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  transform: rotate(90deg);
+}
+
+.beneficio-name:hover .tooltip-style {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .beneficio-name .tooltip-style {
+    display: none;
+  }
+}
+ 
+.tabindex-invisivel {
+  opacity: 0;         // hide it visually
+  z-index: -1;        // avoid unintended clicks
+  position: absolute; // don't affect other elements positioning
+}

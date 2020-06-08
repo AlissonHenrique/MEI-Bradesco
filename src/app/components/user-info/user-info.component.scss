@@ -1,0 +1,56 @@
+@import '../../../assets/global-scss/mixins';
+@import '../../../assets/global-scss/variables';
+
+.infos {
+    padding-top: calcRem(48px);
+    padding-bottom: calcRem(32px);
+
+    .title-nome {
+        font-size: calcRem(40px);
+        font-weight: bold;
+        color: $black;
+        line-height: calcRem(48px);
+        margin: 0;
+
+        @media(min-width: 0px) and (max-width: 767px) {
+            font-size: calcRem(22px);
+        }
+    }
+
+    .empresa-nome {
+        font-size: calcRem(16px);
+        font-weight: 600;
+        color: $grey-700;
+        margin-bottom: calcRem(16px);
+    }
+
+    .page-description {
+        font-size: calcRem(16px);
+        font-weight: 400;
+        color: $grey-700;
+        margin-bottom: calcRem(16px);
+    }
+
+    .editar-info {
+        font-size: calcRem(14px);
+        font-weight: normal;
+        color: $black;
+        margin-bottom: calcRem(16px);
+        display: block
+    }
+    
+    .margin{
+        margin-bottom: calcRem(16px);
+    }
+}
+
+.title-nome-white{
+    font-size: calcRem(40px);
+    font-weight: bold;
+    color: $white;
+    line-height: calcRem(48px);
+    margin: 0;
+    @media(min-width: 0px) and (max-width: 767px) {
+        font-size: calcRem(22px);
+    }
+}

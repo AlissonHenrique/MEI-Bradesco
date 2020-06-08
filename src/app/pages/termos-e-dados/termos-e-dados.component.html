@@ -1,0 +1,329 @@
+<app-header></app-header>
+
+<!-- MODAL estructure -->
+<div class="header-edit-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-11">
+        <a tabindex="0" class="cursor-pointer" (click)="goBack()">Voltar</a>
+        <h2 tabindex="0">{{customerAgreementTermDTO ? customerAgreementTermDTO.partnerName : ' '}}</h2>
+        <p tabindex="0" *ngIf="customerAgreementTermDTO.creationTime">Conectado em {{customerAgreementTermDTO.creationTime | date: 'dd/MM/yyyy'}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="content-edit-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-11">
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a tabindex="0" href="#termo" aria-controls="termo" role="tab" data-toggle="tab">Termo
+              de uso</a></li>
+          <li role="presentation">
+            <a tabindex="0" href="#dados" aria-controls="dados" role="tab" data-toggle="tab">Dados
+              compartilhados</a></li>
+          <li role="presentation" *ngIf="customerAgreementTermDTO.customAccess">
+            <a tabindex="0" href="#url" aria-controls="url" role="tab" data-toggle="tab">URL</a></li>
+        </ul>
+        <div class="menu-select col-md-12">
+          <select-box [fControl]='tabControl' placeholder="" [value]="value_tab" [itens]="tabs" [changed]="m_changed"
+            required>
+          </select-box>
+        </div>
+        
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane  active" id="termo">
+            <div class="alert-errors col-md-8" *ngIf="errorSendEmail">
+              <div>
+                <img src="assets/images/icon-alert-error.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">Algo deu errado...</p>
+                <p>O termo não foi enviado para seu e-mail cadastrado.</p>
+              </div>
+            </div>
+            <div class="alert-errors col-md-8" *ngIf="sucessTwo" style="margin-bottom: 40px;">
+              <div>
+                <img src="assets/images/icon-alert-sucess.jpg" alt="sucess">
+              </div>
+              <div>
+                <p class="tit">E-mail Enviado com Sucesso</p>
+                <p>O termo foi enviado para seu e-mail cadastrado</p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            
+            
+            <div class="box-termo" *ngIf="viewTermUrl" id="hideMob">
+              <p tabindex="0" class="box-tit"> Termo de uso</p>
+              <pdf-viewer tabindex="0" id="print-section" class="pdf-viewer" 
+                [src]="viewTermUrl"
+                [original-size]="false">
+              </pdf-viewer>
+            </div>
+
+            <ul class="icons-termo" *ngIf="viewTermUrl">
+              <li id="hideMob">
+                <a href="javascript:void(0)" (click)="printTerms()">
+                  <svg id="Grupo_6638" data-name="Grupo 6638" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="221.114" height="221.114"
+                    viewBox="0 0 221.114 221.114">
+                    <defs>
+                      <clipPath id="clip-path">
+                        <path id="Caminho_3557" data-name="Caminho 3557"
+                          d="M1788.4,1220.357A110.557,110.557,0,1,1,1677.842,1109.8,110.555,110.555,0,0,1,1788.4,1220.357"
+                          transform="translate(-1567.284 -1109.8)" fill="none" clip-rule="evenodd" />
+                      </clipPath>
+                      <clipPath id="clip-path-2">
+                        <rect id="Retângulo_3327" data-name="Retângulo 3327" width="222" height="222"
+                          transform="translate(0 -0.431)" fill="none" />
+                      </clipPath>
+                      <clipPath id="clip-path-3">
+                        <rect id="Retângulo_3329" data-name="Retângulo 3329" width="220" height="222"
+                          transform="translate(0.067 -0.431)" fill="none" />
+                      </clipPath>
+                    </defs>
+                    <g id="Grupo_6059" data-name="Grupo 6059">
+                      <g id="Grupo_6052" data-name="Grupo 6052">
+                        <g id="Grupo_6051" data-name="Grupo 6051" clip-path="url(#clip-path)">
+                          <g id="Grupo_6048" data-name="Grupo 6048">
+                            <g id="Grupo_6047" data-name="Grupo 6047" clip-path="url(#clip-path-2)">
+                              <rect id="Retângulo_3326" data-name="Retângulo 3326" width="277" height="277"
+                                transform="translate(-28 -27.431)" fill="#3b69ff" />
+                            </g>
+                          </g>
+                          <g id="Grupo_6050" data-name="Grupo 6050" transform="translate(-685.067)">
+                            <g id="Grupo_6049" data-name="Grupo 6049" transform="translate(0)"
+                              clip-path="url(#clip-path-3)">
+                              <rect id="Retângulo_3328" data-name="Retângulo 3328" width="276" height="277"
+                                transform="translate(-27.933 -27.431)" fill="#3b69ff" />
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                      <g id="Grupo_6058" data-name="Grupo 6058" transform="translate(39.386 53.206)">
+                        <g id="Grupo_6057" data-name="Grupo 6057">
+                          <g id="Grupo_6053" data-name="Grupo 6053" transform="translate(96.737 27.639)">
+                            <path id="Caminho_3558" data-name="Caminho 3558"
+                              d="M1649.01,1212.294h-16.583a2.073,2.073,0,0,1,0-4.146h16.583a8.993,8.993,0,0,0,8.983-8.982v-46.987a8.993,8.993,0,0,0-8.983-8.983h-30.4a2.073,2.073,0,0,1,0-4.146h30.4a13.145,13.145,0,0,1,13.129,13.129v46.987A13.145,13.145,0,0,1,1649.01,1212.294Z"
+                              transform="translate(-1616.534 -1139.05)" fill="#fff" />
+                          </g>
+                          <g id="Grupo_6054" data-name="Grupo 6054" transform="translate(0 27.639)">
+                            <path id="Caminho_3559" data-name="Caminho 3559"
+                              d="M1611.246,1212.294h-16.584a13.144,13.144,0,0,1-13.128-13.128v-46.987a13.144,13.144,0,0,1,13.128-13.129h30.4a2.073,2.073,0,0,1,0,4.146h-30.4a8.993,8.993,0,0,0-8.983,8.983v46.987a8.993,8.993,0,0,0,8.983,8.982h16.584a2.073,2.073,0,0,1,0,4.146Z"
+                              transform="translate(-1581.534 -1139.05)" fill="#fff" />
+                          </g>
+                          <g id="Grupo_6055" data-name="Grupo 6055" transform="translate(27.636 69.098)">
+                            <path id="Caminho_3560" data-name="Caminho 3560"
+                              d="M1671,1199.655h-71.862a7.607,7.607,0,0,1-7.6-7.6v-35.932a2.074,2.074,0,0,1,2.073-2.073h82.918a2.072,2.072,0,0,1,2.073,2.073v35.932A7.609,7.609,0,0,1,1671,1199.655Zm-75.318-41.459v33.859a3.459,3.459,0,0,0,3.455,3.455H1671a3.46,3.46,0,0,0,3.455-3.455V1158.2Z"
+                              transform="translate(-1591.533 -1154.05)" fill="#fff" />
+                          </g>
+                          <g id="Grupo_6056" data-name="Grupo 6056" transform="translate(27.639)">
+                            <path id="Caminho_3561" data-name="Caminho 3561"
+                              d="M1676.525,1160.835a2.073,2.073,0,0,1-2.073-2.073v-22.111A3.46,3.46,0,0,0,1671,1133.2h-71.863a3.458,3.458,0,0,0-3.455,3.455v22.111a2.073,2.073,0,1,1-4.146,0v-22.111a7.607,7.607,0,0,1,7.6-7.6H1671a7.609,7.609,0,0,1,7.6,7.6v22.111A2.074,2.074,0,0,1,1676.525,1160.835Z"
+                              transform="translate(-1591.534 -1129.05)" fill="#fff" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Imprimir</span></a>
+              </li>
+              <li>
+                <a href="{{downloadUrl}}" target="_blank" >
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="222.087"
+                    height="222" viewBox="0 0 222.087 222">
+                    <defs>
+                      <clipPath id="clip-path">
+                        <path id="Caminho_3562" data-name="Caminho 3562"
+                          d="M2041.116,1132.557A110.558,110.558,0,1,1,1930.558,1022a110.555,110.555,0,0,1,110.558,110.558"
+                          transform="translate(-1820 -1021.999)" fill="none" clip-rule="evenodd" />
+                      </clipPath>
+                      <clipPath id="clip-path-2">
+                        <rect id="Retângulo_3331" data-name="Retângulo 3331" width="222" height="222"
+                          transform="translate(-0.473 -0.431)" fill="none" />
+                      </clipPath>
+                      <clipPath id="clip-path-3">
+                        <rect id="Retângulo_3333" data-name="Retângulo 3333" width="222" height="222"
+                          transform="translate(-0.407 -0.431)" fill="none" />
+                      </clipPath>
+                    </defs>
+                    <g id="Grupo_6638" data-name="Grupo 6638" transform="translate(3574 22249)">
+                      <g id="Grupo_6110" data-name="Grupo 6110" transform="translate(-4979 -23023.568)">
+                        <g id="Grupo_6088" data-name="Grupo 6088" transform="translate(621 775)">
+                          <g id="Grupo_6071" data-name="Grupo 6071" transform="translate(784.473)">
+                            <g id="Grupo_6065" data-name="Grupo 6065" transform="translate(0.497)">
+                              <g id="Grupo_6064" data-name="Grupo 6064" clip-path="url(#clip-path)">
+                                <g id="Grupo_6061" data-name="Grupo 6061" transform="translate(-0.497)">
+                                  <g id="Grupo_6060" data-name="Grupo 6060" clip-path="url(#clip-path-2)">
+                                    <rect id="Retângulo_3330" data-name="Retângulo 3330" width="277" height="277"
+                                      transform="translate(-27.473 -27.431)" fill="#3b69ff" />
+                                  </g>
+                                </g>
+                                <g id="Grupo_6063" data-name="Grupo 6063" transform="translate(-685.564)">
+                                  <g id="Grupo_6062" data-name="Grupo 6062" transform="translate(0)"
+                                    clip-path="url(#clip-path-3)">
+                                    <rect id="Retângulo_3332" data-name="Retângulo 3332" width="277" height="277"
+                                      transform="translate(-27.407 -27.431)" fill="#3b69ff" />
+                                  </g>
+                                </g>
+                              </g>
+                            </g>
+                            <g id="Grupo_6070" data-name="Grupo 6070" transform="translate(0 0)">
+                              <g id="Grupo_6069" data-name="Grupo 6069" clip-path="url(#clip-path-2)">
+                                <g id="Grupo_6066" data-name="Grupo 6066" transform="translate(81.343 108.972)">
+                                  <path id="Caminho_3563" data-name="Caminho 3563"
+                                    d="M1878.962,1093.21a2.053,2.053,0,0,1-1.464-.608l-27.64-27.639a2.072,2.072,0,0,1,2.93-2.93l26.175,26.172,26.174-26.172a2.072,2.072,0,1,1,2.93,2.93l-27.639,27.639A2.054,2.054,0,0,1,1878.962,1093.21Z"
+                                    transform="translate(-1849.25 -1061.425)" fill="#fff" />
+                                </g>
+                                <g id="Grupo_6067" data-name="Grupo 6067" transform="translate(108.982 53.206)">
+                                  <path id="Caminho_3564" data-name="Caminho 3564"
+                                    d="M1861.323,1128.8a2.074,2.074,0,0,1-2.074-2.073v-83.405a2.073,2.073,0,0,1,4.146,0v83.405A2.074,2.074,0,0,1,1861.323,1128.8Z"
+                                    transform="translate(-1859.25 -1041.249)" fill="#fff" />
+                                </g>
+                                <g id="Grupo_6068" data-name="Grupo 6068" transform="translate(67.523 163.764)">
+                                  <path id="Caminho_3565" data-name="Caminho 3565"
+                                    d="M1929.241,1085.4h-82.919a2.073,2.073,0,0,1,0-4.146h82.919a2.073,2.073,0,0,1,0,4.146Z"
+                                    transform="translate(-1844.25 -1081.249)" fill="#fff" />
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Baixar</span></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" (click)="sendTerm()">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="221.116"
+                    height="223.568" viewBox="0 0 221.116 223.568">
+                    <defs>
+                      <clipPath id="clip-path">
+                        <path id="Caminho_3562" data-name="Caminho 3562"
+                          d="M2041.116,1132.557A110.558,110.558,0,1,1,1930.558,1022a110.555,110.555,0,0,1,110.558,110.558"
+                          transform="translate(-1820 -1021.999)" fill="none" clip-rule="evenodd" />
+                      </clipPath>
+                      <clipPath id="clip-path-2">
+                        <rect id="Retângulo_3331" data-name="Retângulo 3331" width="222" height="222"
+                          transform="translate(-0.473 -0.431)" fill="none" />
+                      </clipPath>
+                      <clipPath id="clip-path-3">
+                        <rect id="Retângulo_3333" data-name="Retângulo 3333" width="222" height="222"
+                          transform="translate(-0.407 -0.431)" fill="none" />
+                      </clipPath>
+                      <clipPath id="clip-path-4">
+                        <rect id="Retângulo_3340" data-name="Retângulo 3340" width="221" height="222"
+                          transform="translate(-0.191 -0.431)" fill="none" />
+                      </clipPath>
+                    </defs>
+                    <g id="Grupo_6638" data-name="Grupo 6638" transform="translate(3573.03 22248.568)">
+                      <g id="Grupo_6110" data-name="Grupo 6110" transform="translate(-4979 -23023.568)">
+                        <g id="Grupo_6088" data-name="Grupo 6088" transform="translate(621 775)">
+                          <g id="Grupo_6071" data-name="Grupo 6071" transform="translate(784.473)">
+                            <g id="Grupo_6065" data-name="Grupo 6065" transform="translate(0.497)">
+                              <g id="Grupo_6064" data-name="Grupo 6064" clip-path="url(#clip-path)">
+                                <g id="Grupo_6061" data-name="Grupo 6061" transform="translate(-0.497)">
+                                  <g id="Grupo_6060" data-name="Grupo 6060" clip-path="url(#clip-path-2)">
+                                    <rect id="Retângulo_3330" data-name="Retângulo 3330" width="277" height="277"
+                                      transform="translate(-27.473 -27.431)" fill="#3b69ff" />
+                                  </g>
+                                </g>
+                                <g id="Grupo_6063" data-name="Grupo 6063" transform="translate(-685.564)">
+                                  <g id="Grupo_6062" data-name="Grupo 6062" transform="translate(0)"
+                                    clip-path="url(#clip-path-3)">
+                                    <rect id="Retângulo_3332" data-name="Retângulo 3332" width="277" height="277"
+                                      transform="translate(-27.407 -27.431)" fill="#3b69ff" />
+                                  </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                          <g id="Grupo_6087" data-name="Grupo 6087" transform="translate(785.191 2)">
+                            <g id="Grupo_6086" data-name="Grupo 6086" transform="translate(0)">
+                              <g id="Grupo_6085" data-name="Grupo 6085" clip-path="url(#clip-path-4)">
+                                <g id="Grupo_6084" data-name="Grupo 6084" transform="translate(38.993 67.026)">
+                                  <path id="Caminho_3567" data-name="Caminho 3567"
+                                    d="M2179.466,1133.315H2063.379a13.144,13.144,0,0,1-13.129-13.129v-60.807a13.144,13.144,0,0,1,13.129-13.129h116.087a13.143,13.143,0,0,1,13.129,13.129v2.764a2.075,2.075,0,0,1-1,1.775l-69.1,41.686a2.077,2.077,0,0,1-2.146,0l-65.952-39.9v54.483a8.994,8.994,0,0,0,8.982,8.983h116.087a8.994,8.994,0,0,0,8.984-8.983V1103.6a2.073,2.073,0,1,1,4.145,0v16.584A13.143,13.143,0,0,1,2179.466,1133.315Zm-125.07-72.457,67.03,40.55,67.024-40.434v-1.6a8.994,8.994,0,0,0-8.984-8.983H2063.379a8.994,8.994,0,0,0-8.982,8.983Z"
+                                    transform="translate(-2050.25 -1046.25)" fill="#fff" />
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Enviar</span></a>
+              </li>
+            </ul>
+          </div>
+
+          <!--------->
+          <!--------->
+
+          
+          <div role="tabpanel" class="tab-pane  " id="dados">
+            <div class="box-dados-tab">
+                <div class="row">
+                  <div class="col-sm-4" *ngFor="let fields of customerAgreementTermDTO.sharedFields">
+                    <p tabindex="0" class="box-dados-tab-tip">{{fields.description}}</p>
+                    <p tabindex="0" class="box-dados-tab-tip2">{{fields.value ? fields.value : 'Não informado'}}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <button (click)="addInput()" class="add-campo">+</button> -->
+        <div role="tabpanel" class="tab-pane" id="url" *ngIf="customerAgreementTermDTO.customAccess">
+          <div class="alert-errors" *ngIf="sucessOne" style="margin-bottom: 40px;">
+            <div>
+              <img src="assets/images/icon-alert-sucess.jpg" alt="sucess">
+            </div>
+            <div>
+              <p class="tit">URL alterada com sucesso.</p>
+            </div>
+          </div>
+            <div class="box-url">
+              <div id="materialInst">
+                <div class="radio">
+                  <p tabindex="0">Digite o endereço exclusivo que você criou pra acessar a página desse parceiro:</p>
+                  <!-- <input id="radio-2" name="radio" type="radio"> -->
+                  <label for="radio-2" class="radio-label">
+                    <input tabindex="0" type="text" 
+                          value="{{customerAgreementTermDTO.customAccess.value}}"
+                          [(ngModel)]="customerAgreementTermDTO.customAccess.value"
+                          maxlength="70">
+                          <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512.00004" (click)="saveUserAccessFillValues()" style="bottom: 15px;">
+                            <g>
+                              <path
+                                d="m511.132812 79.929688c-.019531-21.390626-8.367187-41.488282-23.507812-56.59375-31.226562-31.15625-81.992188-31.113282-113.183594.117187l-322.207031 323.503906c-10.480469 10.472657-18.480469 23.4375-23.136719 37.496094l-.300781.914063-28.796875 126.632812 126.984375-28.429688.945313-.3125c14.0625-4.65625 27.035156-12.648437 37.542968-23.152343l322.25-323.542969c15.113282-15.132812 23.429688-35.246094 23.410156-56.632812zm-440.714843 375.34375-13.464844-13.472657 9.722656-42.765625 46.613281 46.640625zm389.003906-346.9375-312.847656 314.105468-56.652344-56.6875 214.300781-215.160156 32.632813 32.632812 28.261719-28.261718-32.691407-32.691406 30.402344-30.519532 32.75 32.75 28.261719-28.261718-32.808594-32.808594 11.707031-11.753906c15.605469-15.625 41.023438-15.648438 56.65625-.050782 7.578125 7.5625 11.757813 17.625 11.769531 28.332032.007813 10.710937-4.152343 20.777343-11.742187 28.375zm-249.164063 363.261718h300.875v39.96875h-340.707031zm0 0"
+                                data-original="#000000" class="active-path" data-old_color="#000000" fill="#3B69FF" />
+                            </g>
+                          </svg>
+                  </label>
+                </div>
+              </div>
+
+              <!--<button (click)="addInput()" class="add-campo">+</button>-->
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

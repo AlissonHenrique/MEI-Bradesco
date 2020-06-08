@@ -1,0 +1,242 @@
+<app-header></app-header>
+<div class="header-faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 tabindex="0">Perguntas frequentes</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-faq hidden-sm hidden-xs">
+  <div class="container">
+    <div class="row"> ​
+      <div class="col-md-12">
+        <ul class="nav nav-tabs">
+          <li id="li1"><a data-toggle="tab" *ngIf="formalizacao.length > 0" href="#formalizacao">Formalização</a></li>
+          <li id="li2"><a data-toggle="tab" *ngIf="assessoria.length > 0" href="#assessoria">Assessoria contábil</a>
+          </li>
+          <li id="li3"><a data-toggle="tab" *ngIf="gestao.length > 0" href="#gestao">Gestão do negócio</a></li>
+          <li id="li4"><a data-toggle="tab" *ngIf="plataforma.length > 0" href="#plataforma">Plataforma</a></li>
+          <li id="li5"><a data-toggle="tab" *ngIf="conta.length > 0" href="#conta">Conta Mei</a></li>
+        </ul>
+      </div>
+      ​
+      <div class="tab-content">
+        ​
+        <div id="formalizacao" [class.active]="1==highlight" class="tab-pane fade in" *ngIf="formalizacao.length > 0">
+          <div class="row space-none"> ​
+            <div class="col-md-12">
+              <div class="card-add" *ngFor='let item of formalizacao'>
+                <i class="plus"></i>
+                <span class="txt-add">
+                  <app-collapse [idCollapse]="item.id + 'FAQ'" [title]="item.question" [text]="item.answer">
+                  </app-collapse>
+                </span>
+              </div>
+              <br />
+            </div>
+          </div>
+          <a tabindex="0" class="voltar-topo" *ngIf="formalizacao.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao
+            topo</a>
+          <br />
+        </div> ​
+
+        <div id="assessoria" [class.active]="2==highlight" class="tab-pane fade in" *ngIf="assessoria.length > 0">
+          <div class="row space-none"> ​
+            <div class="col-md-12">
+              <div class="card-add" *ngFor="let assessoria of assessoria">
+                <i class="plus"></i>
+                <span class="txt-add">
+                  <app-collapse [idCollapse]="assessoria.id  + 'FAQ'" [title]="assessoria.question"
+                    [text]="assessoria.answer">
+                  </app-collapse>
+                </span>
+              </div>
+
+              <br />
+            </div>
+          </div>
+          <a tabindex="0" class="voltar-topo" *ngIf="assessoria.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao
+            topo</a>
+          <br />
+        </div> ​
+
+        <div id="gestao" [class.active]="3==highlight" class="tab-pane fade in" *ngIf="gestao.length > 0">
+          <div class="row space-none"> ​
+            <div class="col-md-12">
+              <div class="card-add" *ngFor="let gestao of gestao">
+                <i class="plus"></i>
+                <span class="txt-add">
+                  <app-collapse [idCollapse]="gestao.id  + 'FAQ'" [title]="gestao.question" [text]="gestao.answer">
+                  </app-collapse>
+                </span>
+              </div>
+
+              <br />
+            </div>
+          </div>
+          <a tabindex="0" class="voltar-topo" *ngIf="gestao.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao
+            topo</a>
+          <br />
+        </div> ​
+
+        <div id="plataforma" [class.active]="4==highlight" class="tab-pane fade in" *ngIf="plataforma.length > 0">
+          <div class="row space-none"> ​
+            <div class="col-md-12">
+              <div class="card-add" *ngFor="let plataforma of plataforma">
+                <i class="plus"></i>
+                <span class="txt-add">
+                  <app-collapse [idCollapse]="plataforma.id  + 'FAQ'" [title]="plataforma.question"
+                    [text]="plataforma.answer"></app-collapse>
+                </span>
+              </div>
+
+              <br />
+            </div>
+          </div>
+          <a tabindex="0" class="voltar-topo" *ngIf="plataforma.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao
+            topo</a>
+          <br />
+        </div>
+
+        <div id="conta" [class.active]="5==highlight" class="tab-pane fade in" *ngIf="conta.length > 0">
+          <div class="row space-none"> ​
+            <div class="col-md-12">
+              <div class="card-add" *ngFor="let conta of conta">
+                <i class="plus"></i>
+                <span class="txt-add">
+                  <app-collapse [idCollapse]="conta.id + 'FAQ'" [title]="conta.question" [text]="conta.answer">
+                  </app-collapse>
+                </span>
+
+              </div>
+
+              <br />
+            </div>
+          </div>
+          <a tabindex="0" class="voltar-topo" *ngIf="conta.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao
+            topo</a>
+          <br />
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <br />
+</div>
+
+<div class="container-faq hidden-md hidden-lg">
+  <div class="container">
+    <div class="panel-group" *ngIf="formalizacao.length > 0">
+      <div class="panel panel-style">
+        <div class="panel-heading">
+          <h4 class="panel-title" data-toggle="collapse" href="#collapse1">
+            Formalização <i class="arrow down"></i>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="card-add" *ngFor="let formalizacao of formalizacao">
+            <i class="plus"></i>
+            <span class="txt-add">
+              <app-collapse [idCollapse]="formalizacao.id" [title]="formalizacao.question" [text]="formalizacao.answer">
+              </app-collapse>
+            </span>
+
+          </div>
+          <a class="voltar-topo" *ngIf="formalizacao.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao topo</a>
+          <br />
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel-group" *ngIf="assessoria.length > 0">
+      <div class="panel panel-style">
+        <div class="panel-heading">
+          <h4 class="panel-title" data-toggle="collapse" href="#collapse2">
+            Assessoria contábil <i class="arrow down"></i>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+          <div class="card-add" *ngFor="let assessoria of assessoria">
+            <i class="plus"></i>
+            <span class="txt-add">
+              <app-collapse [idCollapse]="assessoria.id" [title]="assessoria.question" [text]="assessoria.answer">
+              </app-collapse>
+            </span>
+          </div>
+          <a class="voltar-topo" *ngIf="assessoria.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao topo</a>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div class="panel-group" *ngIf="plataforma.length > 0">
+      <div class="panel panel-style">
+        <div class="panel-heading">
+          <h4 data-toggle="collapse" href="#collapse4" class="panel-title">
+            Plataforma <i class="arrow down"></i>
+          </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse">
+          <div class="card-add" *ngFor="let plataforma of plataforma">
+            <i class="plus"></i>
+            <span class="txt-add">
+              <app-collapse [idCollapse]="plataforma.id" [title]="plataforma.question" [text]="plataforma.answer">
+              </app-collapse>
+            </span>
+          </div>
+          <a class="voltar-topo" *ngIf="plataforma.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao topo</a>
+          <br />
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group " *ngIf="gestao.length > 0">
+      <div class="panel panel-style">
+        <div class="panel-heading">
+          <h4 data-toggle="collapse" href="#collapse3" class="panel-title">
+            Gestão do negócio <i class="arrow down"></i>
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+          <div class="card-add" *ngFor="let gestao of gestao">
+            <i class="plus"></i>
+            <span class="txt-add">
+              <app-collapse [idCollapse]="gestao.id" [title]="gestao.question" [text]="gestao.answer">
+              </app-collapse>
+            </span>
+          </div>
+          <a class="voltar-topo" *ngIf="gestao.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao topo</a>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div class="panel-group" *ngIf="conta.length > 0">
+      <div class="panel panel-style">
+        <div class="panel-heading">
+          <h4 data-toggle="collapse" href="#collapse5" class="panel-title">
+            Conta Mei <i class="arrow down"></i>
+          </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse">
+          <div class="card-add" *ngFor="let conta of conta">
+            <i class="plus"></i>
+            <span class="txt-add">
+              <app-collapse [idCollapse]="conta.id" [title]="conta.question" [text]="conta.answer">
+              </app-collapse>
+            </span>
+          </div>
+          <a class="voltar-topo" *ngIf="conta.length  >= 10" (click)="scrollSmoothToTop()">Voltar ao topo</a>
+          <br />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

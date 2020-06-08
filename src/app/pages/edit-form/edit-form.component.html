@@ -1,0 +1,537 @@
+<app-header></app-header>
+
+<!-- MODAL estructure -->
+<modal-grande id="modal-excluir-cadastro" IDModal="exmodal" (click)="hadleRemoveTen()">
+
+  <div class="modal-excluir" id="modal-excluir" *ngIf="excluirForm">
+
+      <div class="alert-errors col-md-12" *ngIf="errorCurrentPasswordModal">
+        <div>
+          <img src="assets/images/icon-alert-error.jpg" alt="erro">
+        </div>
+        <div>
+          <p class="tit">Senha inválida.</p>
+        </div>
+      </div>
+    
+    <form id="form-excluir" [formGroup]='excluirForm' #formDirective="ngForm" (ngSubmit)="getReasonsDesc()">
+      <!-- <p>É uma pena que você queira excluir seu cadastro do site. </p>
+        <p>
+            Ao fazer isso, qualquer vínculo desse cadastro com nossos parceiros também será excluído e você
+            não poderá mais acessá-lo por aqui. Já a sua Conta-corrente MEI Bradesco permanece aberta.
+        </p>
+        <p class="motivo">Se mudar de ideia, continuamos à disposição.</p> -->
+
+      <p tabindex="0">É uma pena que você queira excluir seu cadastro do site.
+        <br><br>
+        Ao fazer isso, você não terá mais acesso à plataforma digital MEI, mas sua Conta-corrente MEI Bradesco
+        permanece aberta.
+        <br><br>
+        Se quiser manter seu vínculo com nossos parceiros, você pode, mas vai precisar acessar o site deles,
+        buscar pela opção de redefinição de senha e alterá-la.
+      </p>
+
+      <select-box idinput="reason" [fControl]='reasonControl' placeholder="Selecione o motivo da exclusão"
+        [itens]="reasonsExclusion" (click)="handleAddTen()">
+      </select-box>
+
+      <field-default *ngIf="showField()" idinput="otherReason" [fControl]='otherReasonControl'
+        placeholder="Nos conte o motivo" maxlength="1000">
+      </field-default>
+
+      <field-password idinput="passwordExclusion" [fControl]='passwordExclusionControl' placeholder="Digite sua senha"
+        [value]="this.customerRequestExclusionDTO.confirmPassword">
+      </field-password>
+
+      <div class="checkbox style">
+        <label>
+          <input type="checkbox" [formGroup]="exclusionPartnerControl" idinput="exclusionPartner" id="exclusionPartner"
+            name="exclusionPartner" (change)="onChecked($event)">
+          Excluir também os dados no site do parceiro.
+          <span class="checkmark checkmark2"></span>
+        </label>
+      </div>
+
+      <div class="buttons">
+        <button title="Salvar alterações" type="submit" title="Continuar" class="btn">Continuar</button>
+        <a title="Cancelar" class="btn-2" title="Cancelar" data-dismiss="modal" aria-label="Close"
+          (click)="clearForm()">Cancelar</a>
+      </div>
+
+
+    </form>
+  </div>
+
+</modal-grande>
+<!-- MODAL estructure asdasdasd-->
+
+<!-- MODAL SUCESSO EXCL. -->
+<modal-pequeno class="modal-exclude" myModal="succesExcl">
+  <div class="modal-body">
+    <p>
+      Exclusão de cadastro da plataforma digital MEI concluída. Seu acesso será mantido na página do parceiro.
+    </p>
+  </div>
+</modal-pequeno>
+<!-- MODAL SUCESSO EXCL -->
+
+<div class="header-edit-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7 col-md-offset-1 col-md-7">
+        <h2>{{customerDisplayName}}</h2>
+        <p style="text-transform: capitalize;">{{customerCompanyDisplayName}}</p>
+      </div>
+      <div class="col-sm-5 col-md-4">
+        <app-button *ngIf="!this.block" (click)="handleClick()" data-toggle="modal" data-target="#exmodal"
+          btnText="Excluir cadastro" btnClass="button-padrao btn-vazio-cor-red position" tabindex="0"></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-edit-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-11">
+
+        <ul class="nav nav-tabs" role="tablist">
+
+          <li *ngIf="!block" role="presentation" class="active"><a href="#user" aria-controls="user" role="tab"
+              data-toggle="tab">Dados
+              do
+              usuário</a></li>
+          <li *ngIf="!block" role="presentation"><a href="#company" aria-controls="company" role="tab"
+              data-toggle="tab">Dados da
+              empresa</a></li>
+          <li role="presentation" [class.active]="block"><a href="#password" aria-controls="password" role="tab"
+              data-toggle="tab">Alterar
+              senha</a></li>
+        </ul>
+        <div class="menu-select col-md-12">
+          <select-box [disabled]="block" idinput="tabs_id" [fControl]='tabControl' placeholder="" [value]="value_tab"
+            errorMsg="Nome inválido" errorReqMsg="Campo obrigatório" [itens]="tabs" [changed]="m_changed" required>
+          </select-box>
+        </div>
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="user" *ngIf="userForm">
+            <div class="alert-errors col-md-8" *ngIf="sucessTwo">
+              <div>
+                <img src="assets/images/icon-alert-sucess.jpg" alt="sucess">
+              </div>
+              <div>
+                <p class="tit">O cadastro foi salvo.</p>
+              </div>
+            </div>
+            <div class="alert-errors col-md-8" *ngIf="errorCPF">
+              <div>
+                <img src="assets/images/icon-alert-error.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">CPF já cadastrado para outro cliente.</p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <form *ngIf="!block" id="form-dados" name="formDados" [formGroup]='userForm'>
+              <div class="col-md-4">
+                <field-name idinput="nome_id" [fControl]='nameControl' placeholder="Nome Completo"
+                  [value]="this.custormerData.name" errorMsg="Seu nome precisa ser preenchido completo."
+                  maxlength="70"
+                  errorReqMsg="Digite o campo nome corretamente" required>
+                </field-name>
+              </div>
+              <div class="col-md-4">
+                <field-date idinput="nascimento_id" [fControl]='nascimentoControl' placeholder="Data de nascimento"
+                  [value]="this.custormerData.additionalData.birthDate" [dateMax]="actualMaxDatePicker"
+                  validaDataFutura="true">
+                </field-date>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="col-md-4">
+                <select-box-autocomplete (paste)="$event.preventDefault()" idinput="pais_id" [fControl]='paisControl'
+                  placeholder="País de nascimento" [value]="this.custormerData.additionalData.country"
+                  errorMsg="Nome inválido" [itens]="filteredOptions">
+                </select-box-autocomplete>
+              </div>
+
+              <div class="col-md-4">
+                <div class="select-button" style="margin-top: 20px;">
+                  <p>Sexo</p>
+                  <button tabindex="0" role="button" id="genderM"
+                    [class.btn-active]="this.custormerData.additionalData.gender == 1" (click)="modifyGender('1')"
+                    class="btn bt ">Masculino</button>
+                  <button tabindex="0" role="button" id="genderF"
+                    [class.btn-active]="this.custormerData.additionalData.gender == 2" (click)="modifyGender('2')"
+                    class="btn bt ">Feminino</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-4">
+                <select-box tabindex="1" (mudouValor)="handleClick($event)" idinput="civil_id" [fControl]='civilControl'
+                  placeholder="Estado civil" [value]="this.custormerData.additionalData.maritalStatus"
+                  errorMsg="Nome inválido" [itens]="maritalStatus">
+                </select-box>
+              </div>
+              <div class="col-md-4"></div>
+              <div class="clearfix"></div>
+              <div class="col-md-4">
+                <field-cpf idinput="cpf_id" [fControl]='cpfControl' placeholder="CPF" [value]="this.custormerData.cpf"
+                  errorMsg="CPF inválido" errorReqMsg="Campo obrigatório" required>
+                </field-cpf>
+              </div>
+              <div class="col-md-4"></div>
+              <div class="clearfix"></div>
+
+              <div class="col-md-5">
+                <div class="select-button">
+                  <p>Documento</p>
+                  <button tabindex="0" role="button" id="RG" (click)="modifyDoc('0')"
+                    class="btn bt1 btn-active">RG</button>
+                  <button tabindex="0" role="button" id="CNH" (click)="modifyDoc('1')" class="btn bt1 ">CNH</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <!-- MEIO RG -->
+              <div *ngIf="formDoc === '0'" class="rg">
+                <div class="col-md-3">
+                  <field-default idinput="rg_id" placeholder="RG" [fControl]='rgControl'
+                  [value]="this.custormerData.additionalData.idCard" maxlength="11" inputmodeNumeric="true">
+                  </field-default>
+                </div>
+                <div class="col-md-3">
+                  <select-box idinput="emissorRG_id" placeholder="Orgão Emissor" [fControl]='emissorRGControl'
+                    [value]="this.custormerData.additionalData.idCardIssuerCode" [itens]="idCardIssuerCodesList">
+                  </select-box>
+
+                </div>
+                <div class="col-md-2">
+                  <select-box-v3 idinput="ufRG_id" placeholder="UF" [fControl]='ufRGControl'
+                    [value]="this.custormerData.additionalData.idCardIssuerState" [itens]="statesList">
+                  </select-box-v3>
+                </div>
+                <div class="col-md-3">
+                  <field-date idinput="emissaoRG_id" placeholder="Data de Emissão" [fControl]='emissaoRGControl'
+                    errorMsg="Preencha uma data válida" [value]="this.custormerData.additionalData.idCardIssueDate"
+                    [dateMax]="actualMaxDatePicker" validaDataFutura="true">
+                  </field-date>
+
+
+
+                </div>
+              </div>
+              <!-- FIM RG -->
+
+              <!-- MEIO CNH -->
+              <div *ngIf="formDoc === '1'" class="cnh">
+                <div style="padding: 0 0 0 15px;" class="row">
+                  <div class="col-md-4">
+                    <field-cnh idinput="cnh_id" [fControl]='cnhControl' placeholder="CNH"
+                      [value]="this.custormerData.additionalData.drvLicense" errorMsg="CNH inválida"> </field-cnh>
+                  </div>
+                  <div class="col-md-4">
+                    <select-box idinput="emissor_id" [fControl]='emissorControl' placeholder="Orgão Emissor"
+                      [value]="this.custormerData.additionalData.drvLicenseIssuerCode" errorMsg="Nome inválido"
+                      [itens]="drvLicenseIssuerCodeList"> </select-box>
+                  </div>
+                  <div class="col-md-2">
+                    <select-box-v3 idinput="uf_id" [fControl]='ufControl' placeholder="UF"
+                      [value]="this.custormerData.additionalData.drvLicenceIssuerState" errorMsg="Nome inválido"
+                      [itens]="statesList"> </select-box-v3>
+                  </div>
+                </div>
+                <div style="padding: 0 0 0 15px;" class="row">
+                  <div class="col-md-4">
+                    <field-date idinput="emissao_id" [fControl]='emissaoControl' placeholder="Data de Emissão"
+                      [value]="this.custormerData.additionalData.drvLicenseIssueDate"
+                      errorMsg="Preencha uma data valida"
+                      errorMsgCustom="A data de emissão não pode ser maior que a de vencimento. Por favor, verifique e tente novamente."
+                      [dateMax]="actualMaxDatePicker" validaDataFutura="true"
+                      (OutputEmissaoInp)="handleEmissaoCnh($event)"
+                      (OutputEmissao)="handleValueDatePickerEmissao($event)">
+                    </field-date>
+                    <div class="error error-em" *ngIf="erroEmissao">
+                      <p>A data de emissão não pode ser maior que a de vencimento. Por favor, verifique e tente novamente.</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <field-date idinput="vencimento_id" [fControl]='vencimentoControl' placeholder="Data de Vencimento"
+                      [value]="this.custormerData.additionalData.drvLicenseExpirationDate"
+                      errorMsg="Preencha uma data valida" errorMsgCustom="A data de vencimento não pode ser menor que a de emissão. Por favor, verifique e tente novamente."
+                      (OutputVencimentoInp)="handleVencimentoCnh($event)"
+                      (OutputVencimento)="handleValueDatePickerVencimento($event)">
+                    </field-date>
+                    <div class="error error-ve" *ngIf="erroVencimento">
+                      <p>A data de vencimento não pode ser menor que a de emissão. Por favor, verifique e tente novamente.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- FIM CNH -->
+
+              <div class="clearfix"></div>
+              <div class="col-md-12 flexmode">
+                <div class="c-input">
+                  <field-name idinput="mae_id" [fControl]='maeControl' placeholder="Nome da mãe" maxlength="70" tabindex="0"
+                    [value]="this.custormerData.additionalData.motherName" errorMsg="Nome inválido"> 
+                  </field-name>
+                </div>
+
+                <div class="checkbox style">
+                  <label>
+                    <input type="checkbox" formControlName="isUnknownMother" id="isUnknownMother" name="isUnknownMother" 
+                      (change)="validateMothersName($event)">
+                    Desconhecida ou não informada
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="c-input">
+                  <field-name (paste)="$event.preventDefault()" idinput="pai_id" [fControl]='paiControl' tabindex="0"
+                    placeholder="Nome do pai" maxlength="70" [value]="this.custormerData.additionalData.fatherName"
+                    errorMsg="Nome inválido">
+                  </field-name>
+                </div>
+
+                <div class="checkbox style">
+                  <label>
+                    <input type="checkbox" formControlName="isUnknownFather" id="isUnknownFather" name="isUnknownFather"
+                      (change)="validateFathersName($event)"> Desconhecido
+                    ou não informado
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+
+
+              </div>
+              <div class="col-md-4">
+                <field-email (paste)="$event.preventDefault()" idinput="email_id" [fControl]='emailControl' tabindex="0"
+                  placeholder="E-mail" maxlength="70" [value]=" this.custormerData.email" errorMsg="Nome inválido"
+                  errorReqMsg="Campo obrigatório">
+                </field-email>
+              </div>
+              <div class="col-md-4">
+                <field-phone cellphone idinput="celular_id" [fControl]='celularControl' placeholder="Telefone pessoal"
+                  [value]="this.custormerData.phoneNumber" errorMsg="O número de telefone informado não é válido. Por favor, verifique e tente novamente." errorReqMsg="Campo obrigatório"
+                  required>
+                </field-phone>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-11 col-md-offset-0 col-xs-12">
+                <div class="buttons">
+                  <button title="Salvar alterações" (click)="saveUser()" class="btn">Salvar
+                    alterações</button>
+                  <!-- <a title="Cancelar" class="btn-2">Cancelar</a> -->
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!--------->
+          <!--------->
+
+          <div role="tabpanel" class="tab-pane" id="company" *ngIf="empresaForm">
+            <div class="alert-errors col-md-8" *ngIf="sucessOne">
+              <div>
+                <img src="assets/images/icon-alert-sucess.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">O cadastro foi salvo.</p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <form id="form-empresa" [formGroup]='empresaForm'>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <field-name (paste)="$event.preventDefault()" idinput="nome2_id" [fControl]='fantasiaControl'
+                    placeholder="Nome-fantasia" [value]="this.custormerData.additionalData.companyTradeName"
+                    maxlength="70">
+                  </field-name>
+                </div>
+
+                <div class="col-md-4">
+                  <field-date idinput="atividade_id" [fControl]='dateInicioControl'
+                    placeholder="Data de inicio das atividades"
+                    [value]="this.custormerData.additionalData.companyFoundationDate"
+                    errorMsg="Preencha uma data válida" [dateMax]="actualMaxDatePicker" validaDataFutura="true">
+                  </field-date>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-md-4">
+                  <field-default (paste)="$event.preventDefault()" idinput="rsocial_id" [fControl]='razaoControl'
+                    placeholder="Razão social" [value]="this.custormerData.additionalData.companyLegalName"
+                    maxlength="70">
+                  </field-default>
+                </div>
+                <div class="col-md-4">
+                  <field-default idinput="nire_id" [fControl]='nireControl' placeholder="Número NIRE"
+                    [value]="this.custormerData.additionalData.companyNire" errorMsg="Nome inválido"
+                    errorReqMsg="Campo obrigatório" validanire="true" inputmodeNumeric="true">
+                  </field-default>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-md-4">
+
+                  <field-cnpj idinput="cnpj_id" [fControl]='cnpjControl' placeholder="CNPJ"
+                    [value]="this.custormerData.additionalData.cnpj" errorMsg="CNPJ inválido">
+                  </field-cnpj>
+                </div>
+
+                <div class="col-md-4">
+                  <field-phone idinput="telempresa_id" [fControl]='telControl' placeholder="Telefone comercial"
+                    [value]="this.custormerData.additionalData.businessPhoneNumber">
+                  </field-phone>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <field-cep idinput="cep_id" [fControl]='cepControl' placeholder="CEP"
+                    [value]="this.custormerData.additionalData.postalCode" errorMsg="CEP inválido"
+                    hintMsg="{{hintCepMessage}}">
+                  </field-cep>
+
+                </div>
+                <div class="col-md-4">
+                  <select-box idinput="tipo_logradouro_id" [fControl]='tipoLogradouroControl'
+                    placeholder="Tipo de logradouro" [value]="this.custormerData.additionalData.typeAddress"
+                    [itens]='typeAddressList'>
+                  </select-box>
+
+                </div>
+                <div class="col-md-4">
+                  <field-default idinput="num_id" [fControl]='numeroControl' placeholder="Número"
+                    [value]="this.custormerData.additionalData.number" maxlength="7">
+                  </field-default>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-4">
+                  <select-box-v3 idinput="estado_id" [fControl]='estadoControl' placeholder="Estado"
+                    [value]="this.custormerData.additionalData.state" errorMsg="Nome inválido"
+                    errorReqMsg="Campo obrigatório" [itens]='statesList' required>
+                  </select-box-v3>
+                </div>
+                <div class="col-md-4">
+                  <field-default (paste)="$event.preventDefault()" (paste)="$event.preventDefault()"
+                    idinput="logradouro_id" [fControl]='logradouroControl' placeholder="Logradouro"
+                    [value]="this.custormerData.additionalData.street" maxlength="70">
+                  </field-default>
+                </div>
+                <div class="col-md-4">
+                  <field-default (paste)="$event.preventDefault()" idinput="compl_id" [fControl]='complementoControl'
+                    placeholder="Complemento" [value]="this.custormerData.additionalData.complement" maxlength="70">
+                  </field-default>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-md-4">
+
+                  <field-default (paste)="$event.preventDefault()" idinput="cidade2_id" [fControl]='cidadeControl'
+                    placeholder="Cidade" [value]="this.custormerData.additionalData.city" maxlength="70">
+                  </field-default>
+                </div>
+
+                <div class="col-md-4">
+                  <field-default (paste)="$event.preventDefault()" idinput="bairro_id" [fControl]='bairroControl'
+                    placeholder="Bairro" [value]="this.custormerData.additionalData.neighborhood" maxlength="70">
+                  </field-default>
+                </div>
+
+                <div class="col-md-4">
+
+                </div>
+
+              </div>
+
+              <div class="col-md-11 col-xs-12">
+                <div class="buttons">
+                  <button title="Salvar alterações" (click)="saveCompanyData()" class="btn">Salvar
+                    alterações</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!--------->
+          <!--------->
+
+          <div role="tabpanel" class="tab-pane" [class.active]="block" id="password" *ngIf="senhaForm">
+            <div class="alert-errors col-md-8" *ngIf="errorCurrentPassword">
+              <div>
+                <img src="assets/images/icon-alert-error.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">A senha atual não confere. Por favor, verifique e tente novamente.</p>
+              </div>
+            </div>
+            <div class="alert-errors col-md-8" *ngIf="errorPassword">
+              <div>
+                <img src="assets/images/icon-alert-error.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">A nova senha precisa ser diferente da anterior.</p>
+              </div>
+            </div>
+
+
+
+            <div class="alert-errors col-md-8" *ngIf="sucessPassword">
+              <div>
+                <img src="assets/images/icon-alert-sucess.jpg" alt="erro">
+              </div>
+              <div>
+                <p class="tit">Senha alterada com sucesso</p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <form id="form-senha" [formGroup]='senhaForm' (ngSubmit)="submitChangePassword()">
+              <div class="col-md-4">
+                <field-password (paste)="$event.preventDefault()" idinput="senha_atual_id"
+                  [fControl]='senhaAtualControl' placeholder="Senha atual" [value]="value_senha_atual"
+                  errorMsg="Senha inválida" maxLenght="20" errorReqMsg="Campo obrigatório" required>
+                </field-password>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-4">
+                <field-password (paste)="$event.preventDefault()" idinput="senha_nova_id" [fControl]='senhaNovaControl'
+                  placeholder="Nova senha" [value]="value_senha_nova" errorMsg="Senha inválida" maxLenght="20"
+                  errorReqMsg="Campo obrigatório" required>
+                </field-password>
+              </div>
+              <div class="col-md-4">
+                <field-password (paste)="$event.preventDefault()" idinput="senha_conf_id" [fControl]='senhaNova2Control'
+                  withMatcher=true [fGroup]='senhaForm' placeholder="Confirmação de senha" [value]="value_senha_nova2"
+                  errorMsg="Senha inválida" maxLenght="20" errorReqMsg="Campo obrigatório" required>
+                </field-password>
+
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-11 col-md-offset-0 col-xs-12">
+                <div class="buttons">
+                  <button title="Salvar alterações" type="submit" class="btn">Salvar alterações
+                    senha</button>
+                  <!-- <a title="Cancelar" class="btn-2">Cancelar</a> -->
+                </div>
+
+              </div>
+
+
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

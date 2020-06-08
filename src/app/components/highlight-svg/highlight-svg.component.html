@@ -1,0 +1,8 @@
+<svg id="hl-svg" xmlns="http://www.w3.org/2000/svg" [attr.width]='svgwidth' [attr.height]='svgheight'>
+  <mask id="aMask">
+      <rect id="hl-white-mask" x="0" y="0" [attr.width]='svgwidth' [attr.height]='svgheight' fill="white" />
+      <rect id="rect-target" [attr.x]='rectX' [attr.y]='rectY' [attr.rx]='curve' [attr.ry]='curve' 
+      [attr.width]='rectWidth' [attr.height]='rectHeight' style="fill:black;stroke:black;stroke-width:1;"/>
+  </mask>
+  <rect id="hl-main-bg" x="0" y="0" [attr.width]='svgwidth' [attr.height]='svgheight' mask="url(#aMask)" style="fill:black;stroke:black;stroke-width:1;opacity:0.6" />
+</svg>

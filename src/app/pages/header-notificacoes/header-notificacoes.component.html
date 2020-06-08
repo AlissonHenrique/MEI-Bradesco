@@ -1,0 +1,60 @@
+<div class="dropdown">
+    <svg version="1.1" class="dropdown-toggle" id="iconNotificacoes" data-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31.5 30.9" xml:space="preserve">
+        <title id="notificacoes">Notificações </title>
+        <desc id="notificacoesdesc">Sino de Notificações</desc>
+        <path fill="#FFFFFF" d="M2.5,24.9h-2C0.2,25,0,25.2,0,25.4c0,0.2,0.2,0.4,0.4,0.4h7l0.1,0.6c0.5,2.4,2.6,4.1,5.1,4.2 h0.5c2.5,0,4.6-1.7,5.1-4.2l0.1-0.6h7c0.3,0,0.5-0.2,0.4-0.5c0-0.2-0.2-0.4-0.4-0.4h-2v-9.6c0-4.6-3-8.7-7.5-10.1L15.1,5l0.4-0.8 c0.2-0.4,0.3-0.8,0.3-1.3c0-1.6-1.2-2.9-2.8-2.9c-1.6,0-2.9,1.2-2.9,2.8c0,0.1,0,0.1,0,0.2c0,0.4,0.1,0.9,0.3,1.3L10.8,5L10,5.3 c-4.4,1.4-7.4,5.4-7.5,10.1L2.5,24.9z M17.2,26.9c-0.6,1.7-2.2,2.8-4,2.8h-0.5c-1.8,0-3.4-1.1-4-2.8l-0.4-1.1h9.3L17.2,26.9z M13,1 c1.1,0,1.9,0.9,1.9,1.9C14.9,4,14,4.8,13,4.8S11.1,4,11.1,2.9c0,0,0,0,0,0C11.1,1.9,11.9,1,13,1L13,1z M3.4,15.4 c0-5.3,4.3-9.6,9.6-9.6c5.3,0,9.6,4.3,9.6,9.6v9.6H3.4V15.4z" />
+        <ng-container *ngIf="listNotifications.length > 0">
+            <circle class="notificacoes-bg" fill="#FFFFFF" stroke="#3979C1" cx="23.5" cy="11.7" r="7.5" />
+            <text fill="#3B7FC4" text-anchor="middle" x="24" y="15" class="notificacoes-numero" tabindex="0">
+                {{totalElemets}}
+            </text>
+        </ng-container>
+    </svg>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="iconNotificacoes">
+        <div class="bg-header-notificacoes">
+            <!--<h6 class="title-notification">Notificações</h6>-->
+            <div class="content-notification" *ngIf="listNotifications.length > 0; else semNotificacoes">
+                    <div class="close-notifi">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18.388" height="18.385" viewBox="0 0 18.388 18.385">
+                                <g id="Grupo_6126" data-name="Grupo 6126" transform="translate(-180.833 -66.947)">
+                                    <g id="Grupo_1883" data-name="Grupo 1883"
+                                        transform="translate(1910.418 25493.799) rotate(45)">
+                                        <g id="Grupo_6125" data-name="Grupo 6125">
+                                            <line id="Linha_67" data-name="Linha 67" x2="24"
+                                                transform="translate(-19201.5 -16756.498)" fill="none" stroke="#3b69ff"
+                                                stroke-width="2" />
+                                            <path id="Caminho_3582" data-name="Caminho 3582" d="M0,0V24"
+                                                transform="translate(-19189.498 -16768.5)" fill="none" stroke="#3b69ff"
+                                                stroke-width="2" />
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div *ngFor="let item of listNotifications | slice:0:pageSize; let i=index"
+                        class="{{item.status == 0 ? 'nova' : 'lida'}}">
+                        <a style="cursor:pointer;" (click)="validConection(item)">
+                          <div class="notify-one">
+                            <div class="title">{{ item.title }}</div>
+                            <div class="date">{{item.creation | date: 'dd/MM/yyyy'}}</div>
+                          </div>
+                          <div class="notify-two">
+                            <div class="message">{{ item.message }}</div>
+                            <div>
+                              <span class="nova" tabindex="0">Nova</span>
+                              <span class="lida" tabindex="0">Lida</span></div>
+                          </div>
+                        </a>
+              </div>
+            </div>
+            <ng-template #semNotificacoes>
+                <div class="notificacoes-lidas" tabindex="0">
+                    Não há notificações pendentes.
+                </div>
+            </ng-template>
+            <div class="d-button">
+                <app-button btnRoute="/notificacoes" btnText="Ver todas" tabindex="0" *ngIf="listNotifications.length > 0;" btnClass="button-padrao btn-red no-margin"></app-button>
+            </div>
+        </div>
+    </div>
+</div>

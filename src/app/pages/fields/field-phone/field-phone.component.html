@@ -1,0 +1,21 @@
+<div class="div-material">
+  <mat-form-field floatLabel="auto" appearance="standard">
+    <mat-label>{{placeholder}}</mat-label>
+    <input id={{id}} type="text" class="matinput phoneRegex" [formControl]="fControl" value={{value}}
+      inputmode="numeric" matInput>
+
+    <mat-hint>{{hintMsg}}</mat-hint>
+
+
+    <mat-error *ngIf="fControl.hasError('required')">
+      {{errorReqMsg}}
+    </mat-error>
+
+    <mat-error *ngIf="!fControl.hasError('required') && fControl.hasError('invalidPhoneLength')">
+      {{errorMsg}}
+    </mat-error>
+
+
+
+  </mat-form-field>
+</div>

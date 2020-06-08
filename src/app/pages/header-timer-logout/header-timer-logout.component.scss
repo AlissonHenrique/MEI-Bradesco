@@ -1,0 +1,76 @@
+@import '../../../assets/global-scss/_mixins';
+@import '../../../assets/global-scss/_variables';
+
+.icon-container {
+    position: relative;
+
+    #iconTimer {
+        width: calcRem(44px);
+        height: calcRem(44px);
+        display: inline-block;
+        vertical-align: middle;
+
+        .bg-timer-stroke {
+            fill: none;
+            stroke-width: 3.5;
+            stroke-miterlimit: 10;
+            stroke: #fff;
+            opacity: 0.3;
+        }
+
+        .timer-stroke {
+            fill: none;
+            stroke: #E4E5E9;
+            stroke-width: 4px;
+            stroke-miterlimit: 10;
+            stroke-linecap: square;
+            stroke-dasharray: 126 128;
+    		stroke-dashoffset: 5;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+
+            &.start {
+                animation-name: countdown;
+                animation-direction: forwards;
+                animation-fill-mode: forwards;
+                animation-timing-function: linear;
+            }
+        }
+    }
+
+    .tempo,
+    .medida {
+        font-weight: 500;
+        color: #fff;
+        font-size: calcRem(14px);
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        top: calcRem(7px);
+        width: 100%;
+    }
+    .medida {
+        font-weight: 400;
+        font-size: calcRem(9px);
+        top: calcRem(22px);
+    }
+
+    @media screen and (max-width: 767px) {
+        #iconTimer {
+            .bg-timer-stroke {
+                stroke: url(#linear);
+                opacity: 1;
+            }
+        }
+        .tempo,
+        .medida {
+            color: $grey-700;
+        }
+    }
+}
+
+@keyframes countdown {
+    100% {
+        stroke-dashoffset: 126;
+    }
+}

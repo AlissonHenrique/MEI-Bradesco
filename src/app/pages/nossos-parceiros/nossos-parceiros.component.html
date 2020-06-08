@@ -1,0 +1,184 @@
+<app-header class="position"></app-header>
+<h-canvas></h-canvas>
+<h-svg></h-svg>
+<tooltip [clickVoltar]="tVoltar" [clickProximo]="tProximo"></tooltip>
+
+<user-info pageTitle="Nossos parceiros"
+  pageDescription="Encontre a parceria ideal que atenda às necessidades da sua empresa e facilite seu dia a dia.">
+</user-info>
+
+<div class="parceiros">
+  <app-loading></app-loading>
+
+  <card [cardClass]="card">
+    <div class="flex-cards flex-center">
+
+      <div *ngFor="let parceiro of parceiros" class="flex-box-cards col-xs-12 col-sm-6 col-md-4">
+
+        <!-- MODAL PARCEIRO -->
+        <modal-parceiro-content
+          tSobre="{{parceiro.presentation ? parceiro.presentation.about : 'Nenhuma informação sobre este parceiro.'}}"
+          tName="{{ parceiro.name}}"
+          tContato="{{parceiro.presentation ? parceiro.presentation.contact: 'Nenhum contato.'}}"
+          urlImg="{{ parceiro.imageLogo }}" tId="{{ parceiro.id }}" isConnected="{{ parceiro.connected ? true : ''}}"
+          urlPartner=" {{ parceiro.url }}" [services]="parceiro.services" [partnerId]="parceiro.id"
+          [agreementId]="parceiro.agreementId">
+        </modal-parceiro-content>
+        <!-- MODAL PARCEIRO -->
+
+        <div class="card-box borda-azul ">
+          <div tabindex="0" class="tabindex-invisivel">{{ parceiro.name }}</div>
+          <div class="card-info-drop">
+            <div *ngIf="parceiro.connected == 1" class="dropdown-toggle" type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" tabindex="0"
+              title="Mais opções, pressione enter para expandir">
+              <span class="circulo-01"></span>
+              <span class="circulo-01"></span>
+              <span class="circulo-01"></span>
+            </div>
+
+            <!-- #region DROPDOWN BTNS -->
+            <ul class="dropdown-menu">
+
+              <!-- Termos -->
+              <li *ngIf="parceiro.connected" class="cursor-pointer" tabindex="0"><a [routerLink]="['/termos']"
+                  [queryParams]="{pagina:parceiro.name, partnerId: parceiro.id}">Termos</a>
+              </li>
+              <!-- Botão de com erro servidor -->
+              <!-- <li (click)="openModal('serverErr')" *ngIf="parceiro.id == 2" class="cursor-pointer"><a>Termos</a>
+              </li> -->
+              <!-- Termos -->
+
+              <!-- <li class="cursor-pointer" (click)="link($event,{name: parceiro.name})" *ngIf="parceiro.status == 2">
+                <a>Conectar</a>
+              </li> -->
+
+              <!-- Botão para Desconectar -->
+              <li class="cursor-pointer" tabindex="0"><a *ngIf="parceiro.connected"
+                  (click)="mDelete(parceiro)">Desconectar</a></li>
+              <!-- Botão de Desconectar desabilitado -->
+              <!-- <li class="disable-drop"><a *ngIf="parceiro.status == 1 && parceiro.id != 2">Desconectar</a></li> -->
+              <!-- Botão de Desconectar com erro -->
+              <!-- <li (click)="openModal('delete')" class="cursor-pointer"><a *ngIf="parceiro.id == 2">Desconectar</a></li> -->
+              <!-- Botão para Desconectar -->
+
+
+            </ul>
+            <!-- #endregion DROPDOWN BTNS -->
+          </div>
+
+          <div *ngIf="parceiro.connected" class="borda-azul-top" tabindex="0"></div>
+          <!-- <div *ngIf="!parceiro.connected" class="borda-cinza-top"></div>connected -->
+
+          <!-- Large button group -->
+          <img class="logo" tabindex="0" [src]="sanitizePartnerLogo(parceiro.imageLogo)" [alt]="parceiro.name">
+          <div class="showPartnerDescription" tabindex="0" [innerHTML]="parceiro.description"></div>
+          <!-- <ul class="list">
+            <li class="description-parceiros">{{ parceiro.description.text_01 }}</li>
+            <li class="description-parceiros" *ngIf="parceiro.description.text_02 != undefined">
+              {{ parceiro.description.text_02 }}</li>
+            <li class="description-parceiros" *ngIf="parceiro.description.text_03 != undefined">
+              {{ parceiro.description.text_03 }}</li>
+            <li class="description-parceiros" *ngIf="parceiro.description.text_04 != undefined">
+              {{ parceiro.description.text_04 }}</li>
+            <li class="description-parceiros" *ngIf="parceiro.description.text_05 != undefined">
+              {{ parceiro.description.text_05 }}</li>
+          </ul> -->
+
+          <div id="cont-buttons" class="margin-center bottom-center">
+            <app-button *ngIf="!parceiro.connected" (click)="link($event,{id: parceiro.id})" btnText="Conectar"
+              tabindex="0" btnClass="button-padrao button-pad2 btn-red"></app-button>
+            <div class="clearfix"></div>
+
+            <app-button *ngIf="parceiro.connected" (click)="handleSubmit(parceiro)" btnText="Acessar" tabindex="0"
+              btnClass="button-padrao button-pad2 btn-red"></app-button>
+            <div class="clearfix"></div>
+
+            <!-- <app-button *ngIf="parceiro.id == 2" (click)="handleSubmit('error')" btnText="Acessar"
+              btnClass="button-padrao button-pad2 btn-red"></app-button>
+            <div class="clearfix"></div> -->
+
+            <app-button btnText="Saiba mais" tabindex="0" (click)="handleNoScroll()"
+              btnClass="button-padrao button-pad2" data-toggle="modal" [attr.data-target]="'#' + parceiro.id">
+            </app-button>
+          </div>
+        </div>
+
+        <!-- #region MODAL CONTENTS -->
+        <!-- MODAL Desconectar DADOS -->
+        <modal-pequeno class="modal-logout" [myModal]="modalDelete">
+          <div class="modal-body">
+            <!-- <h4 class="modal-title">Desconectando dados</h4> -->
+            <p tabindex="0">Ao confirmar, você desconecta permanentemente seu vínculo com o parceiro.</p>
+          </div>
+          <div style="display: inline;" class="modal-footer">
+            <app-button tabindex="0" (click)="mDisconect()" btnText="Desconectar" btnClass="button-padrao btn-red">
+            </app-button>
+            <app-button tabindex="0" data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+          </div>
+        </modal-pequeno>
+        <!-- MODAL Desconectar DADOS -->
+
+        <!-- MODAL Suspend DADOS -->
+        <modal-pequeno class="modal-logout" [myModal]="modalSuspend">
+          <div class="modal-body">
+            <h4 tabindex="0" class="modal-title">Suspender parceiro</h4>
+            <p tabindex="0">Quer mesmo suspender esse parceiro?</p>
+          </div>
+          <div style="display: inline;" class="modal-footer">
+            <app-button tabindex="0" (click)="editPartner('suspend')" btnText="Confirmar"
+              btnClass="button-padrao btn-red">
+            </app-button>
+            <app-button tabindex="0" data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+          </div>
+        </modal-pequeno>
+        <!-- MODAL Suspend DADOS -->
+
+        <!-- MODAL CONNECT DADOS -->
+        <modal-pequeno class="modal-logout" [myModal]="modalConnect">
+          <div class="modal-body">
+            <h4 tabindex="0" class="modal-title">Conectando parceiro</h4>
+            <p>Você está prestes a conectar um parceiro.</p>
+          </div>
+          <div class="modal-footer" style="display: inline;">
+            <app-button tabindex="0" (click)="link($event,{name: parceiro.name})" btnText="Conectar"
+              btnClass="button-padrao btn-red">
+            </app-button>
+            <app-button tabindex="0" data-dismiss="modal" btnText="Cancelar" btnClass="button-padrao"></app-button>
+          </div>
+        </modal-pequeno>
+        <!-- MODAL CONNECT DADOS -->
+
+        <!-- MODAL SUCESSO EXCL. -->
+        <modal-pequeno class="modal-logout" [myModal]="succExcl">
+          <div class="modal-body">
+            <p tabindex="0">A desconexão foi concluída. Se você mudar de ideia e quiser ter os serviços do nosso
+              parceiro de novo, é
+              só
+              se conectar.
+            </p>
+          </div>
+        </modal-pequeno>
+        <!-- MODAL SUCESSO EXCL. -->
+
+        <!-- MODAL ERR DELETE -->
+        <app-error errText1="Não foi possível desconectar o parceiro." errText2="Tente novamente mais tarde."
+          errId="deleteErr">
+        </app-error>
+        <!-- MODAL ERR DELETE -->
+
+        <!-- MODAL ERR SERVER -->
+        <app-error errText1="Não foi possível conectar ao servidor." errText2="Tente novamente mais tarde."
+          errId="serverErr">
+        </app-error>
+        <!-- MODAL ERR SERVER -->
+
+        <!-- #endregion MODAL CONTENTS -->
+
+      </div>
+    </div>
+  </card>
+
+</div>
+
+<app-footer></app-footer>

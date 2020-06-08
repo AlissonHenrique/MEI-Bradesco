@@ -1,0 +1,389 @@
+<app-header></app-header>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-success progress-width" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+    aria-valuemax="100">
+  </div>
+</div>
+<ng2-pdfjs-viewer [pdfSrc]="viewTermUrl">
+</ng2-pdfjs-viewer>
+
+
+<div class="form-parceiro">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="div col-md-12">
+        <div class="header-form">
+          <a class="title-back cursor-pointer" tabindex="0" (click)="goBack()">
+            Voltar
+          </a>
+          <h2 tabindex="0">Conecte-se</h2>
+          <!-- <span class="title">{{paramUrl}}</span> -->
+        </div>
+      </div>
+
+      <div class="col-md-12 ">
+        <div class="header-form">
+
+          <h4 tabindex="0">
+            Compartilhe alguns dados com nosso parceiro e aproveite os serviços <br> que ele oferece para
+            administrar melhor sua empresa.
+          </h4>
+
+          <div *ngIf="this.customerAgreementTermDTO.customAccess">
+            <p class="servicosParc" tabindex="0">Você já tem algum serviço com este parceiro?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4"></div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <form name="formDados" [formGroup]='totalForms' *ngIf="totalForms" (ngSubmit)="onFormSubmit()">
+
+          <div *ngIf="this.customerAgreementTermDTO.customAccess">
+            <div class="col-md-6">
+              <div class="select-button">
+                <a tabindex="0" class="btn btn-active alt" id="serviceYes" (click)="modifyService('1')"
+                  value="Sim">Sim</a>
+                <a tabindex="0" class="btn alt nope" id="serviceNo" (click)="modifyService('0')" value="Não">Não</a>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div id="id-digite" class="col-md-12">
+              <field-default tabindex="0" placeholder="Digite o endereço exclusivo de acesso à página desse parceiro:"
+                [fControl]="totalForms.get('customAccess')" [value]="this.customerAgreementTermDTO.customAccess.value"
+                [hintMsg]="this.customerAgreementTermDTO.customAccess.description">
+              </field-default>
+            </div>
+          </div>
+
+          <!-- Campos dinâmicos-->
+          <div role="tabpanel" class="tab-pane  " id="dados">
+            <div class="col-md-6 altura" *ngFor="let fields of customerAgreementTermDTO.sharedFields">
+              <field-default tabindex="0" disabled placeholder="{{fields.description}}"
+                value="{{fields.value ? fields.value : 'Não informado'}}"
+                idinput='fieldValues{{fields.description.trim()}}'>
+              </field-default>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+            <a tabindex="0" title="Alterar os dados" class="btn-edit cursor-pointer"
+              (click)='editclicked($event)'>{{texto}}</a>
+            <div class="clearfix"></div>
+
+            <!-- <p><b>Finalidade do compartilhamento:</b> Formalização e assessoria contábil</p>
+            <p><b>Período de compartilhamento:</b> 3 meses </p> -->
+
+            <p tabindex="0">
+              O termo vale também pra qualquer outro serviço que esse parceiro oferece, como formalização, emissão do
+              extrato do DAS, parcelamento do DAS, emissão e regularização da DASN.
+
+              <br />
+              <br />
+              O período que os dados compartilhados ficam disponíveis é de
+              12 meses. Se, depois disso, você quiser continuar conectado
+              ao parceiro, precisa aceitar o termo de novo.
+            </p>
+
+            <!-- <p>
+              Os termos são validos até <b>{{ date }}</b>. Se, depois disso, você quiser continuar conectado ao
+              parceiro, precisa aceitar o termo de novo.
+            </p> -->
+
+            <!-- <div class="checkbox">
+              <input required type="checkbox" id="r2" class="radio" name="rr"
+              (change)="onChecked($event)" errorMsg="inválido" errorReqMsg="obrigatório"/>
+
+
+              <label for="r2">Li e concordo com o <a href="#" class="btn-termo" title="Termo de compartilhamento">termo de compartilhamento.</a></label>
+              <p class="check-error">teste</p>
+            </div>  -->
+
+            <br><br>
+
+            <div class="checkbox" tabindex="0">
+              <input required type="checkbox" id="r2" class="radio" formControlName="checkTerm" name="rr"
+                value="this.customerAgreementTermDTO.sharing" (change)="onChecked($event)" />
+              <label for="r2"><span></span></label> &nbsp;&nbsp;
+              Li e concordo com o <a class="btn-termo" (click)="fillTerm(true)" title="Termo de compartilhamento">termo
+                de compartilhamento.</a>
+              <p class="check-error">É necessário aceitar o <strong>termo de compartilhamento</strong></p>
+            </div>
+
+          </div>
+
+          <div class="buttons col-md-12">
+            <button tabindex="0" title="Continuar" type="submit" class="btn">Continuar</button>
+            <a tabindex="0" href="javascript:void(0)" (click)="goBack()" title="Voltar" class="btn-2">Voltar</a>
+          </div>
+
+        </form>
+      </div>
+      <div class="div col-md-5"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL Termo -->
+<!-- <modal-pequeno class="modal-logout" [myModal]="termoComp">
+  <div class="modal-body">
+      <h4>Termo de compartilhamento</h4>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <br>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+</modal-pequeno> -->
+<!-- MODAL termo -->
+
+
+<modal-grande IDModal="termoComp">
+  <div class="modal-termo">
+    <h1 tabindex="0" class="title margin-left modal-termo" id="tituloTermo">Termo de compartilhamento</h1>
+    <div class="alert-errors term-align" *ngIf="sucessOne" id="msgSuccess">
+      <div>
+        <img src="assets/images/icon-alert-sucess.jpg" alt="sucess">
+      </div>
+      <div>
+        <p class="tit">E-mail Enviado com Sucesso</p>
+        <p>Arquivo enviado para o e-mail cadastrado na plataforma</p>
+      </div>
+    </div>
+    <div class="alert-errors term-align" *ngIf="errorSendEmail">
+      <div>
+        <img src="assets/images/icon-alert-error.jpg" alt="erro">
+      </div>
+      <div>
+        <p class="tit">Algo deu errado...</p>
+        <p>O termo não foi enviado para seu e-mail cadastrado.</p>
+      </div>
+    </div>
+
+    <div class="espaco-modal" *ngIf="isMobile === true" [ngClass]="{'espacao-modal-2':sucessOne == true}">
+      <!-- <pdf-viewer tabindex="0" id="print-section" class="pdf-viewer" [src]="viewTermUrl" [original-size]="false">
+      </pdf-viewer> -->
+
+
+      <!-- <object data="https://validacaomei.scopus.com.br/api/partner/viewterm/1380/2?uniquehash=1591297050740"
+        type="application/pdf" width="100%" height="100%"></object> -->
+
+      <!-- <embed [src]="viewTermUrl" type='application/pdf' width="100%" height="100%"> -->
+
+      <!-- <object [data]="viewTermUrl" type="application/pdf" width="100%" height="100vh" style="height: 100vh;"></object> -->
+    </div>
+
+    <div class="c-bt">
+      <a class="bt-termo bt-showMob" href="javascript:void(0)" (click)="sendTerm()" style="cursor:pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40"
+          viewBox="0 0 40 40">
+          <defs>
+            <clipPath id="a">
+              <path d="M0,0H40V40H0Z" fill="none" />
+            </clipPath>
+          </defs>
+          <path d="M0,0H40V40H0Z" fill="none" />
+          <g clip-path="url(#a)">
+            <path d="M40,20A20,20,0,1,1,20,0,20,20,0,0,1,40,20" transform="translate(0)" fill="#3b69ff" />
+          </g>
+          <path d="M0,2.478,12.5,10.04,25,2.5V2a2,2,0,0,0-2-2H2A2,2,0,0,0,0,2V13a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2V10"
+            transform="translate(7.5 12.501)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+            stroke-miterlimit="10" stroke-width="0.75" />
+        </svg>
+        <span>Enviar</span>
+      </a>
+
+      <a class="bt-termo bt-showMob" target="_blank" id="baixar" href="{{downloadUrl}}">
+        <svg id="Grupo_6639" class="pad-mob" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" width="222.087" height="222" viewBox="0 0 222.087 222">
+          <defs>
+            <clipPath id="clip-path">
+              <path id="Caminho_3562" data-name="Caminho 3562"
+                d="M2041.116,1132.557A110.558,110.558,0,1,1,1930.558,1022a110.555,110.555,0,0,1,110.558,110.558"
+                transform="translate(-1820 -1021.999)" fill="none" clip-rule="evenodd" />
+            </clipPath>
+            <clipPath id="clip-path-2">
+              <rect id="Retângulo_3331" data-name="Retângulo 3331" width="222" height="222"
+                transform="translate(-0.473 -0.431)" fill="none" />
+            </clipPath>
+            <clipPath id="clip-path-3">
+              <rect id="Retângulo_3333" data-name="Retângulo 3333" width="222" height="222"
+                transform="translate(-0.407 -0.431)" fill="none" />
+            </clipPath>
+          </defs>
+          <g id="Grupo_6638" data-name="Grupo 6638" transform="translate(3574 22249)">
+            <g id="Grupo_6110" data-name="Grupo 6110" transform="translate(-4979 -23023.568)">
+              <g id="Grupo_6088" data-name="Grupo 6088" transform="translate(621 775)">
+                <g id="Grupo_6071" data-name="Grupo 6071" transform="translate(784.473)">
+                  <g id="Grupo_6065" data-name="Grupo 6065" transform="translate(0.497)">
+                    <g id="Grupo_6064" data-name="Grupo 6064" clip-path="url(#clip-path)">
+                      <g id="Grupo_6061" data-name="Grupo 6061" transform="translate(-0.497)">
+                        <g id="Grupo_6060" data-name="Grupo 6060" clip-path="url(#clip-path-2)">
+                          <rect id="Retângulo_3330" data-name="Retângulo 3330" width="277" height="277"
+                            transform="translate(-27.473 -27.431)" fill="#3b69ff" />
+                        </g>
+                      </g>
+                      <g id="Grupo_6063" data-name="Grupo 6063" transform="translate(-685.564)">
+                        <g id="Grupo_6062" data-name="Grupo 6062" transform="translate(0)"
+                          clip-path="url(#clip-path-3)">
+                          <rect id="Retângulo_3332" data-name="Retângulo 3332" width="277" height="277"
+                            transform="translate(-27.407 -27.431)" fill="#3b69ff" />
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                  <g id="Grupo_6070" data-name="Grupo 6070" transform="translate(0 0)">
+                    <g id="Grupo_6069" data-name="Grupo 6069" clip-path="url(#clip-path-2)">
+                      <g id="Grupo_6066" data-name="Grupo 6066" transform="translate(81.343 108.972)">
+                        <path id="Caminho_3563" data-name="Caminho 3563"
+                          d="M1878.962,1093.21a2.053,2.053,0,0,1-1.464-.608l-27.64-27.639a2.072,2.072,0,0,1,2.93-2.93l26.175,26.172,26.174-26.172a2.072,2.072,0,1,1,2.93,2.93l-27.639,27.639A2.054,2.054,0,0,1,1878.962,1093.21Z"
+                          transform="translate(-1849.25 -1061.425)" fill="#fff" />
+                      </g>
+                      <g id="Grupo_6067" data-name="Grupo 6067" transform="translate(108.982 53.206)">
+                        <path id="Caminho_3564" data-name="Caminho 3564"
+                          d="M1861.323,1128.8a2.074,2.074,0,0,1-2.074-2.073v-83.405a2.073,2.073,0,0,1,4.146,0v83.405A2.074,2.074,0,0,1,1861.323,1128.8Z"
+                          transform="translate(-1859.25 -1041.249)" fill="#fff" />
+                      </g>
+                      <g id="Grupo_6068" data-name="Grupo 6068" transform="translate(67.523 163.764)">
+                        <path id="Caminho_3565" data-name="Caminho 3565"
+                          d="M1929.241,1085.4h-82.919a2.073,2.073,0,0,1,0-4.146h82.919a2.073,2.073,0,0,1,0,4.146Z"
+                          transform="translate(-1844.25 -1081.249)" fill="#fff" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+
+        <span id="baixar">Baixar</span></a>
+
+      <a tabindex="0" class="bt-termo bt-hideMob" (click)="printTerms()" style="cursor:pointer;" id="Grupo_6640">
+        <svg data-name="Grupo 6638" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="222.087" height="222" viewBox="0 0 221.114 221.114">
+          <defs>
+            <clipPath id="clip-path">
+              <path id="Caminho_3557" data-name="Caminho 3557"
+                d="M1788.4,1220.357A110.557,110.557,0,1,1,1677.842,1109.8,110.555,110.555,0,0,1,1788.4,1220.357"
+                transform="translate(-1567.284 -1109.8)" fill="none" clip-rule="evenodd" />
+            </clipPath>
+            <clipPath id="clip-path-2">
+              <rect id="Retângulo_3327" data-name="Retângulo 3327" width="222" height="222"
+                transform="translate(0 -0.431)" fill="none" />
+            </clipPath>
+            <clipPath id="clip-path-3">
+              <rect id="Retângulo_3329" data-name="Retângulo 3329" width="220" height="222"
+                transform="translate(0.067 -0.431)" fill="none" />
+            </clipPath>
+          </defs>
+          <g id="Grupo_6059" data-name="Grupo 6059">
+            <g id="Grupo_6052" data-name="Grupo 6052">
+              <g id="Grupo_6051" data-name="Grupo 6051" clip-path="url(#clip-path)">
+                <g id="Grupo_6048" data-name="Grupo 6048">
+                  <g id="Grupo_6047" data-name="Grupo 6047" clip-path="url(#clip-path-2)">
+                    <rect id="Retângulo_3326" data-name="Retângulo 3326" width="277" height="277"
+                      transform="translate(-28 -27.431)" fill="#3b69ff" />
+                  </g>
+                </g>
+                <g id="Grupo_6050" data-name="Grupo 6050" transform="translate(-685.067)">
+                  <g id="Grupo_6049" data-name="Grupo 6049" transform="translate(0)" clip-path="url(#clip-path-3)">
+                    <rect id="Retângulo_3328" data-name="Retângulo 3328" width="276" height="277"
+                      transform="translate(-27.933 -27.431)" fill="#3b69ff" />
+                  </g>
+                </g>
+              </g>
+            </g>
+            <g id="Grupo_6058" data-name="Grupo 6058" transform="translate(39.386 53.206)">
+              <g id="Grupo_6057" data-name="Grupo 6057">
+                <g id="Grupo_6053" data-name="Grupo 6053" transform="translate(96.737 27.639)">
+                  <path id="Caminho_3558" data-name="Caminho 3558"
+                    d="M1649.01,1212.294h-16.583a2.073,2.073,0,0,1,0-4.146h16.583a8.993,8.993,0,0,0,8.983-8.982v-46.987a8.993,8.993,0,0,0-8.983-8.983h-30.4a2.073,2.073,0,0,1,0-4.146h30.4a13.145,13.145,0,0,1,13.129,13.129v46.987A13.145,13.145,0,0,1,1649.01,1212.294Z"
+                    transform="translate(-1616.534 -1139.05)" fill="#fff" />
+                </g>
+                <g id="Grupo_6054" data-name="Grupo 6054" transform="translate(0 27.639)">
+                  <path id="Caminho_3559" data-name="Caminho 3559"
+                    d="M1611.246,1212.294h-16.584a13.144,13.144,0,0,1-13.128-13.128v-46.987a13.144,13.144,0,0,1,13.128-13.129h30.4a2.073,2.073,0,0,1,0,4.146h-30.4a8.993,8.993,0,0,0-8.983,8.983v46.987a8.993,8.993,0,0,0,8.983,8.982h16.584a2.073,2.073,0,0,1,0,4.146Z"
+                    transform="translate(-1581.534 -1139.05)" fill="#fff" />
+                </g>
+                <g id="Grupo_6055" data-name="Grupo 6055" transform="translate(27.636 69.098)">
+                  <path id="Caminho_3560" data-name="Caminho 3560"
+                    d="M1671,1199.655h-71.862a7.607,7.607,0,0,1-7.6-7.6v-35.932a2.074,2.074,0,0,1,2.073-2.073h82.918a2.072,2.072,0,0,1,2.073,2.073v35.932A7.609,7.609,0,0,1,1671,1199.655Zm-75.318-41.459v33.859a3.459,3.459,0,0,0,3.455,3.455H1671a3.46,3.46,0,0,0,3.455-3.455V1158.2Z"
+                    transform="translate(-1591.533 -1154.05)" fill="#fff" />
+                </g>
+                <g id="Grupo_6056" data-name="Grupo 6056" transform="translate(27.639)">
+                  <path id="Caminho_3561" data-name="Caminho 3561"
+                    d="M1676.525,1160.835a2.073,2.073,0,0,1-2.073-2.073v-22.111A3.46,3.46,0,0,0,1671,1133.2h-71.863a3.458,3.458,0,0,0-3.455,3.455v22.111a2.073,2.073,0,1,1-4.146,0v-22.111a7.607,7.607,0,0,1,7.6-7.6H1671a7.609,7.609,0,0,1,7.6,7.6v22.111A2.074,2.074,0,0,1,1676.525,1160.835Z"
+                    transform="translate(-1591.534 -1129.05)" fill="#fff" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <span>Imprimir</span>
+      </a>
+
+    </div>
+  </div>
+</modal-grande>
+
+<modal-grande class="modal-home" IDModal="termoUso">
+  <h1 class="title margin-left">Termo de uso</h1>
+  <div class="espaco-modal">
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+      Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+      of Lorem Ipsum.</p>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+      Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+      of Lorem Ipsum.</p>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+      Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+      of Lorem Ipsum.</p>
+  </div>
+</modal-grande>
+
+<modal-pequeno class="modal-logout" [myModal]="modalConf">
+  <div class="modal-body">
+    <p tabindex="0">
+      Você será redirecionado para o site do parceiro sem que seus dados sejam compartilhados.
+      <br>
+      Quer continuar assim mesmo?
+    </p>
+  </div>
+  <div style="display: inline;" class="modal-footer">
+    <div class="p-termos">
+      <app-button tabindex="0" (click)="goPage()" btnText="Sim" btnClass="button-padrao btn-red">
+      </app-button>
+      <app-button tabindex="0" data-dismiss="modal" btnText="Não" btnClass="button-padrao"></app-button>
+    </div>
+  </div>
+</modal-pequeno>
+
+<modal-pequeno class="modal-logout" [myModal]="showErrorMessagePartner">
+  <div class="modal-body">
+    <p>No momento, não é possível concluir sua solicitação. Por favor, tente novamente mais tarde.
+    </p>
+  </div>
+</modal-pequeno>
+
+<app-footer></app-footer>

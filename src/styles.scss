@@ -1,0 +1,499 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+$my-blue: (
+  50: #3b69ff,
+  100: #3b69ff,
+  200: #3b69ff,
+  300: #3b69ff,
+  400: #3b69ff,
+  500: #3b69ff,
+  600: #3b69ff,
+  700: #3b69ff,
+  800: #3b69ff,
+  900: #3b69ff,
+  A100: #3b69ff,
+  A200: #3b69ff,
+  A400: #3b69ff,
+  A700: #3b69ff,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+$my-red: (
+  50: #e1173f,
+  100: #e1173f,
+  200: #e1173f,
+  300: #e1173f,
+  400: #e1173f,
+  500: #e1173f,
+  600: #e1173f,
+  700: #e1173f,
+  800: #e1173f,
+  900: #e1173f,
+  A100: #e1173f,
+  A200: #e1173f,
+  A400: #e1173f,
+  A700: #e1173f,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bradesco-mei-logado-primary: mat-palette($my-blue);
+$bradesco-mei-logado-accent: mat-palette($mat-pink, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$bradesco-mei-logado-warn: mat-palette($my-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$bradesco-mei-logado-theme: mat-light-theme(
+  $bradesco-mei-logado-primary,
+  $bradesco-mei-logado-accent,
+  $bradesco-mei-logado-warn
+);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($bradesco-mei-logado-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/global-scss/_fonts";
+@import "./assets/global-scss/_mixins";
+@import "./assets/global-scss/_variables";
+// Imports dos css globais de modal
+@import "./app/components/modal/modal-parceiro/modal-parceiro.component.scss";
+@import "./app/components/modal/modal-small/modal-small.component.scss";
+@import "./app/components/card/card.component.scss";
+html {
+  font-size: 16px;
+}
+
+.card-info-drop .dropdown-backdrop {
+  display: none;
+}
+
+body {
+  font-family: $font;
+  padding: calcRem(144px) 0 0;
+  padding-right: 0 !important;
+  @media screen and (max-width: 767px) {
+    padding: calcRem(73px) 0 0;
+  }
+}
+
+*:focus {   
+  outline: none !important; 
+}
+
+.space-none {
+  padding: 0;
+  margin: 0;
+}
+
+/*Fundo modal*/
+
+.modal {
+  background: rgba(0, 0, 0, 0.52);
+  .modal-content {
+    box-shadow: inset 0px 0px calcRem(2px) rgba(0, 0, 0, 0.16), 0px calcRem(16px) calcRem(32px) rgba(0, 0, 0, 0.2) !important;
+    border: none;
+  }
+  .modal-header {
+    padding: calcRem(16px) calcRem(16px) 0 calcRem(16px);
+    border: none;
+    .close {
+      float: left;
+      opacity: 1;
+      margin-top: 0px;
+      outline: none;
+    }
+  }
+}
+
+/*/Fundo modal*/
+.error-risco {
+  background-color: $red !important;
+}
+// custom, mat-form-field, linha
+.mat-form-field .mat-form-field-underline {
+  background-color: $grey-200;
+}
+.mat-form-field-appearance-standard.mat-form-field-disabled
+  .mat-form-field-underline {
+  background-color: $grey-200 !important;
+}
+
+//custom disabled field
+.mat-form-field-disabled {
+  .mat-form-field-underline {
+    background-image: none !important;
+  }
+  .mat-form-field-label {
+    opacity: 0.4 !important;
+  }
+}
+
+//custom focus field
+.mat-form-field.mat-focused {
+  .mat-icon {
+    svg {
+      g {
+        path {
+          fill: #3b69ff;
+        }
+      }
+      .st0 {
+        fill: #3b69ff;
+      }
+    }
+  }
+}
+
+//custom invalid field
+.mat-form-field.mat-form-field-invalid {
+  .mat-icon {
+    svg {
+      g {
+        path {
+          fill: #e1173f;
+        }
+      }
+      .st0 {
+        fill: #e1173f;
+      }
+    }
+  }
+}
+
+.mat-form-field-prefix {
+  width: 36px;
+  .mat-icon-button {
+    .mat-icon {
+      margin-left: 4px !important;
+    }
+  }
+}
+
+.mat-form-field-disabled .mat-form-field-label {
+  opacity: 0.4 !important;
+}
+
+//tira o circulo quando clica no botao (calendario)
+.mat-button-focus-overlay {
+  background-color: transparent !important;
+}
+
+.mat-button-ripple {
+  .mat-ripple-element {
+    background-color: transparent !important;
+  }
+}
+//select box abaixo da linha
+.custom-panel {
+  margin-top: 30px !important;
+}
+
+//tira a seta default do select
+.mat-select-arrow {
+  opacity: 0;
+}
+//texto do select
+.mat-select-value-text {
+  font-size: 1rem !important;
+  font-family: "Bradesco Sans";
+  font-weight: 500;
+}
+
+.dsp-none {
+  display: none !important;
+}
+
+.modal-parceiro .button-padrao {
+  margin: 0;
+}
+
+.modal-parceiro .btn-white {
+  margin-left: calcRem(20px);
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .modal-parceiro .btn-white {
+    margin: 0 auto;
+    display: block !important;
+  }
+}
+
+.bg-cor h1.title-nome,
+.bg-cor .infos .editar-info {
+  color: #fff !important;
+}
+
+.flex-cards {
+  padding: 1px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.flex-center {
+  align-items: center;
+}
+.flex-condition {
+  justify-content: center;
+}
+.flex-box-cards {
+  display: -ms-flexbox;
+  display: flex;
+  //float: left;
+  list-style: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/*--------------Slick Padrão--------------*/
+
+.slide-card .slick-prev:before,
+.slide-card .slick-next:before {
+  color: #3b69ff;
+}
+
+.slide-card .slick-dots li button:before {
+  top: -20px;
+}
+
+.slide-card .slick-next {
+  right: -15px;
+}
+
+.slide-card .slick-prev {
+  left: -15px;
+}
+
+.slide-card .slick-prev,
+.slide-card .slick-next {
+  top: 44%;
+  z-index: 1;
+}
+
+.slide-card div {
+  outline: 0 !important;
+}
+
+.slick-track {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  .slick-slide {
+    height: auto;
+  }
+}
+.slick-dots {
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+}
+.slick-dots li {
+  float: inherit;
+}
+.slick-dotted.slick-slider {
+  margin-bottom: 90px;
+}
+
+$radio1: #ffffff;
+$radio2: #3b69ff;
+
+.radio {
+  padding-left: 35px;
+  margin-bottom: 50px;
+  label {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    + .radio-label {
+      &:before {
+        content: "";
+        //background: $radio1;
+        border-radius: 100%;
+        border: 1px solid $radio2;
+        display: inline-block;
+        width: calcRem(20px);
+        height: calcRem(20px);
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-right: 1em;
+        vertical-align: top;
+        cursor: pointer;
+        text-align: center;
+        transition: all 250ms ease;
+      }
+    }
+    &:checked {
+      + .radio-label {
+        &:before {
+          background: $radio1;
+          border: 6px solid $radio2;
+        }
+      }
+    }
+    &:focus {
+      + .radio-label {
+        &:before {
+          outline: none;
+          border-color: $radio2;
+        }
+      }
+    }
+    &:disabled {
+      + .radio-label {
+        &:before {
+          box-shadow: inset 0 0 0 4px $radio1;
+          border-color: darken($radio1, 25%);
+          background: darken($radio1, 25%);
+        }
+      }
+    }
+    + .radio-label {
+      &:empty {
+        &:before {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  svg {
+    width: 18px;
+    position: absolute;
+    right: 5px;
+  }
+}
+
+.box-url .add-campo {
+  color: $blue;
+  font-size: calcRem(50px);
+  border: none;
+  background: none;
+  font-weight: 200;
+  width: calcRem(50px);
+  margin: 0 auto;
+  display: block;
+  outline: 0;
+}
+
+.box-url {
+  p {
+    color: #868686;
+    font-size: calcRem(14px);
+    font-weight: 400;
+    margin-bottom: 3px;
+  }
+  input {
+    background: transparent;
+    border: 0;
+    border-bottom: calcRem(1px) solid #c8c9cc;
+    outline: 0;
+    width: 100%;
+    font-size: calcRem(16px);
+    font-weight: 500;
+    padding: 0 0 calcRem(10px) 0;
+  }
+  ::placeholder {
+    color: #47484c;
+  }
+}
+
+.snackInfo {
+  color: #fff;
+}
+
+.snackError {
+  color: #fff;
+  //background: linear-gradient(45deg, #b41a83 0%, #cc092f 49%, #f36279 100%);
+  background: #b41a83;
+}
+
+.snackSuccess {
+  color: #fff;
+  //background: linear-gradient(45deg, #1ab486 0%, #09cc29 49%, #c0f362 100%);
+  background: #1ab486;
+}
+
+/// Remove bug no select no tamanahdo do select ////
+.ng-trigger {
+  min-width: calc(100% + 0px) !important;
+}
+.cdk-overlay-container {
+  margin-left: 16px;
+}
+.mat-select-panel {
+  &.ng-animating {
+    visibility: hidden;
+  }
+}
+/// corrige bug no ie
+:not(.mat-form-field-appearance-legacy).mat-form-field .mat-form-field-prefix .mat-icon-button,
+:not(.mat-form-field-appearance-legacy).mat-form-field .mat-form-field-suffix .mat-icon-button {
+  display: inline !important;
+  height: auto !important;
+}
+
+.cdk-overlay-container {
+  z-index: 2;
+}
+.ten {
+  z-index: 1050;
+}
+.error-color {
+  color: $red !important;
+}
+.fill {
+  fill: $red !important;
+}
+
+.mat-form-field-appearance-standard .mat-form-field-flex {
+  @media (max-width: 720px) {
+    padding-top: 40px !important;
+  }
+}

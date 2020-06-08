@@ -1,0 +1,30 @@
+<div class="div-material">
+    <mat-form-field floatLabel="auto" appearance="standard">
+      <mat-label>{{placeholder}}</mat-label>
+      <input id={{id}} type="text" class="matinput" [formControl]="fControl" value={{value}} inputmode="numeric" pattern="[0-9]*" mask="00000-000"
+       matInput>
+
+      <mat-icon matPrefix>
+          <svg class="busca" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 53 53" style="enable-background:new 0 0 53 53;" xml:space="preserve">
+            
+            <path class="st0" d="M51.7,51.3L36.8,35.8C40.6,32,43,26.8,43,21C43,9.4,33.6,0,22,0S1,9.4,1,21s9.4,21,21,21
+              c5.1,0,9.7-1.8,13.4-4.8l14.9,15.5c0.2,0.2,0.5,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3C52.1,52.3,52.1,51.7,51.7,51.3z M22,40
+              C11.5,40,3,31.5,3,21S11.5,2,22,2s19,8.5,19,19S32.5,40,22,40z"/>
+          </svg>
+          
+      </mat-icon>
+      
+      <mat-hint>{{hintMsg}}</mat-hint>
+      
+      <mat-error *ngIf="fControl.hasError('customNotValid') && !fControl.hasError('required')">
+        {{errorMsg}}
+      </mat-error>
+      
+      <mat-error *ngIf="fControl.hasError('required')">
+        {{errorReqMsg}}
+      </mat-error>
+      
+      
+    </mat-form-field>
+  </div>

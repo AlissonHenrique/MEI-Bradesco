@@ -1,0 +1,3 @@
+<a *ngIf="btnRoute != null" [routerLink]='[btnRoute]' [title]="btnText" [class]="btnClass" [id]="btnId">{{btnText}}</a>
+
+<a *ngIf="btnRoute == null" [title]="btnText" [class]="btnClass" [id]='btnId'>{{btnText}}</a>

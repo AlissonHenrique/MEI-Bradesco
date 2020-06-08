@@ -1,0 +1,332 @@
+@import "../../../assets/global-scss/_mixins";
+@import "../../../assets/global-scss/_variables";
+
+.progress-width {
+  width: 50%;
+}
+.progress {
+  height: calcRem(5px);
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.c-bt {
+  margin: calcRem(16px);
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 30px;
+
+  .bt-termo {
+    text-decoration: none;
+    color: #47484c;
+    margin: 0 calcRem(8px);
+
+    svg {
+      height: 46px;
+      width: 50px;
+      margin-bottom: -18px;
+      @media (max-width: 320px) {
+        margin-bottom: 0;
+      }
+    }
+
+    img,
+    svg {
+      margin-right: calcRem(5px);
+      opacity: 0.9;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.form-parceiro {
+  padding: calcRem(70px) 0;
+  color: #47484c;
+
+  .header-form {
+    padding-bottom: calcRem(36px);
+    padding-left: calcRem(15px);
+    padding-right: calcRem(15px);
+    @media (min-width: 0px) and (max-width: 991px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    span.title-back {
+      font-size: calcRem(16px);
+    }
+    h2 {
+      font-size: calcRem(40px);
+      font-weight: bold;
+      margin: calcRem(25px) 0;
+    }
+    span.title {
+      font-size: calcRem(16px);
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: calcRem(24px);
+      font-weight: 600;
+    }
+  }
+
+  .btn-edit {
+    color: $blue;
+    margin: calcRem(15px) 0 calcRem(45px) 0;
+    float: right;
+  }
+  .btn-termo {
+    color: $black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  form {
+    .col-md-6:nth-child(),
+    .col-md-12 {
+      padding: 0;
+    }
+  }
+
+  ///radio
+  .checkbox-inline,
+  .radio-inline {
+    padding: 0;
+  }
+  input[type="radio"] + label strong.text {
+    padding-left: calcRem(10px);
+    font-weight: normal;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="radio"] + label span {
+    display: inline-block;
+    width: calcRem(19px);
+    height: calcRem(20px);
+    margin: calcRem(-1px) 0 0 0;
+    vertical-align: middle;
+    background: url("../../../assets/images/icon-radio.png") calcRem(-18px)
+      center no-repeat;
+    cursor: pointer;
+  }
+  input[type="radio"]:checked + label span {
+    background: url("../../../assets/images/icon-radio.png") 0 top no-repeat;
+  }
+  .radio-error {
+    display: none;
+    margin-top: calcRem(8px);
+    font-size: calcRem(14px);
+    color: $red;
+    font-weight: 500;
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  .select-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: calcRem(30px);
+    p {
+      margin: 0;
+    }
+    .btn {
+      outline: 0;
+      font-size: calcRem(14px);
+      font-weight: 600;
+      height: calcRem(48px);
+      line-height: calcRem(48px);
+      border-radius: calcRem(24px);
+      text-align: center;
+      padding: 0;
+      background: transparent;
+      color: #3b69ff;
+      width: calcRem(126px);
+      border: calcRem(1px) solid #3b69ff;
+      margin: 0 calcRem(8px);
+    }
+    .btn-active {
+      color: #fff;
+      border: calcRem(1px) solid #3b69ff;
+      background: #3b69ff;
+    }
+  }
+  .buttons {
+    .btn {
+      @include btn($white, $red);
+      outline: 0;
+    }
+    .btn-2 {
+      @include btn(#3b69ff, $white);
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .form-parceiro {
+    .select-button {
+      a:nth-child(1) {
+        margin-right: 5%;
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .form-parceiro {
+    .select-button {
+      justify-content: flex-start;
+    }
+    form {
+      div {
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .c-bt {
+    flex-direction: row;
+  }
+  .bt-hideMob {
+    display: none;
+  }
+  .bt-showMob {
+    display: block;
+  }
+  .pad-mob {
+    padding-bottom: 0 !important;
+  }
+  .form-parceiro {
+    .header-form {
+      span.title {
+        font-size: calcRem(14px);
+      }
+      h2 {
+        font-size: calcRem(22px);
+      }
+      h3 {
+        font-size: calcRem(16px);
+      }
+    }
+
+    .checkbox {
+      margin: 0 0 calcRem(50px) 0;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
+
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"],
+.radio input[type="radio"],
+.radio-inline input[type="radio"] {
+  margin-left: 0 !important;
+}
+
+.checkbox {
+  position: relative;
+  display: block;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.check-error,
+.check-error2 {
+  font-size: 14px;
+  color: #e1173f;
+  display: none;
+}
+
+.espaco-modal {
+  padding: 20px 55px;
+  max-height: 320px;
+  overflow-y: scroll;
+}
+
+.espacao-modal-2 {
+  max-height: 200px;
+}
+
+.servicosParc {
+  margin-top: 40px;
+}
+
+.altura {
+  height: 85px;
+}
+
+.checkbox {
+  margin: 0 0 calcRem(65px) 0;
+  font-size: calcRem(14px);
+  label,
+  .radio label {
+    padding: 0;
+  }
+
+  input[type="checkbox"] + label {
+    color: #f2f2f2;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label span {
+    display: inline-block;
+    width: calcRem(17px);
+    height: calcRem(17px);
+    margin: calcRem(-1px) 0 0 0;
+    vertical-align: middle;
+    background: url("../../../assets/images/icon-check.png") 0 center no-repeat;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:checked + label span {
+    background: url("../../../assets/images/icon-check.png") calcRem(-17px) top
+      no-repeat;
+  }
+}
+
+.p-termos {
+  padding: calcRem(14px) calcRem(44px);
+  @media screen and (max-width: 768px) {
+    margin: 0 30px !important;
+  }
+}
+
+.alert-errors {
+  display: flex;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  -webkit-box-shadow: 1px 1px 9px -3px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 1px 1px 9px -3px rgba(185, 68, 68, 0.41);
+  box-shadow: 1px 1px 9px -3px rgba(0, 0, 0, 0.41);
+ // margin-bottom: 40px;
+  img {
+    margin-right: 16px;
+  }
+  p.tit {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+.term-align {
+  margin-left: 60px; 
+  margin-right: 160px; 
+  margin-bottom: 30px;
+}
+@media only screen and (max-width: 600px) {
+  .term-align {
+    width: 70%;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="div-material">
+
+  <mat-form-field>
+    <input type="text" id={{id}} placeholder={{placeholder}} [formControl]="fControl" matInput [matAutocomplete]="auto">
+  </mat-form-field>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+    <mat-option *ngFor="let item of itens | async " [value]="item.nome" >
+      {{item.nome }}
+    </mat-option>
+  </mat-autocomplete>
+
+
+
+</div>
+  
+  
+

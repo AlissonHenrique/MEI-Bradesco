@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="webview" *ngIf="urlPartner">
+  <iframe [src]="urlPartner"></iframe>
+</div>
+
+<div class="webview" *ngIf="show === 'error'">
+
+  <div class="error">
+
+    <svg (click)="goBack()" class="close cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="18.389"
+      height="18.385" viewBox="0 0 18.389 18.385">
+      <g transform="translate(1729.585 25426.852) rotate(45)">
+        <line x2="24" transform="translate(-19201.5 -16756.498)" fill="none" stroke="#47484c" stroke-width="2" />
+        <line y2="24" transform="translate(-19189.498 -16768.5)" fill="none" stroke="#47484c" stroke-width="2" />
+      </g>
+    </svg>
+
+    <div class="err-icon">
+      <img src="assets/images/erro.png" alt="Não foi possível carregar a página.">
+
+      <div class="err-title">
+        Ops!
+      </div>
+
+      <div class="err-txt">
+          Algo deu errado. <br>
+          Recarregue a página ou tente novamente mais tarde.
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>

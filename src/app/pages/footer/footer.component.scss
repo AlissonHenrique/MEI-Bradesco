@@ -1,0 +1,270 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+footer {
+  .click-footer {
+    cursor: pointer;
+  }
+  background: rgba(250, 0, 58, 1);
+  background: -moz-linear-gradient(
+    left,
+    rgba(250, 0, 58, 1) 0%,
+    rgba(99, 50, 142, 1) 40%,
+    rgba(42, 70, 171, 1) 50%,
+    rgba(46, 86, 178, 1) 79%,
+    rgba(66, 153, 207, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(0%, rgba(250, 0, 58, 1)),
+    color-stop(40%, rgba(99, 50, 142, 1)),
+    color-stop(50%, rgba(42, 70, 171, 1)),
+    color-stop(79%, rgba(46, 86, 178, 1)),
+    color-stop(100%, rgba(66, 153, 207, 1))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(250, 0, 58, 1) 0%,
+    rgba(99, 50, 142, 1) 40%,
+    rgba(42, 70, 171, 1) 50%,
+    rgba(46, 86, 178, 1) 79%,
+    rgba(66, 153, 207, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(250, 0, 58, 1) 0%,
+    rgba(99, 50, 142, 1) 40%,
+    rgba(42, 70, 171, 1) 50%,
+    rgba(46, 86, 178, 1) 79%,
+    rgba(66, 153, 207, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(250, 0, 58, 1) 0%,
+    rgba(99, 50, 142, 1) 40%,
+    rgba(42, 70, 171, 1) 50%,
+    rgba(46, 86, 178, 1) 79%,
+    rgba(66, 153, 207, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(250, 0, 58, 1) 0%,
+    rgba(99, 50, 142, 1) 40%,
+    rgba(42, 70, 171, 1) 50%,
+    rgba(46, 86, 178, 1) 79%,
+    rgba(66, 153, 207, 1) 100%
+  );
+  // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fa003a', endColorstr='#4299cf', GradientType=1);
+  padding: calcRem(24px) 0;
+  color: #fff;
+  text-align: left;
+  figure {
+    margin-bottom: calcRem(30px);
+  }
+  .btn {
+    text-decoration: none;
+    border-radius: calcRem(20px);
+    border: calcRem(1px) solid #fff;
+    height: calcRem(40px);
+    line-height: calcRem(40px);
+    padding: 0 calcRem(23px) 0 calcRem(13px);
+    span {
+      color: #fff;
+
+      font-size: calcRem(14px);
+      float: left;
+    }
+    img {
+      width: calcRem(25px);
+      margin: calcRem(6px) calcRem(5px) calcRem(5px) 0;
+      float: left;
+    }
+  }
+  .risco::before {
+    content: "";
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: calcRem(0.5px);
+    height: calcRem(100px);
+    top: calcRem(25px);
+    left: calcRem(-20px);
+    transform: rotate(0deg);
+    width: calcRem(0.5px);
+  }
+  .risco {
+    padding: calcRem(90px) 0 0 0;
+    p {
+      font-weight: 400;
+    }
+    a {
+      margin: 0 0 calcRem(16px) 0;
+    }
+    svg {
+      display: none;
+    }
+  }
+  p {
+    font-size: calcRem(12px);
+    font-weight: 600;
+    span.btn-footer {
+      display: none;
+      position: relative;
+      top: calcRem(-10px);
+      left: calcRem(320px);
+      width: calcRem(10px);
+      height: calcRem(7px);
+      background: url("../../../assets/images/seta.png") no-repeat;
+      background-size: 100%;
+      cursor: pointer;
+      transition: 1s;
+    }
+    .rotated {
+      transform: rotate(-180deg);
+      transition: 1s;
+    }
+  }
+  .info-footer-2 {
+    display: flex;
+    justify-content: space-between;
+    padding-right: calcRem(40px);
+  }
+}
+
+@media (max-width: 1199px) {
+  footer {
+    .risco::before {
+      left: calcRem(-20px);
+    }
+    .info-footer-2 {
+      padding-right: 0;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  footer {
+    background: rgba(66, 153, 207, 1);
+    background: -moz-linear-gradient(
+      top,
+      rgba(66, 153, 207, 1) 0%,
+      rgba(46, 86, 178, 1) 20%,
+      rgba(42, 70, 171, 1) 54%,
+      rgba(99, 50, 142, 1) 71%,
+      rgba(250, 0, 58, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      left bottom,
+      color-stop(0%, rgba(66, 153, 207, 1)),
+      color-stop(20%, rgba(46, 86, 178, 1)),
+      color-stop(54%, rgba(42, 70, 171, 1)),
+      color-stop(71%, rgba(99, 50, 142, 1)),
+      color-stop(100%, rgba(250, 0, 58, 1))
+    );
+    background: -webkit-linear-gradient(
+      top,
+      rgba(66, 153, 207, 1) 0%,
+      rgba(46, 86, 178, 1) 20%,
+      rgba(42, 70, 171, 1) 54%,
+      rgba(99, 50, 142, 1) 71%,
+      rgba(250, 0, 58, 1) 100%
+    );
+    background: -o-linear-gradient(
+      top,
+      rgba(66, 153, 207, 1) 0%,
+      rgba(46, 86, 178, 1) 20%,
+      rgba(42, 70, 171, 1) 54%,
+      rgba(99, 50, 142, 1) 71%,
+      rgba(250, 0, 58, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      top,
+      rgba(66, 153, 207, 1) 0%,
+      rgba(46, 86, 178, 1) 20%,
+      rgba(42, 70, 171, 1) 54%,
+      rgba(99, 50, 142, 1) 71%,
+      rgba(250, 0, 58, 1) 100%
+    );
+    background: linear-gradient(
+      to bottom,
+      rgba(66, 153, 207, 1) 0%,
+      rgba(46, 86, 178, 1) 20%,
+      rgba(42, 70, 171, 1) 54%,
+      rgba(99, 50, 142, 1) 71%,
+      rgba(250, 0, 58, 1) 100%
+    );
+    // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#4299cf', endColorstr='#fa003a', GradientType=0);
+    .risco::before {
+      content: none;
+    }
+    figure.hidden-991 {
+      display: none;
+    }
+    .hidden-991 {
+      display: block;
+    }
+    .risco {
+      padding: 0;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      a {
+        color: #fff;
+        text-align: center;
+        margin: calcRem(34px) 0 calcRem(34px) 0;
+      }
+      svg {
+        display: block;
+      }
+    }
+    svg {
+      margin-top: calcRem(15px);
+    }
+    p span.btn-footer {
+      display: block;
+    }
+  }
+  .btn {
+    width: calcRem(120px);
+    margin: calcRem(15px) auto calcRem(25px) auto;
+  }
+}
+
+@media (max-width: 640px) {
+  footer {
+    .info-footer-2 {
+      flex-wrap: wrap;
+      div {
+        padding: 0 0 20px 0;
+        width: 50%;
+        strong {
+          font-weight: bold;
+          font-size: 16px;
+        }
+      }
+    }
+    .risco {
+      a {
+        margin-top: calcRem(14px);
+      }
+    }
+  }
+}
+
+.hidden-991 {
+  color: $white;
+}
+
+@media (max-width: 344px) {
+  footer {
+    p {
+      span.btn-footer {
+        left: 280px;
+        top: -25px;
+      }
+    }
+  }
+}

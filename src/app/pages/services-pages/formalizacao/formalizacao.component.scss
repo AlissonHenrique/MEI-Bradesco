@@ -1,0 +1,121 @@
+@import "../../../../assets/global-scss/mixins";
+@import "../../../../assets/global-scss/variables";
+body {
+  overflow: hidden !important;
+}
+
+.float {
+  float: left;
+  margin-bottom: 10px;
+}
+
+.como-fazer {
+  margin-bottom: 3.5rem;
+  @media (min-width: 0px) and (max-width: 767px) {
+    margin-bottom: 0px;
+  }
+  h2.veja {
+    font-size: calcRem(18px);
+    color: $grey-700;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: calcRem(30px);
+    @media (min-width: 992px) and (max-width: 1199px) {
+      font-size: calcRem(16px);
+    }
+    @media (min-width: 0px) and (max-width: 767px) {
+      margin-top: calcRem(50px);
+
+      span {
+        width: 32%;
+        height: 3px;
+        background: #e4e5e9;
+        margin-top: 9px;
+        float: right;
+      }
+
+      i {
+        width: 70px;
+        height: 20px;
+        background: url("../../../../assets/images/svg/icon-seta.svg") center no-repeat, #f0f1f5;
+        float: right;
+        position: absolute;
+        right: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  i {
+    width: 100%;
+    height: calcRem(40px);
+    float: left;
+    margin-bottom: calcRem(10px);
+  }
+
+  .txt {
+    padding: 0 18px 0 40px;
+  }
+}
+
+.servicos-parceiros .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;  
+  
+  text-decoration: none;
+}
+.servicos-parceiros{
+  @media(max-width: 767px){
+    padding: 0;
+  }
+}
+.servicos-parceiros p{
+  @media(max-width: 767px){
+    margin-bottom: 0;
+  }
+}
+
+.bottom-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  width: 167px;
+  margin: 0 auto;
+}
+
+.font-1 {
+  font-size: calcRem(16px);
+  font-weight: 400;
+}
+
+.font-2 {
+  font-size: calcRem(12px);
+  font-weight: 400;
+}
+
+.style {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.regular4.slick-initialized.slick-slider.slick-dotted {
+  margin-bottom: calcRem(50px) !important;
+  margin: 0px calcRem(20px);
+}
+
+.serv-name {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #707070;
+}
+ 
+.tabindex-invisivel {
+  opacity: 0;         // hide it visually
+  z-index: -1;        // avoid unintended clicks
+  position: absolute; // don't affect other elements positioning
+}

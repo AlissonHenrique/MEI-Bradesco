@@ -1,0 +1,31 @@
+@import '../../../../assets/global-scss/mixins';
+@import '../../../../assets/global-scss/variables';
+.div-material {
+    width: 100%;
+}
+
+mat-form-field {
+    font-size: 1rem !important;
+    font-family: "Bradesco Sans";
+    font-weight: 500;
+    width: 100%;
+    line-height: unset;
+}
+
+
+svg{
+    position: absolute;
+    bottom: calcRem(-6px);
+    left: calcRem(4px);
+    width: calcRem(24px);
+    
+    .st0{
+        fill:#6C6B6F;
+        &.blue{
+            fill: $blue;
+        }
+        
+    }
+    
+            
+}

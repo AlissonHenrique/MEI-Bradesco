@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="{{idCollapse}}a">
+    <h4 class="panel-title">
+      <a tabindex="0" class="padding-new" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{idCollapse}}"
+        aria-expanded="false" [attr.aria-controls]="idCollapse">
+        <img src="assets/images/svg/icon-collapse-1.svg" class="img-more">
+        <img src="assets/images/svg/icon-collapse-2.svg" class="img-less">
+        {{ title }}
+      </a>
+    </h4>
+  </div>
+
+  <div tabindex="0" id="{{idCollapse}}" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="idCollapse">
+    <div class="panel-body">
+      {{ textDescription }}
+    </div>
+  </div>
+</div>

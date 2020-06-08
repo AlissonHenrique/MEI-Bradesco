@@ -1,0 +1,96 @@
+.c-bt{
+    @media screen and (max-width: 768px) {
+      display: flex;
+      float: none;
+      text-align: center !important;
+      margin-top: 85px;
+      vertical-align: middle;
+    }
+    margin: calcRem(16px);
+    @media screen and (max-width: 767px) {
+      display: inherit !important;
+    }
+    display: flex;
+    flex-direction: row-reverse;
+  
+    .bt-termo{
+    
+      text-decoration: none;
+      color: #47484c;
+      margin: 0 calcRem(80px);
+  
+      svg{
+        height: 46px;
+        width: 50px;
+        margin-bottom: -18px;
+      }
+      
+      img,svg{
+        margin-right: calcRem(5px);
+        opacity: 0.9;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      
+    }
+  }
+
+  .espaco-modal{
+    padding: 20px 55px;
+    max-height: 430px;
+  }
+
+  .espaco-modal-2 {
+    max-height: 280px;
+    overflow-y: hidden;
+  }
+
+  .iframeTerm{
+      margin: 0px;
+      padding: 0px;
+      border: none;
+      width: 100%;
+      height: 250px;
+      @media screen and (max-width: 769px) {
+        display: none !important;
+      }
+  }
+
+  .alignBtn{
+    @media screen and (max-width: 769px) {
+      margin-bottom: 10%;
+    }
+    @media screen and (min-width: 769px) {
+      margin-left: 34%;
+    }
+    
+  }
+
+  .svgDownload {
+    width: 1.0625rem;
+    height: 1.125rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -0.3125rem;
+    display: inherit !important;
+  }
+
+  .download {
+    @media screen and (min-width: 769px) {
+      display: none !important;
+    }
+  }
+
+  .modalResponsive {
+    @media screen and (max-width: 769px) {
+      width: 100%;
+      float: left;
+      text-align: center !important;
+      margin-bottom: 50px;
+    }
+  }
+
+  .tpadding{
+    padding-top: 25px;
+  }

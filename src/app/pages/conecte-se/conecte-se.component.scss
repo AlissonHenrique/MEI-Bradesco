@@ -1,0 +1,124 @@
+@import "../../../assets/global-scss/mixins";
+@import "../../../assets/global-scss/variables";
+
+body {
+  overflow: hidden;
+}
+
+.serv-name {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #707070;
+}
+
+.conecte-se {
+  padding-top: calcRem(65px);
+
+  a.return {
+    display: block;
+    color: #337ab7;
+    font-size: calcRem(16px);
+    font-weight: 500;
+
+    &:hover {
+      color: $grey-700;
+      text-decoration: none;
+    }
+  }
+
+  h1 {
+    color: $grey-700;
+    font-size: calcRem(40px);
+    font-weight: bold;
+    margin-top: calcRem(35px);
+    margin-bottom: 0;
+  }
+
+  h2 {
+    color: $grey-700;
+    font-size: calcRem(16px);
+    font-weight: 500;
+    margin-top: calcRem(15px);
+    margin-bottom: calcRem(50px);
+  }
+
+  h3 {
+    color: $grey-700;
+    font-size: calcRem(24px);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: calcRem(50px);
+  }
+
+  span.line {
+    width: 100%;
+    height: 2px;
+    float: left;
+    background: $grey-100;
+    margin: 0 0 calcRem(55px) 0;
+  }
+
+  ul.actions-button {
+    background: $grey-50;
+    padding: calcRem(20px) calcRem(50px) 0 calcRem(30px);
+    float: right;
+    margin: 0;
+    height: calcRem(59px);
+    margin-top: calcRem(-87px);
+
+    li {
+      list-style: none;
+      float: left;
+      margin-left: calcRem(30px);
+
+      i {
+        width: calcRem(40px);
+        height: calcRem(40px);
+        float: left;
+        margin-top: calcRem(-9px);
+        margin-right: calcRem(9px);
+      }
+
+      i.icon-conecte-imprimir {
+        background: url("../../../assets/images/svg/icon-conecte-imprimir.svg");
+      }
+
+      i.icon-conecte-salvar {
+        background: url("../../../assets/images/svg/icon-conecte-salvar.svg");
+      }
+
+      i.icon-conecte-enviar {
+        background: url("../../../assets/images/svg/icon-conecte-enviar.svg");
+      }
+
+      a {
+        color: $grey-700;
+        font-size: calcRem(16px);
+        font-weight: 400;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.disable-drop {
+  color: $grey-200 !important;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.position {
+  position: absolute;
+  z-index: 3;
+}
+
+.bottom-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calcRem(30px);
+  width: calcRem(180px);
+  height: calcRem(70px);
+  margin: 0 auto;
+}
