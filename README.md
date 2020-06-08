@@ -2,19 +2,18 @@
     <img width="300px" src="https://i.imgur.com/OSbY0PA.jpg">
     <br><br>
 </h3>
-<p align="center">
-  <a href="https://rocketseat.com.br">
-    <img src="https://img.shields.io/badge/Made%20by-Rocketseat-brightgreen&style=flat&logo">
-  </a>
-  <a>
+<p align="center"> 
+
   <img src="https://img.shields.io/github/license/Suburbanno/Ecoleta?style=flat&logo">
 </p>
 
+
+
 ## 🔖 Sobre
 
-O <strong>Ecoleta</strong> é um marketplace de coleta de resíduos.
+MEI - Bradesco - Projero feito prestanto serviço a agência fri.to, para o banco Bradesco.
 
-Aplicação web construída na trilha <strong>Starter</strong> da <strong>Next Level Week</strong> distribuída pela [Rocketseat](https://rocketseat.com.br/).
+ (https://mei.prebanco.com.br/).
 
 ## 🖼 Screenshot
 
