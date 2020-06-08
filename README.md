@@ -17,7 +17,7 @@ MEI - Bradesco - Projeto feito prestanto serviço a agência fri.to, para o banc
 
 ## 🖼 Screenshot
 
-<img src="//s.imgur.com/min/embed.js">
+<img src="https://imgur.com/lGiY4oZ">
 
 ## Técnologias
 - Angular 9
