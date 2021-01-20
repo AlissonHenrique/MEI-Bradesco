@@ -29,7 +29,7 @@
     "bootstrap": "^3.3.7",
     "cdk": "^1.18.0",
     "core-js": "^2.5.4",
-    "gsap": "^2.1.3",
+    "gsap": "^3.6.0",
     "hammerjs": "^2.0.8",
     "jquery": "^1.12.4",
     "jquery-mask-plugin": "^1.14.16",
