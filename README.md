@@ -2,11 +2,10 @@
     <img width="300px" src="https://i.imgur.com/OSbY0PA.jpg">
     <br><br>
 </h3>
-<p align="center"> 
-
-  <img src="https://img.shields.io/github/license/Suburbanno/Ecoleta?style=flat&logo">
-</p>
-
+ 
+ <h4 align="center">
+ Project built with Angular
+</h4>
 
 
 ## 🔖 Sobre
@@ -20,18 +19,18 @@ MEI - Bradesco - Projeto feito prestanto serviço a agência fri.to, para o banc
 <img src="https://i.imgur.com/lGiY4oZ.gif">
 
 
-## Técnologias
-- Angular 9
-- Scss
-- Javascript
-- HTML
 
 
-## 📝 License
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+### :rocket:Technologies
+- Angular
 
----
+### :rocket: How to install and start 
+- `git clone https://github.com/AlissonHenrique/Github-Explorer.git` 
+- **Go to repository folder**
+- `yarn  or npm`
+- `yarn start or npm start` 
+
 
 <h4 align="center">
     Feito com 💜 by <a href="https://www.linkedin.com/in/alissonhenri/" target="_blank">Alisson Henrique</a>
