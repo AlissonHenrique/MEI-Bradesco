@@ -10,7 +10,7 @@
 
 ## 🔖 Sobre
 
-MEI - Bradesco - Projeto feito prestanto serviço a agência fri.to, para o banco Bradesco. Desenvolvimento Front-End da area logada e deslogada.
+MEI - Bradesco - Projeto feito prestanto serviço a agência fri.to, para o banco Bradesco. Desenvolvimento Front-End da área logada e deslogada.
 
 [https://mei.prebanco.com.br](https://mei.prebanco.com.br).
 
@@ -19,16 +19,13 @@ MEI - Bradesco - Projeto feito prestanto serviço a agência fri.to, para o banc
 <img src="https://i.imgur.com/lGiY4oZ.gif">
 
 
-
-
-
 ### :rocket:Technologies
 - Angular
 
 ### :rocket: How to install and start 
 - `git clone https://github.com/AlissonHenrique/MEI-Bradescot` 
 - **Go to repository folder**
-- `yarn  or npm`
+- `yarn  ou npm`
 - `yarn start or npm start` 
 
 
